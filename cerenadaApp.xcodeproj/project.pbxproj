@@ -7,23 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		316820702907CC8000E28F62 /* NewProductData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168206F2907CC8000E28F62 /* NewProductData.swift */; };
+		316820722907CCC000E28F62 /* NewProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316820712907CCC000E28F62 /* NewProductManager.swift */; };
+		31958344292D0F9D000CB4DD /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31958343292D0F9D000CB4DD /* AlertViewController.swift */; };
 		31ACD43927FE170500DAD756 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ACD43827FE170500DAD756 /* AppDelegate.swift */; };
-		31ACD43B27FE170500DAD756 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ACD43A27FE170500DAD756 /* SceneDelegate.swift */; };
-		31ACD43D27FE170500DAD756 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ACD43C27FE170500DAD756 /* ViewController.swift */; };
-		31ACD44027FE170500DAD756 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31ACD43E27FE170500DAD756 /* Main.storyboard */; };
 		31ACD44227FE170600DAD756 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31ACD44127FE170600DAD756 /* Assets.xcassets */; };
 		31ACD44527FE170600DAD756 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31ACD44327FE170600DAD756 /* LaunchScreen.storyboard */; };
+		31ACD44D27FE183B00DAD756 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ACD44C27FE183B00DAD756 /* MainViewController.swift */; };
+		31B710EE290D495C00E6CA04 /* PresentationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B710ED290D495C00E6CA04 /* PresentationCollectionViewCell.swift */; };
+		31B710F2290E863A00E6CA04 /* NewProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B710F1290E863A00E6CA04 /* NewProductsCollectionViewCell.swift */; };
+		31B710F4290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B710F3290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift */; };
+		31B710F6290FD0C500E6CA04 /* PartnersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B710F5290FD0C500E6CA04 /* PartnersData.swift */; };
+		31B710F9290FE96700E6CA04 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B710F8290FE96700E6CA04 /* InfoViewController.swift */; };
+		31B710FB290FF7E700E6CA04 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B710FA290FF7E700E6CA04 /* InfoTableViewCell.swift */; };
+		F6D850EDFA69236E520232BF /* Pods_cerenadaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75757C73A7D74269DDC194DB /* Pods_cerenadaApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29E716721A9A3BE6F3DAEDF0 /* Pods-cerenadaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cerenadaApp.debug.xcconfig"; path = "Target Support Files/Pods-cerenadaApp/Pods-cerenadaApp.debug.xcconfig"; sourceTree = "<group>"; };
+		3168206F2907CC8000E28F62 /* NewProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductData.swift; sourceTree = "<group>"; };
+		316820712907CCC000E28F62 /* NewProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductManager.swift; sourceTree = "<group>"; };
+		31958343292D0F9D000CB4DD /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		31ACD43527FE170500DAD756 /* cerenadaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cerenadaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31ACD43827FE170500DAD756 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		31ACD43A27FE170500DAD756 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		31ACD43C27FE170500DAD756 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		31ACD43F27FE170500DAD756 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		31ACD44127FE170600DAD756 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31ACD44427FE170600DAD756 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		31ACD44627FE170600DAD756 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31ACD44C27FE183B00DAD756 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		31B710ED290D495C00E6CA04 /* PresentationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationCollectionViewCell.swift; sourceTree = "<group>"; };
+		31B710F1290E863A00E6CA04 /* NewProductsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductsCollectionViewCell.swift; sourceTree = "<group>"; };
+		31B710F3290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersCollectionViewCell.swift; sourceTree = "<group>"; };
+		31B710F5290FD0C500E6CA04 /* PartnersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersData.swift; sourceTree = "<group>"; };
+		31B710F8290FE96700E6CA04 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		31B710FA290FF7E700E6CA04 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		39D0CB24D2B67817F1B430E9 /* Pods-cerenadaApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cerenadaApp.release.xcconfig"; path = "Target Support Files/Pods-cerenadaApp/Pods-cerenadaApp.release.xcconfig"; sourceTree = "<group>"; };
+		75757C73A7D74269DDC194DB /* Pods_cerenadaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cerenadaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6D850EDFA69236E520232BF /* Pods_cerenadaApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +61,8 @@
 			children = (
 				31ACD43727FE170500DAD756 /* cerenadaApp */,
 				31ACD43627FE170500DAD756 /* Products */,
+				5002F1A5CA36EB88CE4C8AFB /* Pods */,
+				7A9A58FE4CEC9EE92B9178E9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +78,62 @@
 			isa = PBXGroup;
 			children = (
 				31ACD43827FE170500DAD756 /* AppDelegate.swift */,
-				31ACD43A27FE170500DAD756 /* SceneDelegate.swift */,
-				31ACD43C27FE170500DAD756 /* ViewController.swift */,
-				31ACD43E27FE170500DAD756 /* Main.storyboard */,
+				3168206F2907CC8000E28F62 /* NewProductData.swift */,
+				31B710F5290FD0C500E6CA04 /* PartnersData.swift */,
+				316820712907CCC000E28F62 /* NewProductManager.swift */,
+				31B710F0290D49CE00E6CA04 /* Controllers */,
 				31ACD44127FE170600DAD756 /* Assets.xcassets */,
 				31ACD44327FE170600DAD756 /* LaunchScreen.storyboard */,
 				31ACD44627FE170600DAD756 /* Info.plist */,
 			);
 			path = cerenadaApp;
+			sourceTree = "<group>";
+		};
+		31B710EF290D49C300E6CA04 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				31ACD44C27FE183B00DAD756 /* MainViewController.swift */,
+				31958343292D0F9D000CB4DD /* AlertViewController.swift */,
+				31B710F8290FE96700E6CA04 /* InfoViewController.swift */,
+				31B710F7290FD1A600E6CA04 /* Cells */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		31B710F0290D49CE00E6CA04 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				31B710EF290D49C300E6CA04 /* MainViewController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		31B710F7290FD1A600E6CA04 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				31B710ED290D495C00E6CA04 /* PresentationCollectionViewCell.swift */,
+				31B710F1290E863A00E6CA04 /* NewProductsCollectionViewCell.swift */,
+				31B710F3290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift */,
+				31B710FA290FF7E700E6CA04 /* InfoTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		5002F1A5CA36EB88CE4C8AFB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				29E716721A9A3BE6F3DAEDF0 /* Pods-cerenadaApp.debug.xcconfig */,
+				39D0CB24D2B67817F1B430E9 /* Pods-cerenadaApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7A9A58FE4CEC9EE92B9178E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75757C73A7D74269DDC194DB /* Pods_cerenadaApp.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +143,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 31ACD44927FE170600DAD756 /* Build configuration list for PBXNativeTarget "cerenadaApp" */;
 			buildPhases = (
+				003073ACCFAC9DCF59179C52 /* [CP] Check Pods Manifest.lock */,
 				31ACD43127FE170500DAD756 /* Sources */,
 				31ACD43227FE170500DAD756 /* Frameworks */,
 				31ACD43327FE170500DAD756 /* Resources */,
+				76014484756C657CD516A71C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,34 +198,75 @@
 			files = (
 				31ACD44527FE170600DAD756 /* LaunchScreen.storyboard in Resources */,
 				31ACD44227FE170600DAD756 /* Assets.xcassets in Resources */,
-				31ACD44027FE170500DAD756 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		003073ACCFAC9DCF59179C52 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-cerenadaApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76014484756C657CD516A71C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-cerenadaApp/Pods-cerenadaApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-cerenadaApp/Pods-cerenadaApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-cerenadaApp/Pods-cerenadaApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		31ACD43127FE170500DAD756 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31ACD43D27FE170500DAD756 /* ViewController.swift in Sources */,
+				31958344292D0F9D000CB4DD /* AlertViewController.swift in Sources */,
 				31ACD43927FE170500DAD756 /* AppDelegate.swift in Sources */,
-				31ACD43B27FE170500DAD756 /* SceneDelegate.swift in Sources */,
+				31B710FB290FF7E700E6CA04 /* InfoTableViewCell.swift in Sources */,
+				31B710EE290D495C00E6CA04 /* PresentationCollectionViewCell.swift in Sources */,
+				316820722907CCC000E28F62 /* NewProductManager.swift in Sources */,
+				31B710F2290E863A00E6CA04 /* NewProductsCollectionViewCell.swift in Sources */,
+				31B710F9290FE96700E6CA04 /* InfoViewController.swift in Sources */,
+				31B710F4290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift in Sources */,
+				316820702907CC8000E28F62 /* NewProductData.swift in Sources */,
+				31B710F6290FD0C500E6CA04 /* PartnersData.swift in Sources */,
+				31ACD44D27FE183B00DAD756 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		31ACD43E27FE170500DAD756 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				31ACD43F27FE170500DAD756 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		31ACD44327FE170600DAD756 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,6 +396,7 @@
 		};
 		31ACD44A27FE170600DAD756 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29E716721A9A3BE6F3DAEDF0 /* Pods-cerenadaApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -294,9 +407,9 @@
 				INFOPLIST_FILE = cerenadaApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,6 +425,7 @@
 		};
 		31ACD44B27FE170600DAD756 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39D0CB24D2B67817F1B430E9 /* Pods-cerenadaApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,9 +436,9 @@
 				INFOPLIST_FILE = cerenadaApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
