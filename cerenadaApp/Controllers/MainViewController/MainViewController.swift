@@ -14,6 +14,8 @@ class MainViewController: UIViewController{
     var data = [NewProductData]()
     let searchController = UISearchController(searchResultsController: nil)
     
+    let alert = AlertView()
+    
     var timer = Timer()
     var counter = 0
     
@@ -37,8 +39,8 @@ class MainViewController: UIViewController{
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsHorizontalScrollIndicator = false
         cv.layer.cornerRadius = 10
-        cv.layer.borderWidth = 0.2
         cv.isUserInteractionEnabled = false
+        cv.makeShadow()
         return cv
     }()
     
@@ -71,6 +73,7 @@ class MainViewController: UIViewController{
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsHorizontalScrollIndicator = false
         cv.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        cv.backgroundColor = .clear
         return cv
     }()
     
@@ -85,13 +88,14 @@ class MainViewController: UIViewController{
     
     var partnersCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-//        layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 20
         layout.minimumInteritemSpacing = 0
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsHorizontalScrollIndicator = false
-        cv.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 50, right: 20)
+        cv.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 50, right: 20)
         cv.layer.cornerRadius = 10
+        cv.backgroundColor = .clear
+        cv.makeShadow()
         return cv
     }()
     
@@ -99,6 +103,7 @@ class MainViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         networkClient.delegate = self
         networkClient.request()
@@ -115,10 +120,7 @@ class MainViewController: UIViewController{
         partnersCollectionView.dataSource = self
         partnersCollectionView.register(PartnersCollectionViewCell.self, forCellWithReuseIdentifier: "partnersCell")
 
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
-
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
                 
         createNavigationView()
         createSearchBar()
@@ -131,6 +133,7 @@ class MainViewController: UIViewController{
         createNewProductCollectionView()
         createPartnersLabel()
         createPartnersCollectionView()
+        
     }
     
     //MARK: - Create Views -
@@ -141,7 +144,8 @@ class MainViewController: UIViewController{
         let navView = UIView()
         
         navView.translatesAutoresizingMaskIntoConstraints = false
-                
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         let navLogo: UIImageView = {
             let imageView = UIImageView()
             imageView.image = UIImage(named: "logo")
@@ -155,38 +159,53 @@ class MainViewController: UIViewController{
             button.setImage(UIImage(named: "info"), for: .normal)
             button.alpha = 0.5
             button.addTarget(self, action: #selector(infoTapped), for: .touchUpInside)
-            button.showsLargeContentViewer = true
             return button
         }()
-        
-        
-        navView.addSubview(navLogo)
+
+//        navView.addSubview(navLogo)
         navView.addSubview(infoButton)
         
+        let navBar = UINavigationBar()
+        navBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 140)
+        view.addSubview(navBar)
+        navBar.addSubview(navLogo)
+        
         NSLayoutConstraint.activate([
-            navView.widthAnchor.constraint(equalToConstant: view.frame.width - 40),
             
-            navLogo.centerXAnchor.constraint(equalTo: navView.centerXAnchor),
-            navLogo.topAnchor.constraint(equalTo: navView.topAnchor, constant: 0),
+            
+            navLogo.centerXAnchor.constraint(equalTo: navBar.centerXAnchor),
+            navLogo.topAnchor.constraint(equalTo: navBar.topAnchor, constant: 40),
             navLogo.heightAnchor.constraint(equalToConstant: 80),
             navLogo.widthAnchor.constraint(equalToConstant: 160),
-            
-            infoButton.centerYAnchor.constraint(equalTo: navLogo.centerYAnchor),
+//            
+//            infoButton.centerYAnchor.constraint(equalTo: navLogo.centerYAnchor),
+//            infoButton.trailingAnchor.constraint(equalTo: navBar.trailingAnchor, constant: -20),
+//            infoButton.widthAnchor.constraint(equalToConstant: 40),
+//            infoButton.heightAnchor.constraint(equalToConstant: 40)
+//
+            navView.widthAnchor.constraint(equalToConstant: view.frame.width - 40),
+            navView.heightAnchor.constraint(equalToConstant: 44),
+//
+//            navLogo.centerXAnchor.constraint(equalTo: navView.centerXAnchor),
+//            navLogo.topAnchor.constraint(equalTo: navView.topAnchor),
+//            navLogo.heightAnchor.constraint(equalToConstant: 80),
+//            navLogo.widthAnchor.constraint(equalToConstant: 160),
+//
+            infoButton.bottomAnchor.constraint(equalTo: navView.bottomAnchor),
             infoButton.trailingAnchor.constraint(equalTo: navView.trailingAnchor),
             infoButton.widthAnchor.constraint(equalToConstant: 40),
             infoButton.heightAnchor.constraint(equalToConstant: 40)
         ])
         
+        
         navigationItem.titleView = navView
     }
     
-    @objc func infoTapped() {
-        print("info tapped")
+    @objc func infoTapped(sender: UIButton) {
+     
+            alert.showAlert(viewController: self, searchController: searchController, separator: separatorView)
+            separatorView.isHidden = true
         
-        let vc = InfoViewController()
-        vc.modalPresentationStyle = .popover
-        vc.modalTransitionStyle = .coverVertical
-        navigationController?.present(vc, animated: true)
     }
     
     //MARK: Labels
@@ -219,7 +238,6 @@ class MainViewController: UIViewController{
     func createSearchBar() {
         
         searchController.searchBar.placeholder = "Поиск"
-        searchController.searchBar.layer.borderWidth = 1
         searchController.searchBar.layer.borderColor = UIColor.white.cgColor
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.navigationController?.hidesBarsOnSwipe = false
@@ -261,15 +279,29 @@ class MainViewController: UIViewController{
     
     func createPresentationCollectionView() {
         
-        scrollView.addSubview(presentationCollectionView)
+        let shadowViewForPresentation: UIView = {
+            let view = UIView()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.makeShadow()
+            return view
+        }()
+        
+        scrollView.addSubview(shadowViewForPresentation)
+        
+        shadowViewForPresentation.addSubview(presentationCollectionView)
         presentationCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
         
-            presentationCollectionView.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 10),
-            presentationCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,constant: 20),
-            presentationCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
-            presentationCollectionView.heightAnchor.constraint(equalToConstant: 240)
+            shadowViewForPresentation.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 10),
+            shadowViewForPresentation.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,constant: 20),
+            shadowViewForPresentation.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
+            shadowViewForPresentation.heightAnchor.constraint(equalToConstant: 240),
+            
+            presentationCollectionView.topAnchor.constraint(equalTo: shadowViewForPresentation.topAnchor),
+            presentationCollectionView.leadingAnchor.constraint(equalTo: shadowViewForPresentation.leadingAnchor),
+            presentationCollectionView.trailingAnchor.constraint(equalTo: shadowViewForPresentation.trailingAnchor),
+            presentationCollectionView.bottomAnchor.constraint(equalTo: shadowViewForPresentation.bottomAnchor)
             
         ])
         
@@ -298,7 +330,7 @@ class MainViewController: UIViewController{
                 
         NSLayoutConstraint.activate([
         
-            newProductCollectionView.topAnchor.constraint(equalTo: newProductsLabel.bottomAnchor,constant: 20),
+            newProductCollectionView.topAnchor.constraint(equalTo: newProductsLabel.bottomAnchor,constant: 10),
             newProductCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             newProductCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             newProductCollectionView.heightAnchor.constraint(equalToConstant: 240)
@@ -316,7 +348,7 @@ class MainViewController: UIViewController{
                 
         NSLayoutConstraint.activate([
         
-            partnersCollectionView.topAnchor.constraint(equalTo: partnersLabel.bottomAnchor,constant: 20),
+            partnersCollectionView.topAnchor.constraint(equalTo: partnersLabel.bottomAnchor,constant: 0),
             partnersCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             partnersCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             partnersCollectionView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
@@ -409,7 +441,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newProductCell", for: indexPath) as! NewProductsCollectionViewCell
             
-
+            cell.productImageView.kf.indicatorType = .activity
             cell.productImageView.kf.setImage(with: URL(string: self.data[indexPath.row].images[0].src))
             cell.productName.text = data[indexPath.row].name
             cell.productPrice.text = data[indexPath.row].price + " ₽"
@@ -443,6 +475,59 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
         }
     }
+    
+    //MARK: CollectionView DidSelectRow
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let animatedCell = collectionView.cellForItem(at: indexPath) else {return}
+        
+        if collectionView == newProductCollectionView {
+          
+            animatedCell.showAnimation {
+                
+                let vc = ProductCardViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            }
+            
+        } else if collectionView == partnersCollectionView {
+            
+            animatedCell.showAnimation {
+       
+            }
+        }
+    }
+}
 
+//MARK: - extension UIView -
 
+public extension UIView {
+    func showAnimation(_ completionBlock: @escaping () -> Void) {
+      isUserInteractionEnabled = false
+        UIView.animate(withDuration: 0.1,
+                       delay: 0,
+                       options: .curveLinear,
+                       animations: { [weak self] in
+                            self?.transform = CGAffineTransform.init(scaleX: 0.95, y: 0.95)
+        }) {  (done) in
+            UIView.animate(withDuration: 0.1,
+                           delay: 0,
+                           options: .curveLinear,
+                           animations: { [weak self] in
+                                self?.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            }) { [weak self] (_) in
+                self?.isUserInteractionEnabled = true
+                completionBlock()
+            }
+        }
+    }
+    
+    func makeShadow() {
+        self.layer.shadowColor = UIColor.systemGray2.cgColor
+        self.layer.shadowOpacity = 0.7
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowRadius = 5
+    }
+    
 }

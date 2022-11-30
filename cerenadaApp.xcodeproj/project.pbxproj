@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		314B7FF529374FFA004CA151 /* ProductCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314B7FF429374FFA004CA151 /* ProductCardViewController.swift */; };
 		316820702907CC8000E28F62 /* NewProductData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168206F2907CC8000E28F62 /* NewProductData.swift */; };
 		316820722907CCC000E28F62 /* NewProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316820712907CCC000E28F62 /* NewProductManager.swift */; };
 		31958344292D0F9D000CB4DD /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31958343292D0F9D000CB4DD /* AlertViewController.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		29E716721A9A3BE6F3DAEDF0 /* Pods-cerenadaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cerenadaApp.debug.xcconfig"; path = "Target Support Files/Pods-cerenadaApp/Pods-cerenadaApp.debug.xcconfig"; sourceTree = "<group>"; };
+		314B7FF429374FFA004CA151 /* ProductCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardViewController.swift; sourceTree = "<group>"; };
 		3168206F2907CC8000E28F62 /* NewProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductData.swift; sourceTree = "<group>"; };
 		316820712907CCC000E28F62 /* NewProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductManager.swift; sourceTree = "<group>"; };
 		31958343292D0F9D000CB4DD /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		314B7FF329374FD1004CA151 /* ProductCardViewController */ = {
+			isa = PBXGroup;
+			children = (
+				314B7FF429374FFA004CA151 /* ProductCardViewController.swift */,
+			);
+			path = ProductCardViewController;
+			sourceTree = "<group>";
+		};
 		31ACD42C27FE170500DAD756 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				31B710EF290D49C300E6CA04 /* MainViewController */,
+				314B7FF329374FD1004CA151 /* ProductCardViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -250,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				314B7FF529374FFA004CA151 /* ProductCardViewController.swift in Sources */,
 				31958344292D0F9D000CB4DD /* AlertViewController.swift in Sources */,
 				31ACD43927FE170500DAD756 /* AppDelegate.swift in Sources */,
 				31B710FB290FF7E700E6CA04 /* InfoTableViewCell.swift in Sources */,

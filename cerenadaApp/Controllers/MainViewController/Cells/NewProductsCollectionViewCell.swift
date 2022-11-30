@@ -9,12 +9,19 @@ import UIKit
 
 class NewProductsCollectionViewCell: UICollectionViewCell {
     
+    let shadowView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.makeShadow()
+        return view
+    }()
     
     let productImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 10
-        image.layer.borderWidth = 0.3
+        image.layer.borderWidth = 0.1
+        image.layer.borderColor = UIColor.systemGray.cgColor
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         return image
@@ -47,17 +54,29 @@ class NewProductsCollectionViewCell: UICollectionViewCell {
     }
     
     func createViews() {
-        addSubview(productImageView)
+        
+        addSubview(shadowView)
+        shadowView.addSubview(productImageView)
         addSubview(productName)
         addSubview(productPrice)
         
         NSLayoutConstraint.activate([
-        
-            productImageView.topAnchor.constraint(equalTo: topAnchor),
-            productImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            productImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            productImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
-
+            
+            shadowView.topAnchor.constraint(equalTo: topAnchor),
+            shadowView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            shadowView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            shadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
+            
+            productImageView.topAnchor.constraint(equalTo: shadowView.topAnchor, constant: 10),
+            productImageView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor, constant: 0),
+            productImageView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: 0),
+            productImageView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor, constant: 0),
+            
+//            productImageView.topAnchor.constraint(equalTo: topAnchor),
+//            productImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+//            productImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+//            productImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
+            
             productName.topAnchor.constraint(equalTo: productImageView.bottomAnchor),
             productName.leadingAnchor.constraint(equalTo: leadingAnchor),
             productName.trailingAnchor.constraint(equalTo: trailingAnchor),

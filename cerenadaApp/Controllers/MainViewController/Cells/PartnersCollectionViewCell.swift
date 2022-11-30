@@ -13,7 +13,7 @@ class PartnersCollectionViewCell: UICollectionViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 10
-        image.layer.borderWidth = 0.3
+//        image.layer.borderWidth = 0.3
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         return image
