@@ -10,6 +10,8 @@ import Kingfisher
 
 class MainViewController: UIViewController{
     
+    let khjhg = ProductCardClient()
+    
     let networkClient = NetworkClient()
     var data = [NewProductData]()
     let searchController = UISearchController(searchResultsController: nil)
@@ -99,11 +101,14 @@ class MainViewController: UIViewController{
         return cv
     }()
     
-    //MARK: - viewDidLoad -
+    //MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.prefersLargeTitles = true
+
+        khjhg.request()
         
         networkClient.delegate = self
         networkClient.request()
@@ -136,7 +141,7 @@ class MainViewController: UIViewController{
         
     }
     
-    //MARK: - Create Views -
+    //MARK: - Create Views
     
     //MARK: Navigation View
     
@@ -162,7 +167,6 @@ class MainViewController: UIViewController{
             return button
         }()
 
-//        navView.addSubview(navLogo)
         navView.addSubview(infoButton)
         
         let navBar = UINavigationBar()
@@ -177,20 +181,10 @@ class MainViewController: UIViewController{
             navLogo.topAnchor.constraint(equalTo: navBar.topAnchor, constant: 40),
             navLogo.heightAnchor.constraint(equalToConstant: 80),
             navLogo.widthAnchor.constraint(equalToConstant: 160),
-//            
-//            infoButton.centerYAnchor.constraint(equalTo: navLogo.centerYAnchor),
-//            infoButton.trailingAnchor.constraint(equalTo: navBar.trailingAnchor, constant: -20),
-//            infoButton.widthAnchor.constraint(equalToConstant: 40),
-//            infoButton.heightAnchor.constraint(equalToConstant: 40)
-//
+
             navView.widthAnchor.constraint(equalToConstant: view.frame.width - 40),
             navView.heightAnchor.constraint(equalToConstant: 44),
-//
-//            navLogo.centerXAnchor.constraint(equalTo: navView.centerXAnchor),
-//            navLogo.topAnchor.constraint(equalTo: navView.topAnchor),
-//            navLogo.heightAnchor.constraint(equalToConstant: 80),
-//            navLogo.widthAnchor.constraint(equalToConstant: 160),
-//
+
             infoButton.bottomAnchor.constraint(equalTo: navView.bottomAnchor),
             infoButton.trailingAnchor.constraint(equalTo: navView.trailingAnchor),
             infoButton.widthAnchor.constraint(equalToConstant: 40),
@@ -358,7 +352,7 @@ class MainViewController: UIViewController{
         
     }
     
-    //MARK: - Timer -
+    //MARK: - Timer
     
     func createTimer() {
         DispatchQueue.main.async {
@@ -394,7 +388,7 @@ class MainViewController: UIViewController{
 
 extension MainViewController: NewProductManagerDelegate {
     func updateInterface(_: NetworkClient, with data: [NewProductData]) {
-        self.data = data
+            self.data = data
         newProductCollectionView.reloadData()
     }
 }
@@ -441,8 +435,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newProductCell", for: indexPath) as! NewProductsCollectionViewCell
             
-            cell.productImageView.kf.indicatorType = .activity
-            cell.productImageView.kf.setImage(with: URL(string: self.data[indexPath.row].images[0].src))
+            DispatchQueue.main.async {
+                cell.productImageView.kf.indicatorType = .activity
+                cell.productImageView.kf.setImage(with: URL(string: self.data[indexPath.row].images[0].src))
+            }
+            
             cell.productName.text = data[indexPath.row].name
             cell.productPrice.text = data[indexPath.row].price + " ₽"
             

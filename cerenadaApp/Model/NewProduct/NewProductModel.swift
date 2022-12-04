@@ -1,5 +1,5 @@
 //
-//  CategoryData.swift
+//  NewProductModel.swift
 //  cerenadaApp
 //
 //  Created by Артем Кудрявцев on 25.10.2022.

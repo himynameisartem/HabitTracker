@@ -31,6 +31,7 @@ class NewProductsCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "helvetica-bold", size: 10)
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 0.780241101)
         label.contentMode = .center
         return label
     }()
@@ -40,6 +41,7 @@ class NewProductsCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "helvetica", size: 12)
         label.contentMode = .center
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 0.6385813328)
         return label
     }()
     

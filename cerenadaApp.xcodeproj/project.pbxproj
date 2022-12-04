@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		314B7FF529374FFA004CA151 /* ProductCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314B7FF429374FFA004CA151 /* ProductCardViewController.swift */; };
-		316820702907CC8000E28F62 /* NewProductData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168206F2907CC8000E28F62 /* NewProductData.swift */; };
+		314B7FFA29393722004CA151 /* ProductCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314B7FF929393722004CA151 /* ProductCardModel.swift */; };
+		314B7FFC2939392C004CA151 /* ProductCardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314B7FFB2939392C004CA151 /* ProductCardManager.swift */; };
+		314B7FFE293CCCFC004CA151 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314B7FFD293CCCFC004CA151 /* GalleryCollectionViewCell.swift */; };
+		316820702907CC8000E28F62 /* NewProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168206F2907CC8000E28F62 /* NewProductModel.swift */; };
 		316820722907CCC000E28F62 /* NewProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316820712907CCC000E28F62 /* NewProductManager.swift */; };
 		31958344292D0F9D000CB4DD /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31958343292D0F9D000CB4DD /* AlertViewController.swift */; };
 		31ACD43927FE170500DAD756 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ACD43827FE170500DAD756 /* AppDelegate.swift */; };
@@ -27,7 +30,10 @@
 /* Begin PBXFileReference section */
 		29E716721A9A3BE6F3DAEDF0 /* Pods-cerenadaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cerenadaApp.debug.xcconfig"; path = "Target Support Files/Pods-cerenadaApp/Pods-cerenadaApp.debug.xcconfig"; sourceTree = "<group>"; };
 		314B7FF429374FFA004CA151 /* ProductCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardViewController.swift; sourceTree = "<group>"; };
-		3168206F2907CC8000E28F62 /* NewProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductData.swift; sourceTree = "<group>"; };
+		314B7FF929393722004CA151 /* ProductCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardModel.swift; sourceTree = "<group>"; };
+		314B7FFB2939392C004CA151 /* ProductCardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardManager.swift; sourceTree = "<group>"; };
+		314B7FFD293CCCFC004CA151 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		3168206F2907CC8000E28F62 /* NewProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductModel.swift; sourceTree = "<group>"; };
 		316820712907CCC000E28F62 /* NewProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductManager.swift; sourceTree = "<group>"; };
 		31958343292D0F9D000CB4DD /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		31ACD43527FE170500DAD756 /* cerenadaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cerenadaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,8 +68,45 @@
 			isa = PBXGroup;
 			children = (
 				314B7FF429374FFA004CA151 /* ProductCardViewController.swift */,
+				314B7FFF293CCE2F004CA151 /* Cells */,
 			);
 			path = ProductCardViewController;
+			sourceTree = "<group>";
+		};
+		314B7FF6293936BD004CA151 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				314B7FF7293936DC004CA151 /* NewProduct */,
+				314B7FF8293936FD004CA151 /* ProductCard */,
+				31B710F5290FD0C500E6CA04 /* PartnersData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		314B7FF7293936DC004CA151 /* NewProduct */ = {
+			isa = PBXGroup;
+			children = (
+				3168206F2907CC8000E28F62 /* NewProductModel.swift */,
+				316820712907CCC000E28F62 /* NewProductManager.swift */,
+			);
+			path = NewProduct;
+			sourceTree = "<group>";
+		};
+		314B7FF8293936FD004CA151 /* ProductCard */ = {
+			isa = PBXGroup;
+			children = (
+				314B7FF929393722004CA151 /* ProductCardModel.swift */,
+				314B7FFB2939392C004CA151 /* ProductCardManager.swift */,
+			);
+			path = ProductCard;
+			sourceTree = "<group>";
+		};
+		314B7FFF293CCE2F004CA151 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				314B7FFD293CCCFC004CA151 /* GalleryCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		31ACD42C27FE170500DAD756 = {
@@ -88,9 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				31ACD43827FE170500DAD756 /* AppDelegate.swift */,
-				3168206F2907CC8000E28F62 /* NewProductData.swift */,
-				31B710F5290FD0C500E6CA04 /* PartnersData.swift */,
-				316820712907CCC000E28F62 /* NewProductManager.swift */,
+				314B7FF6293936BD004CA151 /* Model */,
 				31B710F0290D49CE00E6CA04 /* Controllers */,
 				31ACD44127FE170600DAD756 /* Assets.xcassets */,
 				31ACD44327FE170600DAD756 /* LaunchScreen.storyboard */,
@@ -262,15 +303,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				314B7FF529374FFA004CA151 /* ProductCardViewController.swift in Sources */,
+				314B7FFE293CCCFC004CA151 /* GalleryCollectionViewCell.swift in Sources */,
 				31958344292D0F9D000CB4DD /* AlertViewController.swift in Sources */,
 				31ACD43927FE170500DAD756 /* AppDelegate.swift in Sources */,
+				314B7FFC2939392C004CA151 /* ProductCardManager.swift in Sources */,
 				31B710FB290FF7E700E6CA04 /* InfoTableViewCell.swift in Sources */,
 				31B710EE290D495C00E6CA04 /* PresentationCollectionViewCell.swift in Sources */,
 				316820722907CCC000E28F62 /* NewProductManager.swift in Sources */,
 				31B710F2290E863A00E6CA04 /* NewProductsCollectionViewCell.swift in Sources */,
 				31B710F9290FE96700E6CA04 /* InfoViewController.swift in Sources */,
 				31B710F4290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift in Sources */,
-				316820702907CC8000E28F62 /* NewProductData.swift in Sources */,
+				314B7FFA29393722004CA151 /* ProductCardModel.swift in Sources */,
+				316820702907CC8000E28F62 /* NewProductModel.swift in Sources */,
 				31B710F6290FD0C500E6CA04 /* PartnersData.swift in Sources */,
 				31ACD44D27FE183B00DAD756 /* MainViewController.swift in Sources */,
 			);
