@@ -9,22 +9,15 @@ import UIKit
 
 struct ProductCard: Codable {
     let name: String
-//    let description: String
-//    let price: String
-//    let images: [Images]
-//    let attributes: [Attributes]
-//    let meta_data: [MetaData]
+    let description: String
+    let sku: String
+    let price: String
+    let images: [Images]
+    let attributes: [Attributes]
 }
 
 struct Attributes: Codable {
     let name: String
     let options: [String]
 }
-
-struct MetaData: Codable {
-    let id: Int
-    let key: String
-//    let value:
-}
-
 

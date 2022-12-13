@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProductCardViewController: UIViewController {
     
     let productCardClient = ProductCardClient()
+    var id = Int()
+    
+    var images = [Images]()
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -25,11 +29,13 @@ class ProductCardViewController: UIViewController {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsHorizontalScrollIndicator = false
         cv.translatesAutoresizingMaskIntoConstraints = false
+        
         return cv
     }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "Helvetica-Bold", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -45,24 +51,28 @@ class ProductCardViewController: UIViewController {
     let compoundLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Helvetica-Bold", size: 16)
         return label
     }()
     
     let compoundValue: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .right
         return label
     }()
     
     let colorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Helvetica-Bold", size: 16)
         return label
     }()
     
     let colorValue: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .right
         return label
     }()
     
@@ -70,12 +80,14 @@ class ProductCardViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.layer.cornerRadius = 10
+        tableView.makeShadow()
         return tableView
     }()
     
     let discriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Helvetica-Bold", size: 16)
         return label
     }()
     
@@ -101,6 +113,10 @@ class ProductCardViewController: UIViewController {
     
     //MARK: - ViewDidLoad
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -110,21 +126,22 @@ class ProductCardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        productCardClient.delegate = self
+        productCardClient.request(id: id)
+        
         navigationController?.navigationBar.prefersLargeTitles = false
         
-        view.backgroundColor = .yellow
-        scrollView.backgroundColor = .systemPink
-        galleryCollectionView.backgroundColor = .blue
+        view.backgroundColor = .systemGray6
+//        scrollView.backgroundColor = .systemPink
         
         galleryCollectionView.delegate = self
         galleryCollectionView.dataSource = self
-        
         galleryCollectionView.register(GalleryCollectionViewCell.self, forCellWithReuseIdentifier: "galleryCell")
         
         createScrollView()
         createGalleryCollectionView()
         createNameLabel()
-        createVendorCodeLabel()
+//        createVendorCodeLabel()
         createCompoundLabels()
         createColorLabels()
         createSizeTableView()
@@ -163,7 +180,7 @@ class ProductCardViewController: UIViewController {
             galleryCollectionView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             galleryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             galleryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            galleryCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height / 2.2)
+            galleryCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height / 1.5)
             
         ])
     }
@@ -172,16 +189,13 @@ class ProductCardViewController: UIViewController {
     
     func createNameLabel() {
         
-       
-        nameLabel.text = "Test Name"
-        
         scrollView.addSubview(nameLabel)
         
         NSLayoutConstraint.activate([
         
             nameLabel.topAnchor.constraint(equalTo: galleryCollectionView.bottomAnchor, constant: 10),
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            nameLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 2)
+//            nameLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 2)
             
         ])
     }
@@ -209,8 +223,8 @@ class ProductCardViewController: UIViewController {
     
     func createCompoundLabels() {
 
-        compoundLabel.text = "Test: "
-        compoundValue.text = "Compound Test"
+        compoundLabel.text = ""
+        compoundValue.text = ""
         
         scrollView.addSubview(compoundLabel)
         scrollView.addSubview(compoundValue)
@@ -220,8 +234,8 @@ class ProductCardViewController: UIViewController {
             compoundLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
             compoundLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            compoundValue.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
-            compoundValue.leadingAnchor.constraint(equalTo: compoundLabel.trailingAnchor)
+            compoundValue.centerYAnchor.constraint(equalTo: compoundLabel.centerYAnchor),
+            compoundValue.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
     }
     
@@ -229,19 +243,19 @@ class ProductCardViewController: UIViewController {
     
     func createColorLabels() {
 
-        colorLabel.text = "Test: "
-        colorValue.text = "Color Test"
+        colorLabel.text = ""
+        colorValue.text = ""
         
         scrollView.addSubview(colorLabel)
         scrollView.addSubview(colorValue)
         
         NSLayoutConstraint.activate([
         
-            colorLabel.topAnchor.constraint(equalTo: compoundLabel.bottomAnchor),
+            colorLabel.topAnchor.constraint(equalTo: compoundLabel.bottomAnchor, constant: 5),
             colorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            colorValue.topAnchor.constraint(equalTo: compoundLabel.bottomAnchor),
-            colorValue.leadingAnchor.constraint(equalTo: colorLabel.trailingAnchor)
+            colorValue.centerYAnchor.constraint(equalTo: colorLabel.centerYAnchor),
+            colorValue.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
     }
     
@@ -265,8 +279,8 @@ class ProductCardViewController: UIViewController {
     
     func discriptionLabels() {
         
-        discriptionLabel.text = "Discription: "
-        discriptionValue.text = "   Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! Discripton Test! "
+        discriptionLabel.text = "Описание: "
+        discriptionValue.text = ""
         
         scrollView.addSubview(discriptionLabel)
         scrollView.addSubview(discriptionValue)
@@ -288,9 +302,7 @@ class ProductCardViewController: UIViewController {
     func createReviewsCollectionView() {
         
         scrollView.addSubview(reviewsCollectionView)
-        
-        reviewsCollectionView.backgroundColor = .purple
-        
+                
         NSLayoutConstraint.activate([
         
             reviewsCollectionView.topAnchor.constraint(equalTo: discriptionValue.bottomAnchor, constant: 20),
@@ -305,18 +317,82 @@ class ProductCardViewController: UIViewController {
     
 }
 
+//MARK: - Collection View Delegate
 
-extension ProductCardViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+
+extension ProductCardViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        if collectionView == galleryCollectionView {
+            return images.count
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "galleryCell", for: indexPath) as! GalleryCollectionViewCell
         
+        if collectionView == galleryCollectionView {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "galleryCell", for: indexPath) as! GalleryCollectionViewCell
+            
+            DispatchQueue.main.async {
+                cell.galleryImageView.kf.indicatorType = .activity
+                cell.galleryImageView.kf.setImage(with: URL(string: self.images[indexPath.row].src))
+            }
+
+            
+            return cell
+            
+        }
         
-        cell.galleryImageView.image = UIImage(named: "ozon")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        if collectionView == galleryCollectionView {
+
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+
+        } else {
+
+            return CGSize(width: 10, height: 10)
+
+        }
+
+    }
+    
+}
+
+extension ProductCardViewController: ProductCardManagerDelegate {
+    func updateInterface(_: ProductCardClient, with data: ProductCard) {
+
+        DispatchQueue.main.async {
+            self.nameLabel.text = data.name
+            self.images = data.images
+            self.discriptionValue.text = "   " + String(data.description.dropFirst(3).dropLast(5))
+            self.galleryCollectionView.reloadData()
+            
+            for i in data.attributes {
+                if i.name == "Цвет" {
+                    self.colorLabel.text = i.name + ":" + " "
+                    
+                    for j in i.options {
+                        self.colorValue.text = j + " "
+                    
+                    }
+                }
+            
+                    if i.name == "Состав" {
+                        self.compoundLabel.text = i.name + ":" + " "
+                        for j in i.options {
+                            self.compoundValue.text = j
+                        }
+                    }
+                }
+            }
     }
 }

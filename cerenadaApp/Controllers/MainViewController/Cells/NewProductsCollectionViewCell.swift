@@ -74,11 +74,6 @@ class NewProductsCollectionViewCell: UICollectionViewCell {
             productImageView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: 0),
             productImageView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor, constant: 0),
             
-//            productImageView.topAnchor.constraint(equalTo: topAnchor),
-//            productImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            productImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            productImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
-            
             productName.topAnchor.constraint(equalTo: productImageView.bottomAnchor),
             productName.leadingAnchor.constraint(equalTo: leadingAnchor),
             productName.trailingAnchor.constraint(equalTo: trailingAnchor),

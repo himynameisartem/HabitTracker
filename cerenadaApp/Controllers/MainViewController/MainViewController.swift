@@ -9,9 +9,7 @@ import UIKit
 import Kingfisher
 
 class MainViewController: UIViewController{
-    
-    let khjhg = ProductCardClient()
-    
+        
     let networkClient = NetworkClient()
     var data = [NewProductData]()
     let searchController = UISearchController(searchResultsController: nil)
@@ -107,8 +105,6 @@ class MainViewController: UIViewController{
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
-
-        khjhg.request()
         
         networkClient.delegate = self
         networkClient.request()
@@ -384,14 +380,7 @@ class MainViewController: UIViewController{
     }
 }
 
-//MARK: - New Products Delegate -
 
-extension MainViewController: NewProductManagerDelegate {
-    func updateInterface(_: NetworkClient, with data: [NewProductData]) {
-            self.data = data
-        newProductCollectionView.reloadData()
-    }
-}
 
 //MARK: - Update Search Results -
 
@@ -477,6 +466,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let index = indexPath.row
+        
         guard let animatedCell = collectionView.cellForItem(at: indexPath) else {return}
         
         if collectionView == newProductCollectionView {
@@ -484,6 +475,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             animatedCell.showAnimation {
                 
                 let vc = ProductCardViewController()
+                vc.id = self.data[index].id
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }
@@ -527,4 +519,14 @@ public extension UIView {
         self.layer.shadowRadius = 5
     }
     
+}
+
+//MARK: - New Products Delegate -
+
+extension MainViewController: NewProductManagerDelegate {
+    func updateInterface(_: NetworkClient, with data: [NewProductData]) {
+        self.data = data.shuffled()
+            
+        newProductCollectionView.reloadData()
+    }
 }
