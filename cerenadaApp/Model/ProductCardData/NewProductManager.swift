@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 
 protocol NewProductManagerDelegate {
-    func updateInterface(_: NetworkClient, with data: [NewProductData])
+    func updateInterface(_: NetworkClient, with data: [ProductCardData])
 }
 
 class NetworkClient {
@@ -24,7 +24,7 @@ func request() {
         switch responce.result {
         case .success(let data) :
             do {
-                let jsonData = try JSONDecoder().decode([NewProductData].self, from: data!)
+                let jsonData = try JSONDecoder().decode([ProductCardData].self, from: data!)
                 self.delegate?.updateInterface(self, with: jsonData)
 //                print(jsonData)
             } catch {

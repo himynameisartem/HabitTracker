@@ -11,13 +11,15 @@ import Kingfisher
 class MainViewController: UIViewController{
         
     let networkClient = NetworkClient()
-    var data = [NewProductData]()
+    var data = [ProductCardData]()
     let searchController = UISearchController(searchResultsController: nil)
     
     let alert = AlertView()
     
     var timer = Timer()
     var counter = 0
+    
+    var price = [String]()
     
     let separatorView: UIView = {
         let view = UIView()
@@ -425,12 +427,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newProductCell", for: indexPath) as! NewProductsCollectionViewCell
             
             DispatchQueue.main.async {
+
                 cell.productImageView.kf.indicatorType = .activity
-                cell.productImageView.kf.setImage(with: URL(string: self.data[indexPath.row].images[0].src))
+                cell.productImageView.kf.setImage(with: URL(string: self.data[indexPath.row].images[0].src.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? self.data[indexPath.row].images[0].src))
             }
             
             cell.productName.text = data[indexPath.row].name
-            cell.productPrice.text = data[indexPath.row].price + " ₽"
+            cell.productPrice.text = price[indexPath.row] + " ₽"
+
             
             return cell
             
@@ -524,9 +528,17 @@ public extension UIView {
 //MARK: - New Products Delegate -
 
 extension MainViewController: NewProductManagerDelegate {
-    func updateInterface(_: NetworkClient, with data: [NewProductData]) {
+    func updateInterface(_: NetworkClient, with data: [ProductCardData]) {
         self.data = data.shuffled()
-            
+
+        for i in self.data {
+            for j in i.meta_data {
+                if j.key == "adv_sp" {
+                    price.append(j.value?.stringValue! ?? "")
+                }
+            }
+        }
+        
         newProductCollectionView.reloadData()
     }
 }

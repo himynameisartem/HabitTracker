@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 
 protocol ProductCardManagerDelegate {
-    func updateInterface(_: ProductCardClient, with data: ProductCard)
+    func updateInterface(_: ProductCardClient, with data: ProductCardData)
 }
 
 class ProductCardClient {
@@ -24,10 +24,10 @@ class ProductCardClient {
         switch responce.result {
         case .success(let data) :
             do {
-                let jsonData = try JSONDecoder().decode(ProductCard.self, from: data!)
+                let jsonData = try JSONDecoder().decode(ProductCardData.self, from: data!)
                 self.delegate?.updateInterface(self, with: jsonData)
-//                print(jsonData)
-                self.delegate?.updateInterface(self, with: jsonData)
+
+
             } catch {
                 print("MatchesParseError")
             }
