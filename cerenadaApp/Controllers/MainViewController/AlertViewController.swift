@@ -26,6 +26,7 @@ class AlertView {
     
     var targetVC = UIViewController()
     var targetSearch = UISearchController()
+    var targetTableView = UITableView()
     
     struct Constants {
         static let blurAlpha: CGFloat = 1
@@ -33,10 +34,11 @@ class AlertView {
     
     //MARK: - Show Alert
     
-    func showAlert(viewController: UIViewController, searchController: UISearchController, separator: UIView) {
+    func showAlert(viewController: UIViewController, searchController: UISearchController, separator: UIView, tableView: UITableView) {
         
         targetVC = viewController
         targetSearch = searchController
+        targetTableView = tableView
                 
         guard let targetView = viewController.view else { return }
         
@@ -46,9 +48,18 @@ class AlertView {
         
         alertView.frame = CGRect(x: 25, y: -900,
                                  width: targetView.frame.width - 40,
-                                 height: targetView.frame.height - 140)
+                                 height: targetView.frame.height - 200)
                                  
         targetView.addSubview(alertView)
+        
+        let titleLabel: UILabel = {
+            let label = UILabel()
+            label.text = "ИНФОРМАЦИЯ:"
+            label.font = UIFont(name: "helvetica-bold", size: 20)
+            label.textColor = .systemGray
+            label.translatesAutoresizingMaskIntoConstraints = false
+            return label
+        }()
         
         let exitButton: UIButton = {
             let button = UIButton()
@@ -61,16 +72,21 @@ class AlertView {
             return button
         }()
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
-        
+                
+        alertView.addSubview(titleLabel)
         alertView.addSubview(exitButton)
-        
-        
+
         NSLayoutConstraint.activate([
         
+            
             exitButton.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 10),
-            exitButton.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -10),
+            exitButton.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -0),
             exitButton.heightAnchor.constraint(equalToConstant: 40),
             exitButton.widthAnchor.constraint(equalToConstant: 40),
+            
+            titleLabel.centerYAnchor.constraint(equalTo: exitButton.centerYAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: exitButton.leadingAnchor, constant: 10)
             
         ])
 
@@ -82,13 +98,19 @@ class AlertView {
                 UIView.animate(withDuration: 0.3) {
                     self.alertView.center = targetView.center
                     searchController.searchBar.isHidden = true
-                    
                 } completion: { done in
                     
+                    self.alertView.addSubview(tableView)
+                    
+                    NSLayoutConstraint.activate([
+                        tableView.topAnchor.constraint(equalTo: self.alertView.topAnchor, constant: 50),
+                        tableView.leadingAnchor.constraint(equalTo: self.alertView.leadingAnchor, constant: 10),
+                        tableView.trailingAnchor.constraint(equalTo: self.alertView.trailingAnchor, constant: -10),
+                        tableView.bottomAnchor.constraint(equalTo: self.alertView.bottomAnchor, constant: -10)
+                    ])
+                    
                     if done {
-                        
                         viewController.navigationController?.navigationBar.isHidden = true
-                        
                     }
                 }
             }
@@ -103,6 +125,7 @@ class AlertView {
             
             self.alertView.frame = CGRect(x: 20, y: -900, width: self.targetVC.view.frame.width - 40, height: self.targetVC.view.frame.height / 1.5)
             self.targetVC.navigationController?.navigationBar.isHidden = false
+            self.targetTableView.removeFromSuperview()
             
         } completion: { done in
             
@@ -118,7 +141,6 @@ class AlertView {
                         
                         self.alertView.removeFromSuperview()
                         self.blurView.removeFromSuperview()
-                        
                     }
                 }
             }

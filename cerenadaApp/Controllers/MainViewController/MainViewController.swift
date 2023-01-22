@@ -101,6 +101,12 @@ class MainViewController: UIViewController{
         return cv
     }()
     
+    let infoTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
     //MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -122,7 +128,12 @@ class MainViewController: UIViewController{
         partnersCollectionView.delegate = self
         partnersCollectionView.dataSource = self
         partnersCollectionView.register(PartnersCollectionViewCell.self, forCellWithReuseIdentifier: "partnersCell")
-
+        
+        infoTableView.delegate = self
+        infoTableView.dataSource = self
+        infoTableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "infoCell")
+        infoTableView.separatorStyle = .none
+        
         view.backgroundColor = .systemGray6
                 
         createNavigationView()
@@ -195,7 +206,7 @@ class MainViewController: UIViewController{
     
     @objc func infoTapped(sender: UIButton) {
      
-            alert.showAlert(viewController: self, searchController: searchController, separator: separatorView)
+        alert.showAlert(viewController: self, searchController: searchController, separator: separatorView, tableView: infoTableView)
             separatorView.isHidden = true
         
     }
@@ -487,6 +498,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else if collectionView == partnersCollectionView {
             
             animatedCell.showAnimation {
+                
+                UIApplication.shared.open(urlPartnersArray[index]!)
        
             }
         }
@@ -540,5 +553,56 @@ extension MainViewController: NewProductManagerDelegate {
         }
         
         newProductCollectionView.reloadData()
+    }
+}
+
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        infoArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let section = infoArray[section]
+        
+        if section.isOpened {
+            return section.options.count + 1
+        } else {
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
+        cell.awakeFromNib()
+        cell.infoLabel.sizeToFit()
+        cell.selectionStyle = .none
+        
+        if indexPath.row == 0 {
+            cell.imagePoint.isHidden = true
+            cell.infoOptionLabel.text = ""
+            cell.infoLabel.text = infoArray[indexPath.section].title
+        } else {
+            cell.imagePoint.isHidden = false
+            cell.infoLabel.text = ""
+            cell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        infoArray[indexPath.section].isOpened = !infoArray[indexPath.section].isOpened
+        tableView.reloadSections([indexPath.section], with: .none)
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return UITableView.automaticDimension
+        } else {
+            return 200
+        }
     }
 }
