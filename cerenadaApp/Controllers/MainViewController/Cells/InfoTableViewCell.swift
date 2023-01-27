@@ -25,17 +25,18 @@ class InfoTableViewCell: UITableViewCell {
         return label
     }()
     
-    let point: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     let imagePoint: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(systemName: "circle.fill")
         image.tintColor = .black
+        return image
+    }()
+    
+    let imageArrow: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.tintColor = .systemGray2
         return image
     }()
     
@@ -45,8 +46,9 @@ class InfoTableViewCell: UITableViewCell {
         addSubview(infoLabel)
         addSubview(infoOptionLabel)
         addSubview(imagePoint)
+        addSubview(imageArrow)
         
-       makeLabelConstraints()
+        makeLabelConstraints()
         
     }
     
@@ -58,6 +60,11 @@ class InfoTableViewCell: UITableViewCell {
             infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             infoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             infoLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            
+            imageArrow.centerYAnchor.constraint(equalTo: infoLabel.centerYAnchor),
+            imageArrow.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageArrow.widthAnchor.constraint(equalToConstant: 20),
+            imageArrow.heightAnchor.constraint(equalToConstant: 20),
             
             infoOptionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             infoOptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),

@@ -101,6 +101,7 @@ class AlertView {
                 } completion: { done in
                     
                     self.alertView.addSubview(tableView)
+                    tableView.reloadData()
                     
                     NSLayoutConstraint.activate([
                         tableView.topAnchor.constraint(equalTo: self.alertView.topAnchor, constant: 50),

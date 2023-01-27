@@ -104,6 +104,7 @@ class MainViewController: UIViewController{
     let infoTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
     
@@ -132,6 +133,8 @@ class MainViewController: UIViewController{
         infoTableView.delegate = self
         infoTableView.dataSource = self
         infoTableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "infoCell")
+        infoTableView.register(SizeContainerTableViewCell.self, forCellReuseIdentifier: "sizeContainerCell")
+        infoTableView.rowHeight = UITableView.automaticDimension
         infoTableView.separatorStyle = .none
         
         view.backgroundColor = .systemGray6
@@ -574,18 +577,36 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
+        let sizeCell = tableView.dequeueReusableCell(withIdentifier: "sizeContainerCell", for: indexPath) as! SizeContainerTableViewCell
+        
         cell.awakeFromNib()
-        cell.infoLabel.sizeToFit()
         cell.selectionStyle = .none
         
         if indexPath.row == 0 {
             cell.imagePoint.isHidden = true
+            cell.imageArrow.isHidden = false
             cell.infoOptionLabel.text = ""
             cell.infoLabel.text = infoArray[indexPath.section].title
         } else {
             cell.imagePoint.isHidden = false
+            cell.imageArrow.isHidden = true
             cell.infoLabel.text = ""
             cell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
+            
+            if indexPath.section == 8 {
+                sizeCell.awakeFromNib()
+                sizeCell.selectionStyle = .none
+                sizeCell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
+                return sizeCell
+            } else {
+                return cell
+            }
+        }
+        
+        if infoArray[indexPath.section].isOpened {
+            cell.imageArrow.image = UIImage(systemName: "chevron.up")
+        } else {
+            cell.imageArrow.image = UIImage(systemName: "chevron.down")
         }
         
         return cell
@@ -593,16 +614,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+                
         infoArray[indexPath.section].isOpened = !infoArray[indexPath.section].isOpened
         tableView.reloadSections([indexPath.section], with: .none)
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return UITableView.automaticDimension
-        } else {
-            return 200
-        }
+                
     }
 }
