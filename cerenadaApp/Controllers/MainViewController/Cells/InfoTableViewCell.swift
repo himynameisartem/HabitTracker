@@ -39,7 +39,7 @@ class InfoTableViewCell: UITableViewCell {
         image.tintColor = .systemGray2
         return image
     }()
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -49,7 +49,7 @@ class InfoTableViewCell: UITableViewCell {
         addSubview(imageArrow)
         
         makeLabelConstraints()
-        
+                
     }
     
     func makeLabelConstraints() {

@@ -134,6 +134,7 @@ class MainViewController: UIViewController{
         infoTableView.dataSource = self
         infoTableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "infoCell")
         infoTableView.register(SizeContainerTableViewCell.self, forCellReuseIdentifier: "sizeContainerCell")
+        infoTableView.register(ContactTableViewCell.self, forCellReuseIdentifier: "contactCell")
         infoTableView.rowHeight = UITableView.automaticDimension
         infoTableView.separatorStyle = .none
         
@@ -578,45 +579,93 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
         let sizeCell = tableView.dequeueReusableCell(withIdentifier: "sizeContainerCell", for: indexPath) as! SizeContainerTableViewCell
+        let contactCell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactTableViewCell
         
         cell.awakeFromNib()
         cell.selectionStyle = .none
+        sizeCell.awakeFromNib()
+        sizeCell.selectionStyle = .none
+        
+        DispatchQueue.main.async {
+            contactCell.awakeFromNib()
+            contactCell.selectionStyle = .none
+        }
+        
+       
         
         if indexPath.row == 0 {
+            
             cell.imagePoint.isHidden = true
             cell.imageArrow.isHidden = false
             cell.infoOptionLabel.text = ""
             cell.infoLabel.text = infoArray[indexPath.section].title
+            
         } else {
+    
             cell.imagePoint.isHidden = false
             cell.imageArrow.isHidden = true
             cell.infoLabel.text = ""
             cell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
-            
+
             if indexPath.section == 8 {
-                sizeCell.awakeFromNib()
-                sizeCell.selectionStyle = .none
                 sizeCell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
                 return sizeCell
-            } else {
-                return cell
+            }
+
+            if indexPath.section == 12 {
+                
+//                contactCell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
+                contactCell.contactButton.addTarget(self, action: #selector(contactButtonTapped), for: .touchUpInside)
+                contactCell.contactButton.tag = indexPath.row
+                
+                if indexPath.row == 1 {
+                    
+                    contactCell.contactButton.tintColor = .blue
+                    contactCell.contactButton.setImage(UIImage(systemName: "envelope"), for: .normal)
+
+                } else if indexPath.row == 2 {
+                    
+                    contactCell.contactButton.tintColor = .green
+                    contactCell.contactButton.setImage(UIImage(systemName: "phone"), for: .normal)
+                    
+                } else {
+                    
+                    contactCell.contactButton.isHidden = true
+                    
+                }
+            return contactCell
+
             }
         }
         
         if infoArray[indexPath.section].isOpened {
+            
             cell.imageArrow.image = UIImage(systemName: "chevron.up")
+            
         } else {
+            
             cell.imageArrow.image = UIImage(systemName: "chevron.down")
+            
         }
         
         return cell
     }
     
+    @objc func contactButtonTapped(sender: UIButton) {
+        let buttonTag = sender.tag
+        if buttonTag == 1 {
+            print("email")
+        } else if buttonTag == 2 {
+            print("phone")
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-                
-        infoArray[indexPath.section].isOpened = !infoArray[indexPath.section].isOpened
-        tableView.reloadSections([indexPath.section], with: .none)
-                
+        
+        if indexPath.row == 0 {
+            infoArray[indexPath.section].isOpened = !infoArray[indexPath.section].isOpened
+            tableView.reloadSections([indexPath.section], with: .none)
+        }
     }
 }

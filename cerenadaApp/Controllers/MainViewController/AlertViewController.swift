@@ -48,10 +48,10 @@ class AlertView {
         
         alertView.frame = CGRect(x: 25, y: -900,
                                  width: targetView.frame.width - 40,
-                                 height: targetView.frame.height - 200)
+                                 height: targetView.frame.height / 1.33)
                                  
         targetView.addSubview(alertView)
-        
+                
         let titleLabel: UILabel = {
             let label = UILabel()
             label.text = "ИНФОРМАЦИЯ:"
@@ -94,10 +94,14 @@ class AlertView {
             self.blurView.alpha = Constants.blurAlpha
             viewController.navigationItem.titleView?.alpha = 0
         } completion: { done in
+            
             if done {
                 UIView.animate(withDuration: 0.3) {
+                                        
                     self.alertView.center = targetView.center
+                    
                     searchController.searchBar.isHidden = true
+                    
                 } completion: { done in
                     
                     self.alertView.addSubview(tableView)
@@ -124,12 +128,14 @@ class AlertView {
         
         UIView.animate(withDuration: 0.3) {
             
-            self.alertView.frame = CGRect(x: 20, y: -900, width: self.targetVC.view.frame.width - 40, height: self.targetVC.view.frame.height / 1.5)
+            self.alertView.frame = CGRect(x: 20, y: -900,
+                                          width: self.targetVC.view.frame.width - 40,
+                                          height: self.targetVC.view.frame.height / 1.33)
             self.targetVC.navigationController?.navigationBar.isHidden = false
             self.targetTableView.removeFromSuperview()
             
         } completion: { done in
-            
+                        
             if done {
                 
                 UIView.animate(withDuration: 0.3) {
