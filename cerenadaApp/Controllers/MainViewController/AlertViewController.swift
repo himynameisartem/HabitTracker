@@ -49,7 +49,7 @@ class AlertView {
         alertView.frame = CGRect(x: 25, y: -900,
                                  width: targetView.frame.width - 40,
                                  height: targetView.frame.height / 1.33)
-                                 
+        
         targetView.addSubview(alertView)
                 
         let titleLabel: UILabel = {
@@ -71,13 +71,14 @@ class AlertView {
             button.tintColor = .black
             return button
         }()
+        
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
                 
         alertView.addSubview(titleLabel)
         alertView.addSubview(exitButton)
+        
 
         NSLayoutConstraint.activate([
-        
             
             exitButton.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 10),
             exitButton.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -0),
@@ -90,23 +91,27 @@ class AlertView {
             
         ])
 
+        
+
+
         UIView.animate(withDuration: 0.3) {
+            
             self.blurView.alpha = Constants.blurAlpha
             viewController.navigationItem.titleView?.alpha = 0
+            
         } completion: { done in
             
+            searchController.searchBar.isHidden = true
+                       
             if done {
                 UIView.animate(withDuration: 0.3) {
-                                        
+                    
                     self.alertView.center = targetView.center
                     
-                    searchController.searchBar.isHidden = true
-                    
                 } completion: { done in
-                    
+
                     self.alertView.addSubview(tableView)
-                    tableView.reloadData()
-                    
+
                     NSLayoutConstraint.activate([
                         tableView.topAnchor.constraint(equalTo: self.alertView.topAnchor, constant: 50),
                         tableView.leadingAnchor.constraint(equalTo: self.alertView.leadingAnchor, constant: 10),
@@ -115,7 +120,9 @@ class AlertView {
                     ])
                     
                     if done {
+
                         viewController.navigationController?.navigationBar.isHidden = true
+
                     }
                 }
             }
@@ -135,6 +142,8 @@ class AlertView {
             self.targetTableView.removeFromSuperview()
             
         } completion: { done in
+            
+            
                         
             if done {
                 

@@ -21,6 +21,16 @@ class MainViewController: UIViewController{
     
     var price = [String]()
     
+    let navLogo: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "logo")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    let navBar = UINavigationBar()
+
+    
     let separatorView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -164,12 +174,7 @@ class MainViewController: UIViewController{
         navView.translatesAutoresizingMaskIntoConstraints = false
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let navLogo: UIImageView = {
-            let imageView = UIImageView()
-            imageView.image = UIImage(named: "logo")
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            return imageView
-        }()
+
         
         let infoButton: UIButton = {
             let button = UIButton()
@@ -182,7 +187,6 @@ class MainViewController: UIViewController{
 
         navView.addSubview(infoButton)
         
-        let navBar = UINavigationBar()
         navBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 140)
         view.addSubview(navBar)
         navBar.addSubview(navLogo)
@@ -275,7 +279,7 @@ class MainViewController: UIViewController{
         
         NSLayoutConstraint.activate([
             
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: navBar.frame.height + searchController.searchBar.frame.height),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -370,6 +374,7 @@ class MainViewController: UIViewController{
     func createTimer() {
         DispatchQueue.main.async {
             self.timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
+            
         }
     }
     
@@ -580,28 +585,28 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
         let sizeCell = tableView.dequeueReusableCell(withIdentifier: "sizeContainerCell", for: indexPath) as! SizeContainerTableViewCell
         let contactCell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactTableViewCell
-        
-        cell.awakeFromNib()
-        cell.selectionStyle = .none
-        sizeCell.awakeFromNib()
-        sizeCell.selectionStyle = .none
-        
-        DispatchQueue.main.async {
+
+
+            cell.awakeFromNib()
+            cell.selectionStyle = .none
+            sizeCell.awakeFromNib()
+            sizeCell.selectionStyle = .none
+                DispatchQueue.main.async {
             contactCell.awakeFromNib()
             contactCell.selectionStyle = .none
         }
-        
-       
-        
+
+
+
         if indexPath.row == 0 {
-            
+
             cell.imagePoint.isHidden = true
             cell.imageArrow.isHidden = false
             cell.infoOptionLabel.text = ""
             cell.infoLabel.text = infoArray[indexPath.section].title
-            
+
         } else {
-    
+
             cell.imagePoint.isHidden = false
             cell.imageArrow.isHidden = true
             cell.infoLabel.text = ""
@@ -613,41 +618,41 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
             if indexPath.section == 12 {
-                
-//                contactCell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
+
+                contactCell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
                 contactCell.contactButton.addTarget(self, action: #selector(contactButtonTapped), for: .touchUpInside)
                 contactCell.contactButton.tag = indexPath.row
-                
+
                 if indexPath.row == 1 {
-                    
+
                     contactCell.contactButton.tintColor = .blue
                     contactCell.contactButton.setImage(UIImage(systemName: "envelope"), for: .normal)
 
                 } else if indexPath.row == 2 {
-                    
+
                     contactCell.contactButton.tintColor = .green
                     contactCell.contactButton.setImage(UIImage(systemName: "phone"), for: .normal)
-                    
+
                 } else {
-                    
+
                     contactCell.contactButton.isHidden = true
-                    
+
                 }
             return contactCell
 
             }
         }
-        
+
         if infoArray[indexPath.section].isOpened {
-            
+
             cell.imageArrow.image = UIImage(systemName: "chevron.up")
-            
+
         } else {
-            
+
             cell.imageArrow.image = UIImage(systemName: "chevron.down")
-            
+
         }
-        
+                
         return cell
     }
     
