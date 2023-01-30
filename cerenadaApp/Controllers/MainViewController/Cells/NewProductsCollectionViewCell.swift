@@ -33,6 +33,7 @@ class NewProductsCollectionViewCell: UICollectionViewCell {
         label.font = UIFont(name: "helvetica-bold", size: 10)
         label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 0.780241101)
         label.contentMode = .center
+        label.numberOfLines = 2
         return label
     }()
     
@@ -67,21 +68,21 @@ class NewProductsCollectionViewCell: UICollectionViewCell {
             shadowView.topAnchor.constraint(equalTo: topAnchor),
             shadowView.leadingAnchor.constraint(equalTo: leadingAnchor),
             shadowView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            shadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
+            shadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -45),
             
             productImageView.topAnchor.constraint(equalTo: shadowView.topAnchor, constant: 10),
             productImageView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor, constant: 0),
             productImageView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: 0),
             productImageView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor, constant: 0),
             
-            productName.topAnchor.constraint(equalTo: productImageView.bottomAnchor),
-            productName.leadingAnchor.constraint(equalTo: leadingAnchor),
-            productName.trailingAnchor.constraint(equalTo: trailingAnchor),
-            productName.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25),
+            productName.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 5),
+            productName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
+            productName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
+//            productName.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25),
             
-            productPrice.topAnchor.constraint(equalTo: productName.bottomAnchor),
-            productPrice.leadingAnchor.constraint(equalTo: leadingAnchor),
-            productPrice.trailingAnchor.constraint(equalTo: trailingAnchor),
+//            productPrice.topAnchor.constraint(equalTo: productName.bottomAnchor),
+            productPrice.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
+            productPrice.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
             productPrice.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
         

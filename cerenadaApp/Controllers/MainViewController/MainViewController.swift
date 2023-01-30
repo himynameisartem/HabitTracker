@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 class MainViewController: UIViewController{
-        
+    
     let networkClient = NetworkClient()
     var data = [ProductCardData]()
     let searchController = UISearchController(searchResultsController: nil)
@@ -161,7 +161,7 @@ class MainViewController: UIViewController{
         createNewProductCollectionView()
         createPartnersLabel()
         createPartnersCollectionView()
-        
+
     }
     
     //MARK: - Create Views
@@ -174,8 +174,6 @@ class MainViewController: UIViewController{
         navView.translatesAutoresizingMaskIntoConstraints = false
         navigationController?.navigationBar.prefersLargeTitles = true
         
-
-        
         let infoButton: UIButton = {
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
@@ -187,15 +185,17 @@ class MainViewController: UIViewController{
 
         navView.addSubview(infoButton)
         
-        navBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 140)
+        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        let top = window?.safeAreaInsets.top
+        
+        navBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: (top ?? 0) + 93)
         view.addSubview(navBar)
         navBar.addSubview(navLogo)
-        
+                
         NSLayoutConstraint.activate([
             
-            
             navLogo.centerXAnchor.constraint(equalTo: navBar.centerXAnchor),
-            navLogo.topAnchor.constraint(equalTo: navBar.topAnchor, constant: 40),
+            navLogo.topAnchor.constraint(equalTo: navBar.topAnchor, constant: (top ?? 0)),
             navLogo.heightAnchor.constraint(equalToConstant: 80),
             navLogo.widthAnchor.constraint(equalToConstant: 160),
 
@@ -223,7 +223,6 @@ class MainViewController: UIViewController{
     
     func createNewProductsLabel() {
         scrollView.addSubview(newProductsLabel)
-        
         
         NSLayoutConstraint.activate([
         
@@ -289,7 +288,7 @@ class MainViewController: UIViewController{
     //MARK: Presentation Collection View
     
     func createPresentationCollectionView() {
-        
+                
         let shadowViewForPresentation: UIView = {
             let view = UIView()
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -301,13 +300,13 @@ class MainViewController: UIViewController{
         
         shadowViewForPresentation.addSubview(presentationCollectionView)
         presentationCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
         
             shadowViewForPresentation.topAnchor.constraint(equalTo: scrollView.topAnchor,constant: 10),
             shadowViewForPresentation.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,constant: 20),
             shadowViewForPresentation.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
-            shadowViewForPresentation.heightAnchor.constraint(equalToConstant: 240),
+            shadowViewForPresentation.heightAnchor.constraint(equalToConstant: view.frame.width / 1.625),
             
             presentationCollectionView.topAnchor.constraint(equalTo: shadowViewForPresentation.topAnchor),
             presentationCollectionView.leadingAnchor.constraint(equalTo: shadowViewForPresentation.leadingAnchor),
@@ -338,13 +337,13 @@ class MainViewController: UIViewController{
         
         scrollView.addSubview(newProductCollectionView)
         newProductCollectionView.translatesAutoresizingMaskIntoConstraints = false
-                
+                        
         NSLayoutConstraint.activate([
         
             newProductCollectionView.topAnchor.constraint(equalTo: newProductsLabel.bottomAnchor,constant: 10),
             newProductCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             newProductCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            newProductCollectionView.heightAnchor.constraint(equalToConstant: 240)
+            newProductCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width / 1.625)
             
         ])
         
@@ -363,7 +362,7 @@ class MainViewController: UIViewController{
             partnersCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             partnersCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             partnersCollectionView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            partnersCollectionView.heightAnchor.constraint(equalToConstant: 290)
+            partnersCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width / 1.34)
             
         ])
         
@@ -461,7 +460,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partnersCell", for: indexPath) as! PartnersCollectionViewCell
-            
+                        
             cell.partnersImageView.image = UIImage(named: partnersArray[indexPath.row])
             
             return cell
@@ -477,10 +476,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
         } else if collectionView == newProductCollectionView {
             
-            return CGSize(width: collectionView.frame.width / 3, height: collectionView.frame.height)
+            return CGSize(width: collectionView.frame.height / 2, height: collectionView.frame.height)
+            
 
         } else {
-            
+                        
             return CGSize(width: collectionView.frame.width / 2 - 30 , height: collectionView.frame.height / 2 - 50)
 
         }
@@ -625,18 +625,26 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
                 if indexPath.row == 1 {
 
-                    contactCell.contactButton.tintColor = .blue
+                    contactCell.contactButton.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
                     contactCell.contactButton.setImage(UIImage(systemName: "envelope"), for: .normal)
+                    contactCell.contactButton.setTitle("  ivrosinvest@mail.ru  ", for: .normal)
+                    contactCell.contactButton.setTitleColor(.black, for: .normal)
+                    contactCell.contactButton.isHidden = false
+
 
                 } else if indexPath.row == 2 {
 
-                    contactCell.contactButton.tintColor = .green
-                    contactCell.contactButton.setImage(UIImage(systemName: "phone"), for: .normal)
+                    contactCell.contactButton.tintColor = #colorLiteral(red: 0, green: 0.6783743501, blue: 0, alpha: 1)
+                    contactCell.contactButton.setImage(UIImage(systemName: "phone.fill"), for: .normal)
+                    contactCell.contactButton.setTitle("  +7(920)369-44-84  ", for: .normal)
+                    contactCell.contactButton.setTitleColor(.black, for: .normal)
+                    contactCell.contactButton.isHidden = false
+
 
                 } else {
 
                     contactCell.contactButton.isHidden = true
-
+                    
                 }
             return contactCell
 
@@ -659,9 +667,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     @objc func contactButtonTapped(sender: UIButton) {
         let buttonTag = sender.tag
         if buttonTag == 1 {
-            print("email")
+            sender.showAnimation {
+                print("email")
+                
+            }
         } else if buttonTag == 2 {
-            print("phone")
+            
+            sender.showAnimation {
+                print("phone")
+            }
         }
     }
     

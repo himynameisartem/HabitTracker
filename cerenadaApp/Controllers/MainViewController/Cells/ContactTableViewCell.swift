@@ -20,7 +20,10 @@ class ContactTableViewCell: UITableViewCell {
     let contactButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("123124235", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 14)
+        button.layer.cornerRadius = 5
+        button.backgroundColor = .white
+        button.makeShadow()
         return button
     }()
     
@@ -46,15 +49,16 @@ class ContactTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             
+            
+            contactButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            contactButton.leadingAnchor.constraint(equalTo: infoOptionLabel.trailingAnchor, constant: 10),
+            contactButton.heightAnchor.constraint(equalToConstant: 25),
+
             infoOptionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             infoOptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
             infoOptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             infoOptionLabel.trailingAnchor.constraint(equalTo: contactButton.leadingAnchor, constant: -10),
             
-            contactButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            contactButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            contactButton.leadingAnchor.constraint(equalTo: infoOptionLabel.trailingAnchor, constant: 10),
-
             imagePoint.centerYAnchor.constraint(equalTo: infoOptionLabel.centerYAnchor),
             imagePoint.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             imagePoint.widthAnchor.constraint(equalToConstant: 10),
