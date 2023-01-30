@@ -46,9 +46,10 @@ class AlertView {
         
         targetView.addSubview(blurView)
         
-        alertView.frame = CGRect(x: 25, y: -900,
-                                 width: targetView.frame.width - 40,
-                                 height: targetView.frame.height / 1.33)
+        alertView.frame = CGRect(x: (targetView.frame.width - (targetView.frame.width / 1.11)) / 2,
+                                 y: -900,
+                                 width: targetView.frame.width / 1.11,
+                                 height: targetView.frame.width * 1.53)
         
         targetView.addSubview(alertView)
                 
@@ -81,7 +82,7 @@ class AlertView {
         NSLayoutConstraint.activate([
             
             exitButton.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 10),
-            exitButton.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -0),
+            exitButton.trailingAnchor.constraint(equalTo: alertView.trailingAnchor),
             exitButton.heightAnchor.constraint(equalToConstant: 40),
             exitButton.widthAnchor.constraint(equalToConstant: 40),
             
@@ -135,9 +136,11 @@ class AlertView {
         
         UIView.animate(withDuration: 0.3) {
             
-            self.alertView.frame = CGRect(x: 20, y: -900,
-                                          width: self.targetVC.view.frame.width - 40,
-                                          height: self.targetVC.view.frame.height / 1.33)
+            self.alertView.frame = CGRect(x: (self.targetVC.view.frame.width - (self.targetVC.view.frame.width / 1.11)) / 2,
+                                          y: -900,
+                                          width: self.targetVC.view.frame.width / 1.11,
+                                          height: self.targetVC.view.frame.width * 1.62)
+            
             self.targetVC.navigationController?.navigationBar.isHidden = false
             self.targetTableView.removeFromSuperview()
             

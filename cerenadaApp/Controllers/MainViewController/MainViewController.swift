@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import MessageUI
 
 class MainViewController: UIViewController{
     
@@ -565,6 +566,8 @@ extension MainViewController: NewProductManagerDelegate {
     }
 }
 
+//MARK: - Info Table View
+
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         infoArray.count
@@ -619,7 +622,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
             if indexPath.section == 12 {
 
-                contactCell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
+                DispatchQueue.main.async {
+                    contactCell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
+                }
+                
                 contactCell.contactButton.addTarget(self, action: #selector(contactButtonTapped), for: .touchUpInside)
                 contactCell.contactButton.tag = indexPath.row
 
@@ -628,6 +634,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     contactCell.contactButton.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
                     contactCell.contactButton.setImage(UIImage(systemName: "envelope"), for: .normal)
                     contactCell.contactButton.setTitle("  ivrosinvest@mail.ru  ", for: .normal)
+                    contactCell.contactButton.titleLabel?.adjustsFontSizeToFitWidth = true
+                    contactCell.contactButton.titleLabel?.minimumScaleFactor = 0.5
                     contactCell.contactButton.setTitleColor(.black, for: .normal)
                     contactCell.contactButton.isHidden = false
 
@@ -637,6 +645,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     contactCell.contactButton.tintColor = #colorLiteral(red: 0, green: 0.6783743501, blue: 0, alpha: 1)
                     contactCell.contactButton.setImage(UIImage(systemName: "phone.fill"), for: .normal)
                     contactCell.contactButton.setTitle("  +7(920)369-44-84  ", for: .normal)
+                    contactCell.contactButton.titleLabel?.adjustsFontSizeToFitWidth = true
+                    contactCell.contactButton.titleLabel?.minimumScaleFactor = 0.5
                     contactCell.contactButton.setTitleColor(.black, for: .normal)
                     contactCell.contactButton.isHidden = false
 
@@ -668,13 +678,25 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let buttonTag = sender.tag
         if buttonTag == 1 {
             sender.showAnimation {
-                print("email")
                 
+                let mailComposeViewController = self.configurateMailComposer()
+                
+                if MFMailComposeViewController.canSendMail() {
+                    self.present(mailComposeViewController, animated: true)
+                } else {
+                    print("Нет доступа к iCloud")
+                }
+                
+                print("email")
             }
         } else if buttonTag == 2 {
             
             sender.showAnimation {
-                print("phone")
+                    guard let url = URL(string: "telprompt://+7(920)369-44-84"),
+                            UIApplication.shared.canOpenURL(url) else {
+                            return
+                        }
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
     }
@@ -687,4 +709,26 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.reloadSections([indexPath.section], with: .none)
         }
     }
+}
+
+//MARK: Mail Delegate
+
+extension MainViewController: MFMailComposeViewControllerDelegate {
+    
+    func configurateMailComposer() -> MFMailComposeViewController {
+        
+        let mailComposeVC = MFMailComposeViewController()
+        
+        mailComposeVC.mailComposeDelegate = self
+        mailComposeVC.setToRecipients(["ivrosinvest@mail.ru"])
+        mailComposeVC.setSubject("")
+        
+        return mailComposeVC
+        
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    
 }

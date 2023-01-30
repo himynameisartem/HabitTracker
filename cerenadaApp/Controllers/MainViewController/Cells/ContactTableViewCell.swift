@@ -53,6 +53,7 @@ class ContactTableViewCell: UITableViewCell {
             contactButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             contactButton.leadingAnchor.constraint(equalTo: infoOptionLabel.trailingAnchor, constant: 10),
             contactButton.heightAnchor.constraint(equalToConstant: 25),
+            contactButton.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -20),
 
             infoOptionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             infoOptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
