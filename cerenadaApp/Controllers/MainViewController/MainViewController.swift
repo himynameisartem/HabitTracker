@@ -14,13 +14,12 @@ class MainViewController: UIViewController{
     let networkClient = NetworkClient()
     var data = [ProductCardData]()
     let searchController = UISearchController(searchResultsController: nil)
-    
     let alert = AlertView()
-    
     var timer = Timer()
     var counter = 0
-    
     var price = [String]()
+    
+    let navBar = UINavigationBar()
     
     let navLogo: UIImageView = {
         let imageView = UIImageView()
@@ -29,7 +28,14 @@ class MainViewController: UIViewController{
         return imageView
     }()
     
-    let navBar = UINavigationBar()
+    let infoButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "info"), for: .normal)
+        button.alpha = 0.5
+        return button
+    }()
+    
 
     
     let separatorView: UIView = {
@@ -175,14 +181,7 @@ class MainViewController: UIViewController{
         navView.translatesAutoresizingMaskIntoConstraints = false
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let infoButton: UIButton = {
-            let button = UIButton()
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.setImage(UIImage(named: "info"), for: .normal)
-            button.alpha = 0.5
-            button.addTarget(self, action: #selector(infoTapped), for: .touchUpInside)
-            return button
-        }()
+        infoButton.addTarget(self, action: #selector(infoTapped), for: .touchUpInside)
 
         navView.addSubview(infoButton)
         
@@ -215,7 +214,7 @@ class MainViewController: UIViewController{
     
     @objc func infoTapped(sender: UIButton) {
      
-        alert.showAlert(viewController: self, searchController: searchController, separator: separatorView, tableView: infoTableView)
+        alert.showAlert(viewController: self, searchController: searchController, separator: separatorView, tableView: infoTableView, infoButton: infoButton)
             separatorView.isHidden = true
         
     }
@@ -730,5 +729,4 @@ extension MainViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
     }
-    
 }

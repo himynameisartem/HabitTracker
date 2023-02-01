@@ -27,6 +27,7 @@ class AlertView {
     var targetVC = UIViewController()
     var targetSearch = UISearchController()
     var targetTableView = UITableView()
+    var targetInfoButton = UIButton()
     
     struct Constants {
         static let blurAlpha: CGFloat = 1
@@ -34,11 +35,13 @@ class AlertView {
     
     //MARK: - Show Alert
     
-    func showAlert(viewController: UIViewController, searchController: UISearchController, separator: UIView, tableView: UITableView) {
+    func showAlert(viewController: UIViewController, searchController: UISearchController, separator: UIView, tableView: UITableView,
+                   infoButton: UIButton) {
         
         targetVC = viewController
         targetSearch = searchController
         targetTableView = tableView
+        targetInfoButton = infoButton
                 
         guard let targetView = viewController.view else { return }
         
@@ -46,11 +49,12 @@ class AlertView {
         
         targetView.addSubview(blurView)
         
+        let height = CGFloat(13 * 40 + 120) < targetView.frame.height ? CGFloat(13 * 40 + 120) : targetView.frame.width * 1.5
         alertView.frame = CGRect(x: (targetView.frame.width - (targetView.frame.width / 1.11)) / 2,
                                  y: -900,
                                  width: targetView.frame.width / 1.11,
-                                 height: targetView.frame.width * 1.53)
-        
+                                 height: height)
+                
         targetView.addSubview(alertView)
                 
         let titleLabel: UILabel = {
@@ -99,6 +103,8 @@ class AlertView {
             
             self.blurView.alpha = Constants.blurAlpha
             viewController.navigationItem.titleView?.alpha = 0
+            searchController.searchBar.alpha = 0
+            infoButton.alpha = 0
             
         } completion: { done in
             
@@ -150,10 +156,22 @@ class AlertView {
                         
             if done {
                 
+                var count = 0
+                for i in infoArray {
+                    if i.isOpened {
+                        infoArray[count].isOpened = false
+                    }
+                    count += 1
+                }
+                self.targetTableView.reloadData()
+                
                 UIView.animate(withDuration: 0.3) {
                     self.blurView.alpha = 0
                     self.targetVC.navigationItem.titleView?.alpha = 1
                     self.targetSearch.searchBar.isHidden = false
+                    self.targetSearch.searchBar.alpha = 1
+                    self.targetInfoButton.alpha = 0.5
+
                 } completion: { done in
                     
                     if done {
