@@ -49,7 +49,6 @@ class ContactTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             
-            
             contactButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             contactButton.leadingAnchor.constraint(equalTo: infoOptionLabel.trailingAnchor, constant: 10),
             contactButton.heightAnchor.constraint(equalToConstant: 25),

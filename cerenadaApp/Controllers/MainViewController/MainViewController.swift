@@ -127,11 +127,13 @@ class MainViewController: UIViewController{
     
     //MARK: - viewDidLoad
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationController?.navigationBar.prefersLargeTitles = true
-        
+
         networkClient.delegate = self
         networkClient.request()
         
@@ -191,7 +193,7 @@ class MainViewController: UIViewController{
         navBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: (top ?? 0) + 93)
         view.addSubview(navBar)
         navBar.addSubview(navLogo)
-                
+                        
         NSLayoutConstraint.activate([
             
             navLogo.centerXAnchor.constraint(equalTo: navBar.centerXAnchor),
@@ -477,7 +479,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else if collectionView == newProductCollectionView {
             
             return CGSize(width: collectionView.frame.height / 2, height: collectionView.frame.height)
-            
 
         } else {
                         
@@ -500,6 +501,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 
                 let vc = ProductCardViewController()
                 vc.id = self.data[index].id
+                self.navigationController?.navigationBar.isHidden = true
+                self.navigationController?.navigationBar.prefersLargeTitles = false
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }

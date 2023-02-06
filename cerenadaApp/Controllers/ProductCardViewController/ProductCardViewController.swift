@@ -10,6 +10,8 @@ import Kingfisher
 
 class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     
+    let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+    
     let productCardClient = ProductCardClient()
     var id = Int()
     
@@ -20,6 +22,35 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     var price = String()
     
     var images = [Images]()
+    
+    let coloredSafeArea: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
+        return view
+    }()
+    
+    let exitButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .black
+        return button
+    }()
+    
+    let navigationView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
+        return view
+    }()
+    
+    let navigationTitle: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Helvetica-Bold", size: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
+        return label
+    }()
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -89,7 +120,6 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.layer.cornerRadius = 10
-        //        tableView.makeShadow()
         return tableView
     }()
     
@@ -139,13 +169,14 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationView.alpha = 0
+        exitButton.tintColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
+                
         scrollView.delegate = self
-        
         productCardClient.delegate = self
         productCardClient.request(id: id)
         
         navigationController?.navigationBar.prefersLargeTitles = false
-        
         view.backgroundColor = .systemGray6
         
         galleryCollectionView.delegate = self
@@ -162,6 +193,8 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         
         createScrollView()
         createGalleryCollectionView()
+        creageNavigationView()
+        addExitButton()
         createNameLabel()
         //        createVendorCodeLabel()
         createCompoundLabels()
@@ -178,6 +211,38 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     
     //MARK: - Create Views
     
+    //MARK: - Create Navigation View
+    
+    func creageNavigationView() {
+        
+        view.addSubview(coloredSafeArea)
+        view.addSubview(navigationView)
+        navigationView.addSubview(navigationTitle)
+
+        guard let top = window?.safeAreaInsets.top else { return }
+        let safeArea = top < 21 ? 0 : top
+        let topOnScreenWithoutFaceId = top < 21 ? top : 0
+        
+        print(top)
+        
+        NSLayoutConstraint.activate([
+            
+            coloredSafeArea.topAnchor.constraint(equalTo: view.topAnchor),
+            coloredSafeArea.heightAnchor.constraint(equalToConstant: safeArea),
+            coloredSafeArea.widthAnchor.constraint(equalToConstant: view.frame.width),
+        
+            navigationView.topAnchor.constraint(equalTo: view.topAnchor),
+            navigationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navigationView.heightAnchor.constraint(equalToConstant: (navigationController?.navigationBar.frame.height)! - topOnScreenWithoutFaceId),
+            
+            navigationTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            navigationTitle.centerYAnchor.constraint(equalTo: navigationView.safeAreaLayoutGuide.centerYAnchor),
+            navigationTitle.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 50)
+            
+        ])
+}
+    
     //MARK: Scroll View
     
     func createScrollView() {
@@ -186,7 +251,7 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         
         NSLayoutConstraint.activate([
             
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: -92),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -205,9 +270,49 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
             galleryCollectionView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             galleryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             galleryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            galleryCollectionView.heightAnchor.constraint(equalToConstant: view.frame.height / 1.5)
+            galleryCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width * 1.44)
             
         ])
+    }
+    
+    //MARK: Exit Button
+    
+    func addExitButton() {
+        
+        let xmarkImage: UIImageView = {
+            let image = UIImageView()
+            image.translatesAutoresizingMaskIntoConstraints = false
+//            image.image = UIImage(systemName: "xmark.circle")
+            image.image = UIImage(systemName: "chevron.backward.circle.fill")
+            return image
+        }()
+        
+        view.addSubview(exitButton)
+        exitButton.addSubview(xmarkImage)
+        exitButton.addTarget(self, action: #selector(returnButtonTapped), for: .touchUpInside)
+
+        NSLayoutConstraint.activate([
+        
+            exitButton.centerYAnchor.constraint(equalTo: navigationView.safeAreaLayoutGuide.centerYAnchor),
+            exitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            exitButton.heightAnchor.constraint(equalToConstant: 30),
+            exitButton.widthAnchor.constraint(equalToConstant: 30),
+            
+            xmarkImage.topAnchor.constraint(equalTo: exitButton.topAnchor),
+            xmarkImage.leadingAnchor.constraint(equalTo: exitButton.leadingAnchor),
+            xmarkImage.trailingAnchor.constraint(equalTo: exitButton.trailingAnchor),
+            xmarkImage.bottomAnchor.constraint(equalTo: exitButton.bottomAnchor)
+            
+        ])
+        
+    }
+    
+    @objc func returnButtonTapped() {
+        exitButton.showAnimation {
+            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.navigationBar.isHidden = false
+
+        }
     }
     
     //MARK: Name Label
@@ -455,6 +560,7 @@ extension ProductCardViewController: ProductCardManagerDelegate {
                 
         DispatchQueue.main.async {
             
+            self.navigationTitle.text = data.name
             self.nameLabel.text = data.name
             self.images = data.images
             self.discriptionValue.text = "   " + String(data.description.dropFirst(3).dropLast(5))
@@ -491,3 +597,24 @@ extension ProductCardViewController: ProductCardManagerDelegate {
         }
     }
 
+extension ProductCardViewController {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+                
+        DispatchQueue.main.async {
+            
+            guard let top = self.window?.safeAreaInsets.top else { return }
+            let safeArea = top < 21 ? top : 0
+                        
+            let height = self.galleryCollectionView.frame.height - (self.exitButton.frame.height + 20) - safeArea
+            let alpha: CGFloat = self.scrollView.contentOffset.y > height ? 1 : 0
+            let exitButtonColor: UIColor = self.scrollView.contentOffset.y > height  ? .white : #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
+                            
+        UIView.animate(withDuration: 0.5, delay: 0) {
+            self.navigationView.alpha = alpha
+            self.exitButton.tintColor = exitButtonColor
+        }
+        }
+    }
+    
+}
