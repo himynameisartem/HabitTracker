@@ -18,10 +18,10 @@ extension MainViewController: UISearchControllerDelegate, UISearchResultsUpdatin
         searchController.searchBar.sizeToFit()
         
         navigationItem.searchController = searchController
-
+        
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-       
+        
     }
 }

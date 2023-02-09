@@ -14,7 +14,7 @@ class MainViewController: UIViewController{
     let networkClient = NetworkClient()
     var data = [ProductCardData]()
     let searchController = UISearchController(searchResultsController: nil)
-    let alert = AlertView()
+    let alert = InformationAbousUsViewController()
     
     var timer = Timer()
     var counter = 0
@@ -131,9 +131,9 @@ class MainViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationController?.navigationBar.prefersLargeTitles = true
-
+        
         networkClient.delegate = self
         networkClient.request()
         
@@ -163,14 +163,11 @@ class MainViewController: UIViewController{
         createSearchBar()
         createTimer()
         addViews()
-        makeConstraints()
-
+        setupConstraints()
+        
     }
     
-
-    
     //MARK: - Create Views
-    
     
     func addViews() {
         
@@ -182,10 +179,9 @@ class MainViewController: UIViewController{
         scrollView.addSubview(newProductCollectionView)
         scrollView.addSubview(partnersLabel)
         scrollView.addSubview(partnersCollectionView)
-        
     }
     
-    func makeConstraints() {
+    func setupConstraints() {
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: navBar.frame.height + searchController.searchBar.frame.height),
@@ -225,23 +221,21 @@ class MainViewController: UIViewController{
             partnersCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width / 1.34)
             
         ])
-        
     }
     
     //MARK: - InfoButton Tapped
     
     @objc func infoTapped(sender: UIButton) {
         
-        alert.showAlert(viewController: self, searchController: searchController, tableView: infoTableView, infoButton: infoButton)
+        alert.showInformationVC(viewController: self, searchController: searchController, tableView: infoTableView, infoButton: infoButton)
         
     }
-
+    
     //MARK: - Timer + Change Image in PresentationCollectionView
     
     func createTimer() {
         DispatchQueue.main.async {
             self.timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
-            
         }
     }
     
@@ -295,7 +289,7 @@ extension MainViewController: MFMailComposeViewControllerDelegate {
 extension MainViewController: NewProductManagerDelegate {
     func updateInterface(_: NetworkClient, with data: [ProductCardData]) {
         self.data = data.shuffled()
-
+        
         for i in self.data {
             for j in i.meta_data {
                 if j.key == "adv_sp" {

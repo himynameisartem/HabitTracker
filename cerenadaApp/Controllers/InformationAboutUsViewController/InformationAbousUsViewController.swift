@@ -1,5 +1,5 @@
 //
-//  AlertViewController.swift
+//  InformationAbousUsViewController.swift
 //  cerenadaApp
 //
 //  Created by Артем Кудрявцев on 22.11.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AlertView {
+class InformationAbousUsViewController {
     
     let blurView: UIVisualEffectView = {
         let view = UIVisualEffectView()
@@ -17,7 +17,7 @@ class AlertView {
         return view
     }()
     
-    let alertView: UIView = {
+    let informationView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 10
@@ -35,7 +35,7 @@ class AlertView {
     
     //MARK: - Show Alert
     
-    func showAlert(viewController: UIViewController, searchController: UISearchController, tableView: UITableView,
+    func showInformationVC(viewController: UIViewController, searchController: UISearchController, tableView: UITableView,
                    infoButton: UIButton) {
         
         targetVC = viewController
@@ -50,12 +50,12 @@ class AlertView {
         targetView.addSubview(blurView)
         
         let height = CGFloat(13 * 40 + 120) < targetView.frame.height ? CGFloat(13 * 40 + 120) : targetView.frame.width * 1.5
-        alertView.frame = CGRect(x: (targetView.frame.width - (targetView.frame.width / 1.11)) / 2,
+        informationView.frame = CGRect(x: (targetView.frame.width - (targetView.frame.width / 1.11)) / 2,
                                  y: -900,
                                  width: targetView.frame.width / 1.11,
                                  height: height)
                 
-        targetView.addSubview(alertView)
+        targetView.addSubview(informationView)
                 
         let titleLabel: UILabel = {
             let label = UILabel()
@@ -79,19 +79,19 @@ class AlertView {
         
         exitButton.addTarget(self, action: #selector(exitButtonTapped), for: .touchUpInside)
                 
-        alertView.addSubview(titleLabel)
-        alertView.addSubview(exitButton)
+        informationView.addSubview(titleLabel)
+        informationView.addSubview(exitButton)
         
 
         NSLayoutConstraint.activate([
             
-            exitButton.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 10),
-            exitButton.trailingAnchor.constraint(equalTo: alertView.trailingAnchor),
+            exitButton.topAnchor.constraint(equalTo: informationView.topAnchor, constant: 10),
+            exitButton.trailingAnchor.constraint(equalTo: informationView.trailingAnchor),
             exitButton.heightAnchor.constraint(equalToConstant: 40),
             exitButton.widthAnchor.constraint(equalToConstant: 40),
             
             titleLabel.centerYAnchor.constraint(equalTo: exitButton.centerYAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: exitButton.leadingAnchor, constant: 10)
             
         ])
@@ -113,17 +113,17 @@ class AlertView {
             if done {
                 UIView.animate(withDuration: 0.3) {
                     
-                    self.alertView.center = targetView.center
+                    self.informationView.center = targetView.center
                     
                 } completion: { done in
 
-                    self.alertView.addSubview(tableView)
+                    self.informationView.addSubview(tableView)
 
                     NSLayoutConstraint.activate([
-                        tableView.topAnchor.constraint(equalTo: self.alertView.topAnchor, constant: 50),
-                        tableView.leadingAnchor.constraint(equalTo: self.alertView.leadingAnchor, constant: 10),
-                        tableView.trailingAnchor.constraint(equalTo: self.alertView.trailingAnchor, constant: -10),
-                        tableView.bottomAnchor.constraint(equalTo: self.alertView.bottomAnchor, constant: -10)
+                        tableView.topAnchor.constraint(equalTo: self.informationView.topAnchor, constant: 50),
+                        tableView.leadingAnchor.constraint(equalTo: self.informationView.leadingAnchor, constant: 10),
+                        tableView.trailingAnchor.constraint(equalTo: self.informationView.trailingAnchor, constant: -10),
+                        tableView.bottomAnchor.constraint(equalTo: self.informationView.bottomAnchor, constant: -10)
                     ])
                     
                     if done {
@@ -142,7 +142,7 @@ class AlertView {
         
         UIView.animate(withDuration: 0.3) {
             
-            self.alertView.frame = CGRect(x: (self.targetVC.view.frame.width - (self.targetVC.view.frame.width / 1.11)) / 2,
+            self.informationView.frame = CGRect(x: (self.targetVC.view.frame.width - (self.targetVC.view.frame.width / 1.11)) / 2,
                                           y: -900,
                                           width: self.targetVC.view.frame.width / 1.11,
                                           height: self.targetVC.view.frame.width * 1.62)
@@ -176,7 +176,7 @@ class AlertView {
                     
                     if done {
                         
-                        self.alertView.removeFromSuperview()
+                        self.informationView.removeFromSuperview()
                         self.blurView.removeFromSuperview()
                     }
                 }

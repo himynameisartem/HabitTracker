@@ -42,21 +42,21 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newProductCell", for: indexPath) as! NewProductsCollectionViewCell
             
             DispatchQueue.main.async {
-
+                
                 cell.productImageView.kf.indicatorType = .activity
                 cell.productImageView.kf.setImage(with: URL(string: self.data[indexPath.row].images[0].src.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? self.data[indexPath.row].images[0].src))
             }
             
             cell.productName.text = data[indexPath.row].name
             cell.productPrice.text = price[indexPath.row] + " ₽"
-
+            
             
             return cell
             
         } else {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partnersCell", for: indexPath) as! PartnersCollectionViewCell
-                        
+            
             cell.partnersImageView.image = UIImage(named: partnersArray[indexPath.row])
             
             return cell
@@ -73,11 +73,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else if collectionView == newProductCollectionView {
             
             return CGSize(width: collectionView.frame.height / 2, height: collectionView.frame.height)
-
+            
         } else {
-                        
+            
             return CGSize(width: collectionView.frame.width / 2 - 30 , height: collectionView.frame.height / 2 - 50)
-
+            
         }
     }
     
@@ -90,7 +90,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let animatedCell = collectionView.cellForItem(at: indexPath) else {return}
         
         if collectionView == newProductCollectionView {
-          
+            
             animatedCell.showAnimation {
                 
                 let vc = ProductCardViewController()
@@ -106,7 +106,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             animatedCell.showAnimation {
                 
                 UIApplication.shared.open(urlPartnersArray[index]!)
-       
+                
             }
         }
     }

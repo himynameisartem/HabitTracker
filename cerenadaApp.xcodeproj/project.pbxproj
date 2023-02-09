@@ -18,7 +18,7 @@
 		316820702907CC8000E28F62 /* ProductCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168206F2907CC8000E28F62 /* ProductCardModel.swift */; };
 		316820722907CCC000E28F62 /* NewProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316820712907CCC000E28F62 /* NewProductManager.swift */; };
 		317261B92948B4E700B73E41 /* AddToCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317261B82948B4E700B73E41 /* AddToCartTableViewCell.swift */; };
-		31958344292D0F9D000CB4DD /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31958343292D0F9D000CB4DD /* AlertViewController.swift */; };
+		31958344292D0F9D000CB4DD /* InformationAbousUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31958343292D0F9D000CB4DD /* InformationAbousUsViewController.swift */; };
 		31ACD43927FE170500DAD756 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ACD43827FE170500DAD756 /* AppDelegate.swift */; };
 		31ACD44227FE170600DAD756 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31ACD44127FE170600DAD756 /* Assets.xcassets */; };
 		31ACD44527FE170600DAD756 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31ACD44327FE170600DAD756 /* LaunchScreen.storyboard */; };
@@ -33,6 +33,10 @@
 		31FDE4542994EA4D00397DED /* MainVC+TableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE4532994EA4D00397DED /* MainVC+TableViews.swift */; };
 		31FDE4562994EBF100397DED /* MainVC+CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE4552994EBF100397DED /* MainVC+CustomNavigationView.swift */; };
 		31FDE4582995055F00397DED /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE4572995055F00397DED /* UIViewExtensions.swift */; };
+		31FDE45B2995313800397DED /* ProductCardVC+CollectionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE45A2995313800397DED /* ProductCardVC+CollectionViews.swift */; };
+		31FDE45D2995315300397DED /* ProductCardVC+TableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE45C2995315300397DED /* ProductCardVC+TableViews.swift */; };
+		31FDE45F299532B700397DED /* ProductCardVC+CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE45E299532B700397DED /* ProductCardVC+CustomNavigationView.swift */; };
+		31FDE461299537B600397DED /* ProductCardVC+ScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE460299537B600397DED /* ProductCardVC+ScrollViewDelegate.swift */; };
 		F6D850EDFA69236E520232BF /* Pods_cerenadaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75757C73A7D74269DDC194DB /* Pods_cerenadaApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +53,7 @@
 		3168206F2907CC8000E28F62 /* ProductCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardModel.swift; sourceTree = "<group>"; };
 		316820712907CCC000E28F62 /* NewProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductManager.swift; sourceTree = "<group>"; };
 		317261B82948B4E700B73E41 /* AddToCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartTableViewCell.swift; sourceTree = "<group>"; };
-		31958343292D0F9D000CB4DD /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		31958343292D0F9D000CB4DD /* InformationAbousUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAbousUsViewController.swift; sourceTree = "<group>"; };
 		31ACD43527FE170500DAD756 /* cerenadaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cerenadaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31ACD43827FE170500DAD756 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31ACD44127FE170600DAD756 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,6 +70,10 @@
 		31FDE4532994EA4D00397DED /* MainVC+TableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+TableViews.swift"; sourceTree = "<group>"; };
 		31FDE4552994EBF100397DED /* MainVC+CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+CustomNavigationView.swift"; sourceTree = "<group>"; };
 		31FDE4572995055F00397DED /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		31FDE45A2995313800397DED /* ProductCardVC+CollectionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductCardVC+CollectionViews.swift"; sourceTree = "<group>"; };
+		31FDE45C2995315300397DED /* ProductCardVC+TableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductCardVC+TableViews.swift"; sourceTree = "<group>"; };
+		31FDE45E299532B700397DED /* ProductCardVC+CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductCardVC+CustomNavigationView.swift"; sourceTree = "<group>"; };
+		31FDE460299537B600397DED /* ProductCardVC+ScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductCardVC+ScrollViewDelegate.swift"; sourceTree = "<group>"; };
 		39D0CB24D2B67817F1B430E9 /* Pods-cerenadaApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cerenadaApp.release.xcconfig"; path = "Target Support Files/Pods-cerenadaApp/Pods-cerenadaApp.release.xcconfig"; sourceTree = "<group>"; };
 		75757C73A7D74269DDC194DB /* Pods_cerenadaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cerenadaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -86,6 +94,10 @@
 			isa = PBXGroup;
 			children = (
 				314B7FF429374FFA004CA151 /* ProductCardViewController.swift */,
+				31FDE45E299532B700397DED /* ProductCardVC+CustomNavigationView.swift */,
+				31FDE45A2995313800397DED /* ProductCardVC+CollectionViews.swift */,
+				31FDE45C2995315300397DED /* ProductCardVC+TableViews.swift */,
+				31FDE460299537B600397DED /* ProductCardVC+ScrollViewDelegate.swift */,
 				314B7FFF293CCE2F004CA151 /* Cells */,
 			);
 			path = ProductCardViewController;
@@ -160,7 +172,6 @@
 				31FDE44F2994E99500397DED /* MainVC+SearchBar+UpdateSearchResults.swift */,
 				31FDE4512994E9F200397DED /* MainVC+CollectionViews.swift */,
 				31FDE4532994EA4D00397DED /* MainVC+TableViews.swift */,
-				31958343292D0F9D000CB4DD /* AlertViewController.swift */,
 				31B710F7290FD1A600E6CA04 /* Cells */,
 			);
 			path = MainViewController;
@@ -172,6 +183,7 @@
 				31FDE4572995055F00397DED /* UIViewExtensions.swift */,
 				31B710EF290D49C300E6CA04 /* MainViewController */,
 				314B7FF329374FD1004CA151 /* ProductCardViewController */,
+				31FDE4592995300000397DED /* InformationAboutUsViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,6 +200,14 @@
 				310F967229850C0300B5F5B8 /* ContactTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		31FDE4592995300000397DED /* InformationAboutUsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				31958343292D0F9D000CB4DD /* InformationAbousUsViewController.swift */,
+			);
+			path = InformationAboutUsViewController;
 			sourceTree = "<group>";
 		};
 		5002F1A5CA36EB88CE4C8AFB /* Pods */ = {
@@ -325,10 +345,12 @@
 				314B7FF529374FFA004CA151 /* ProductCardViewController.swift in Sources */,
 				314B7FFE293CCCFC004CA151 /* GalleryCollectionViewCell.swift in Sources */,
 				310F966F2984410200B5F5B8 /* SizeListTableViewCell.swift in Sources */,
-				31958344292D0F9D000CB4DD /* AlertViewController.swift in Sources */,
+				31958344292D0F9D000CB4DD /* InformationAbousUsViewController.swift in Sources */,
+				31FDE45F299532B700397DED /* ProductCardVC+CustomNavigationView.swift in Sources */,
 				310F967329850C0300B5F5B8 /* ContactTableViewCell.swift in Sources */,
 				31ACD43927FE170500DAD756 /* AppDelegate.swift in Sources */,
 				31FDE4502994E99500397DED /* MainVC+SearchBar+UpdateSearchResults.swift in Sources */,
+				31FDE461299537B600397DED /* ProductCardVC+ScrollViewDelegate.swift in Sources */,
 				314B7FFC2939392C004CA151 /* ProductCardManager.swift in Sources */,
 				31FDE4542994EA4D00397DED /* MainVC+TableViews.swift in Sources */,
 				31FDE4582995055F00397DED /* UIViewExtensions.swift in Sources */,
@@ -337,7 +359,9 @@
 				31B710EE290D495C00E6CA04 /* PresentationCollectionViewCell.swift in Sources */,
 				31FDE4562994EBF100397DED /* MainVC+CustomNavigationView.swift in Sources */,
 				316820722907CCC000E28F62 /* NewProductManager.swift in Sources */,
+				31FDE45B2995313800397DED /* ProductCardVC+CollectionViews.swift in Sources */,
 				31B710F2290E863A00E6CA04 /* NewProductsCollectionViewCell.swift in Sources */,
+				31FDE45D2995315300397DED /* ProductCardVC+TableViews.swift in Sources */,
 				31B710F4290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift in Sources */,
 				31FDE4522994E9F200397DED /* MainVC+CollectionViews.swift in Sources */,
 				316820702907CC8000E28F62 /* ProductCardModel.swift in Sources */,

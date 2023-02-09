@@ -29,49 +29,49 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
         let sizeCell = tableView.dequeueReusableCell(withIdentifier: "sizeContainerCell", for: indexPath) as! SizeContainerTableViewCell
         let contactCell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactTableViewCell
-
-
-            cell.awakeFromNib()
-            cell.selectionStyle = .none
-            sizeCell.awakeFromNib()
-            sizeCell.selectionStyle = .none
-                DispatchQueue.main.async {
+        
+        
+        cell.awakeFromNib()
+        cell.selectionStyle = .none
+        sizeCell.awakeFromNib()
+        sizeCell.selectionStyle = .none
+        DispatchQueue.main.async {
             contactCell.awakeFromNib()
             contactCell.selectionStyle = .none
         }
-
-
-
+        
+        
+        
         if indexPath.row == 0 {
-
+            
             cell.imagePoint.isHidden = true
             cell.imageArrow.isHidden = false
             cell.infoOptionLabel.text = ""
             cell.infoLabel.text = infoArray[indexPath.section].title
-
+            
         } else {
-
+            
             cell.imagePoint.isHidden = false
             cell.imageArrow.isHidden = true
             cell.infoLabel.text = ""
             cell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
-
+            
             if indexPath.section == 8 {
                 sizeCell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
                 return sizeCell
             }
-
+            
             if indexPath.section == 12 {
-
+                
                 DispatchQueue.main.async {
                     contactCell.infoOptionLabel.text = infoArray[indexPath.section].options[indexPath.row - 1]
                 }
                 
                 contactCell.contactButton.addTarget(self, action: #selector(contactButtonTapped), for: .touchUpInside)
                 contactCell.contactButton.tag = indexPath.row
-
+                
                 if indexPath.row == 1 {
-
+                    
                     contactCell.contactButton.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
                     contactCell.contactButton.setImage(UIImage(systemName: "envelope"), for: .normal)
                     contactCell.contactButton.setTitle("  ivrosinvest@mail.ru  ", for: .normal)
@@ -79,10 +79,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     contactCell.contactButton.titleLabel?.minimumScaleFactor = 0.5
                     contactCell.contactButton.setTitleColor(.black, for: .normal)
                     contactCell.contactButton.isHidden = false
-
-
+                    
+                    
                 } else if indexPath.row == 2 {
-
+                    
                     contactCell.contactButton.tintColor = #colorLiteral(red: 0, green: 0.6783743501, blue: 0, alpha: 1)
                     contactCell.contactButton.setImage(UIImage(systemName: "phone.fill"), for: .normal)
                     contactCell.contactButton.setTitle("  +7(920)369-44-84  ", for: .normal)
@@ -90,28 +90,28 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     contactCell.contactButton.titleLabel?.minimumScaleFactor = 0.5
                     contactCell.contactButton.setTitleColor(.black, for: .normal)
                     contactCell.contactButton.isHidden = false
-
-
+                    
+                    
                 } else {
-
+                    
                     contactCell.contactButton.isHidden = true
                     
                 }
-            return contactCell
-
+                return contactCell
+                
             }
         }
-
+        
         if infoArray[indexPath.section].isOpened {
-
+            
             cell.imageArrow.image = UIImage(systemName: "chevron.up")
-
+            
         } else {
-
+            
             cell.imageArrow.image = UIImage(systemName: "chevron.down")
-
+            
         }
-                
+        
         return cell
     }
     
@@ -126,16 +126,16 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     self.present(mailComposeViewController, animated: true)
                 } else {
                     print("Нет доступа к iCloud")
-                }                
+                }
             }
         } else if buttonTag == 2 {
             
             sender.showAnimation {
-                    guard let url = URL(string: "telprompt://+7(920)369-44-84"),
-                            UIApplication.shared.canOpenURL(url) else {
-                            return
-                        }
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                guard let url = URL(string: "telprompt://+7(920)369-44-84"),
+                      UIApplication.shared.canOpenURL(url) else {
+                    return
+                }
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
     }
