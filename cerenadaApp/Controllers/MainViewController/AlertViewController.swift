@@ -35,7 +35,7 @@ class AlertView {
     
     //MARK: - Show Alert
     
-    func showAlert(viewController: UIViewController, searchController: UISearchController, separator: UIView, tableView: UITableView,
+    func showAlert(viewController: UIViewController, searchController: UISearchController, tableView: UITableView,
                    infoButton: UIButton) {
         
         targetVC = viewController

@@ -222,9 +222,7 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         guard let top = window?.safeAreaInsets.top else { return }
         let safeArea = top < 21 ? 0 : top
         let topOnScreenWithoutFaceId = top < 21 ? top : 0
-        
-        print(top)
-        
+                
         NSLayoutConstraint.activate([
             
             coloredSafeArea.topAnchor.constraint(equalTo: view.topAnchor),
