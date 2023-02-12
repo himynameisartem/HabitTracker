@@ -58,16 +58,16 @@ enum Value: Codable {
     }
     
     func encode(to encoder: Encoder) throws {
-          var container = encoder.singleValueContainer()
-          switch self {
-          case .string(let x):
-              try container.encode(x)
-          case .unknownData(let x):
-              try container.encode(x)
-          case .emptyData(let x):
-              try container.encode(x)
-          }
-      }
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .string(let x):
+            try container.encode(x)
+        case .unknownData(let x):
+            try container.encode(x)
+        case .emptyData(let x):
+            try container.encode(x)
+        }
+    }
     
     var stringValue: String? {
         switch self {
@@ -87,7 +87,3 @@ struct UnknownData: Codable {
 struct EmptyData: Codable {
     
 }
-
-
-
-let previewArray = ["preview1", "preview2", "preview3", "preview4", "preview5"]

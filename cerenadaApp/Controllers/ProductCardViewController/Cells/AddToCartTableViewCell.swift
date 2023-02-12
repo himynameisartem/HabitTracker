@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol AddToCartDelegate {
+    func stepper(_ stepper: UIStepper, at index: Int, didChangeValueTo newValue: Double)
+}
+
 class AddToCartTableViewCell: UITableViewCell {
+    
+    var delegate: AddToCartDelegate?
     
     let sizeLabel: UILabel = {
         let label = UILabel()
@@ -29,7 +35,7 @@ class AddToCartTableViewCell: UITableViewCell {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.layer.cornerRadius = 5
         textField.layer.borderWidth = 0.1
-        textField.text = "1"
+        textField.placeholder = "-"
         textField.textColor = .systemGray
         textField.font = UIFont(name: "Helvetica", size: 14)
         textField.textAlignment = .center
@@ -42,6 +48,10 @@ class AddToCartTableViewCell: UITableViewCell {
         let stepper = UIStepper()
         stepper.translatesAutoresizingMaskIntoConstraints = false
         stepper.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        stepper.autorepeat = true
+        stepper.minimumValue = 0
+        stepper.stepValue = 1
+        stepper.maximumValue = 100
         return stepper
     }()
     
@@ -60,7 +70,22 @@ class AddToCartTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         createViews()
-                
+        stepperForCountOrder.addTarget(self, action: #selector(changeValue), for: .valueChanged)
+    }
+    
+    @objc func changeValue(sender: UIStepper) {
+        
+        let counter = Int(sender.value)
+        
+        if counter == 0 {
+            coutOrderTextField.text = ""
+            coutOrderTextField.placeholder = "-"
+        } else {
+            coutOrderTextField.text = String(counter)
+        }
+        
+        delegate?.stepper(stepperForCountOrder, at: stepperForCountOrder.tag, didChangeValueTo: stepperForCountOrder.value)
+        
     }
     
     func createViews() {
@@ -68,8 +93,8 @@ class AddToCartTableViewCell: UITableViewCell {
         addSubview(sizeLabel)
         addSubview(priceLabel)
         addSubview(coutOrderTextField)
-        addSubview(stepperForCountOrder)
         addSubview(addToCartButton)
+        addSubview(stepperForCountOrder)
                 
         NSLayoutConstraint.activate([
         
@@ -86,7 +111,6 @@ class AddToCartTableViewCell: UITableViewCell {
             
             stepperForCountOrder.centerYAnchor.constraint(equalTo: centerYAnchor),
             stepperForCountOrder.leadingAnchor.constraint(equalTo: coutOrderTextField.trailingAnchor, constant: 5),
-            stepperForCountOrder.widthAnchor.constraint(equalToConstant: 20),
             
             addToCartButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             addToCartButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),

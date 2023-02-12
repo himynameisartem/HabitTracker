@@ -10,6 +10,7 @@ import Kingfisher
 
 class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     
+    
     let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
     let productCardClient = ProductCardClient()
     var id = Int()
@@ -18,6 +19,7 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     var size = [String]()
     var price = String()
     var images = [Images]()
+    var item = 0
     
     let coloredSafeArea: UIView = {
         let view = UIView()
@@ -69,8 +71,46 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsHorizontalScrollIndicator = false
         cv.translatesAutoresizingMaskIntoConstraints = false
-        
+        cv.isPagingEnabled = true
         return cv
+    }()
+    
+    let galleryPageControl: UIPageControl = {
+        let page = UIPageControl()
+        page.translatesAutoresizingMaskIntoConstraints = false
+        page.activityItemsConfiguration = .none
+        page.isUserInteractionEnabled = false
+        page.pageIndicatorTintColor = .systemGray5
+        page.currentPageIndicatorTintColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
+        return page
+    }()
+    
+    let nextButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let nextButtonImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "chevron.right")
+        image.tintColor = .systemGray2
+        return image
+    }()
+    
+    let previousButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let previousButtonImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "chevron.left")
+        image.tintColor = .systemGray2
+        return image
     }()
     
     let nameLabel: UILabel = {
@@ -80,12 +120,32 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         return label
     }()
     
+    let vendorCodeView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 5
+        view.layer.borderWidth = 2
+        view.layer.borderColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        return view
+    }()
+    
+    let vendorCodeTitle: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "АРТИКУЛ"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Helvetica-bold", size: 10)
+        label.textColor = #colorLiteral(red: 0.6642242074, green: 0.6642400622, blue: 0.6642315388, alpha: 1)
+        return label
+    }()
     
     let vendorCodeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .right
+        label.textAlignment = .center
         label.text = ""
+        label.textColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+        label.font = UIFont(name: "Helvetica-bold", size: 18)
         return label
     }()
     
@@ -102,6 +162,7 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Helvetica", size: 13)
         label.text = ""
+        label.numberOfLines = 0
         label.textColor = .systemGray
         return label
     }()
@@ -206,6 +267,9 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         addBackButton()
         setupConstraints()
         
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        previousButton.addTarget(self, action: #selector(previousButtonTapped), for: .touchUpInside)
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -218,8 +282,15 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         
         view.addSubview(scrollView)
         scrollView.addSubview(galleryCollectionView)
+        scrollView.addSubview(nextButton)
+        nextButton.addSubview(nextButtonImage)
+        scrollView.addSubview(previousButton)
+        previousButton.addSubview(previousButtonImage)
+        scrollView.addSubview(galleryPageControl)
         scrollView.addSubview(nameLabel)
-        //        scrollView.addSubview(vendorCodeLabel)
+        scrollView.addSubview(vendorCodeView)
+        vendorCodeView.addSubview(vendorCodeTitle)
+        scrollView.addSubview(vendorCodeLabel)
         scrollView.addSubview(compoundLabel)
         scrollView.addSubview(compoundValue)
         scrollView.addSubview(colorLabel)
@@ -246,28 +317,61 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
             galleryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             galleryCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width * 1.44),
             
+            nextButton.centerYAnchor.constraint(equalTo: galleryCollectionView.centerYAnchor),
+            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            nextButton.heightAnchor.constraint(equalToConstant: 40),
+            nextButton.widthAnchor.constraint(equalToConstant: 20),
+            
+            nextButtonImage.centerYAnchor.constraint(equalTo: galleryCollectionView.centerYAnchor),
+            nextButtonImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            nextButtonImage.heightAnchor.constraint(equalToConstant: 40),
+            nextButtonImage.widthAnchor.constraint(equalToConstant: 20),
+            
+            previousButton.centerYAnchor.constraint(equalTo: galleryCollectionView.centerYAnchor),
+            previousButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            previousButton.heightAnchor.constraint(equalToConstant: 40),
+            previousButton.widthAnchor.constraint(equalToConstant: 20),
+            
+            previousButtonImage.centerYAnchor.constraint(equalTo: galleryCollectionView.centerYAnchor),
+            previousButtonImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            previousButtonImage.heightAnchor.constraint(equalToConstant: 40),
+            previousButtonImage.widthAnchor.constraint(equalToConstant: 20),
+            
+            galleryPageControl.leadingAnchor.constraint(equalTo: galleryCollectionView.leadingAnchor),
+            galleryPageControl.trailingAnchor.constraint(equalTo: galleryCollectionView.trailingAnchor),
+            galleryPageControl.bottomAnchor.constraint(equalTo: galleryCollectionView.bottomAnchor),
+            
             nameLabel.topAnchor.constraint(equalTo: galleryCollectionView.bottomAnchor, constant: 10),
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            //            vendorCodeLabel.topAnchor.constraint(equalTo: galleryCollectionView.bottomAnchor, constant: 10),
-            //            vendorCodeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            //            vendorCodeLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 2),
+            vendorCodeView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+            vendorCodeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            vendorCodeView.widthAnchor.constraint(equalToConstant: 70),
+            vendorCodeView.heightAnchor.constraint(equalToConstant: 40),
+            
+            vendorCodeTitle.topAnchor.constraint(equalTo: vendorCodeView.topAnchor, constant: 3),
+            vendorCodeTitle.leadingAnchor.constraint(equalTo: vendorCodeView.leadingAnchor),
+            vendorCodeTitle.trailingAnchor.constraint(equalTo: vendorCodeView.trailingAnchor),
+            
+            vendorCodeLabel.bottomAnchor.constraint(equalTo: vendorCodeView.bottomAnchor, constant: -3),
+            vendorCodeLabel.leadingAnchor.constraint(equalTo: vendorCodeView.leadingAnchor),
+            vendorCodeLabel.trailingAnchor.constraint(equalTo: vendorCodeView.trailingAnchor),
             
             compoundLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
             compoundLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             compoundLabel.widthAnchor.constraint(equalToConstant: 60),
             
-            compoundValue.centerYAnchor.constraint(equalTo: compoundLabel.centerYAnchor),
+            compoundValue.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
             compoundValue.leadingAnchor.constraint(equalTo: compoundLabel.trailingAnchor),
-            compoundValue.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            compoundValue.trailingAnchor.constraint(equalTo: vendorCodeView.leadingAnchor, constant: -10),
             
-            colorLabel.topAnchor.constraint(equalTo: compoundLabel.bottomAnchor, constant: 5),
+            colorLabel.topAnchor.constraint(equalTo: compoundValue.bottomAnchor, constant: 5),
             colorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             colorLabel.widthAnchor.constraint(equalToConstant: 37),
             
             colorValue.centerYAnchor.constraint(equalTo: colorLabel.centerYAnchor),
             colorValue.leadingAnchor.constraint(equalTo: colorLabel.trailingAnchor, constant: 10),
-            colorValue.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            colorValue.trailingAnchor.constraint(equalTo: vendorCodeView.leadingAnchor, constant: -10),
             
             sizeTableView.topAnchor.constraint(equalTo: colorLabel.bottomAnchor, constant: 30),
             sizeTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -303,13 +407,20 @@ extension ProductCardViewController: ProductCardManagerDelegate {
     func updateInterface(_: ProductCardClient, with data: ProductCardData) {
         
         DispatchQueue.main.async {
-            
+
+            self.images = data.images
+            self.galleryPageControl.numberOfPages = data.images.count
             self.navigationTitle.text = data.name
             self.nameLabel.text = data.name
-            self.images = data.images
+            for i in data.sku {
+                if i != "/" {
+                    self.vendorCodeLabel.text?.append(i)
+                } else {
+                    break
+                }
+            }
             self.discriptionValue.text = "   " + String(data.description.dropFirst(3).dropLast(5))
             self.galleryCollectionView.reloadData()
-            
             self.cellsCounter = data.attributes[0].options.count
             self.size = data.attributes[0].options
             self.sizeTableView.reloadData()
@@ -341,3 +452,47 @@ extension ProductCardViewController: ProductCardManagerDelegate {
     }
 }
 
+//MARK: - Scroll Button Target
+
+extension ProductCardViewController {
+    
+    @objc func nextButtonTapped() {
+        
+        animatedScrollButton(button: nextButtonImage)
+            if self.item + 1 < self.images.count {
+                self.item += 1
+            }
+            let indexPath = IndexPath(item: self.item, section: 0)
+            self.galleryCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+
+    }
+    
+    @objc func previousButtonTapped() {
+    
+        animatedScrollButton(button: previousButtonImage)
+        
+        if self.item + 1 > 1 {
+            self.item -= 1
+        }
+        let indexPath = IndexPath(item: self.item, section: 0)
+        self.galleryCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        
+    }
+}
+
+//MARK: -  Animated Scroll Button
+
+extension ProductCardViewController {
+    
+    func animatedScrollButton(button: UIView) {
+        UIView.animate(withDuration: 0, delay: 0) {
+            button.tintColor = .black
+        } completion: { done in
+            if done{
+                UIView.animate(withDuration: 0.2, delay: 0) {
+                    button.tintColor = .systemGray2
+                }
+            }
+        }
+    }
+}

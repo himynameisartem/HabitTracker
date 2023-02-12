@@ -13,7 +13,7 @@ class ReviewsCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 10
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         return view
     }()
     

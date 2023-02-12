@@ -22,7 +22,7 @@ extension MainViewController {
         let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
         let top = window?.safeAreaInsets.top
         
-        navBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: (top ?? 0) + 93)
+        navBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: (top ?? 0) + 85)
         view.addSubview(navBar)
         navBar.addSubview(navLogo)
         

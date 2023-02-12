@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 import MessageUI
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

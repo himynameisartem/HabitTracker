@@ -6,10 +6,12 @@
 //
 
 import UIKit
-import Kingfisher
 import MessageUI
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         infoArray.count
     }

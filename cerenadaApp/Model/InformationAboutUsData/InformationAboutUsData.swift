@@ -1,26 +1,11 @@
 //
-//  InfoModelAndData.swift
+//  InformationAboutUsData.swift
 //  cerenadaApp
 //
-//  Created by Артем Кудрявцев on 21.01.2023.
+//  Created by Артем Кудрявцев on 09.02.2023.
 //
 
-import UIKit
-
-struct Info {
-    let title: String
-    let options: [String]
-    var isOpened: Bool = false
-}
-
-struct SizeList {
-    let russiaSize: [String]
-    let usaSize: [String]
-    let europeSize: [String]
-    let bust: [String]
-    let waist: [String]
-    let hips: [String]
-}
+import Foundation
 
 var infoArray = [Info(title: "Почему эти платья отлично продаются на местах?",
                       options: ["Мы предлагаем только хиты продаж. Эти платья продаются «Как горячие пирожки»! Тянущиеся ткани и отработанные лекала обеспечивают отличную посадку на любой фигуре!",
