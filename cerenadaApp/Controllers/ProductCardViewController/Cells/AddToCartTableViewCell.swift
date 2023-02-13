@@ -9,6 +9,7 @@ import UIKit
 
 protocol AddToCartDelegate {
     func stepper(_ stepper: UIStepper, at index: Int, didChangeValueTo newValue: Double)
+    func textFieldChange(_ stepper: UIStepper, _ textField: UITextField)
 }
 
 class AddToCartTableViewCell: UITableViewCell {
@@ -30,9 +31,10 @@ class AddToCartTableViewCell: UITableViewCell {
         return label
     }()
     
-    let coutOrderTextField: UITextField = {
+    let countOrderTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.keyboardType = .numberPad
         textField.layer.cornerRadius = 5
         textField.layer.borderWidth = 0.1
         textField.placeholder = "-"
@@ -51,7 +53,7 @@ class AddToCartTableViewCell: UITableViewCell {
         stepper.autorepeat = true
         stepper.minimumValue = 0
         stepper.stepValue = 1
-        stepper.maximumValue = 100
+        stepper.maximumValue = 999
         return stepper
     }()
     
@@ -71,6 +73,7 @@ class AddToCartTableViewCell: UITableViewCell {
         
         createViews()
         stepperForCountOrder.addTarget(self, action: #selector(changeValue), for: .valueChanged)
+        countOrderTextField.addTarget(self, action: #selector(changeTfValue), for: .editingChanged)
     }
     
     @objc func changeValue(sender: UIStepper) {
@@ -78,39 +81,47 @@ class AddToCartTableViewCell: UITableViewCell {
         let counter = Int(sender.value)
         
         if counter == 0 {
-            coutOrderTextField.text = ""
-            coutOrderTextField.placeholder = "-"
+            countOrderTextField.text = ""
+            countOrderTextField.placeholder = "-"
         } else {
-            coutOrderTextField.text = String(counter)
+            countOrderTextField.text = String(counter)
+        }
+        delegate?.stepper(stepperForCountOrder, at: stepperForCountOrder.tag, didChangeValueTo: stepperForCountOrder.value)
+    }
+    
+    @objc func changeTfValue(sender: UITextField) {
+        
+        if sender.text != "" {
+            stepperForCountOrder.value = Double(sender.text ?? "0.0") ?? 0.0
+            
         }
         
-        delegate?.stepper(stepperForCountOrder, at: stepperForCountOrder.tag, didChangeValueTo: stepperForCountOrder.value)
-        
+        delegate?.textFieldChange(stepperForCountOrder, countOrderTextField)
     }
     
     func createViews() {
         
         addSubview(sizeLabel)
         addSubview(priceLabel)
-        addSubview(coutOrderTextField)
+        addSubview(countOrderTextField)
         addSubview(addToCartButton)
         addSubview(stepperForCountOrder)
-                
-        NSLayoutConstraint.activate([
         
+        NSLayoutConstraint.activate([
+            
             sizeLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             sizeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             
             priceLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             priceLabel.leadingAnchor.constraint(equalTo: sizeLabel.trailingAnchor, constant: 30),
             
-            coutOrderTextField.centerYAnchor.constraint(equalTo: centerYAnchor),
-            coutOrderTextField.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 30),
-            coutOrderTextField.widthAnchor.constraint(equalToConstant: 30),
-            coutOrderTextField.heightAnchor.constraint(equalToConstant: 30),
+            countOrderTextField.centerYAnchor.constraint(equalTo: centerYAnchor),
+            countOrderTextField.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 30),
+            countOrderTextField.widthAnchor.constraint(equalToConstant: 30),
+            countOrderTextField.heightAnchor.constraint(equalToConstant: 30),
             
             stepperForCountOrder.centerYAnchor.constraint(equalTo: centerYAnchor),
-            stepperForCountOrder.leadingAnchor.constraint(equalTo: coutOrderTextField.trailingAnchor, constant: 5),
+            stepperForCountOrder.leadingAnchor.constraint(equalTo: countOrderTextField.trailingAnchor, constant: 5),
             
             addToCartButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             addToCartButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
@@ -124,5 +135,7 @@ class AddToCartTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+
     
 }

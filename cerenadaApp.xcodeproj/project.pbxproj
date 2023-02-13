@@ -40,6 +40,7 @@
 		31FDE46629953ABC00397DED /* InformationAboutUsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE46529953ABC00397DED /* InformationAboutUsData.swift */; };
 		31FDE46A29953B4200397DED /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE46929953B4200397DED /* PreviewData.swift */; };
 		31FDE46E2997890C00397DED /* ProductsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE46D2997890C00397DED /* ProductsListViewController.swift */; };
+		31FDE470299A8C4800397DED /* ProductCardVC+TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE46F299A8C4800397DED /* ProductCardVC+TextFieldDelegate.swift */; };
 		F6D850EDFA69236E520232BF /* Pods_cerenadaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75757C73A7D74269DDC194DB /* Pods_cerenadaApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		31FDE46529953ABC00397DED /* InformationAboutUsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAboutUsData.swift; sourceTree = "<group>"; };
 		31FDE46929953B4200397DED /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 		31FDE46D2997890C00397DED /* ProductsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListViewController.swift; sourceTree = "<group>"; };
+		31FDE46F299A8C4800397DED /* ProductCardVC+TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductCardVC+TextFieldDelegate.swift"; sourceTree = "<group>"; };
 		39D0CB24D2B67817F1B430E9 /* Pods-cerenadaApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cerenadaApp.release.xcconfig"; path = "Target Support Files/Pods-cerenadaApp/Pods-cerenadaApp.release.xcconfig"; sourceTree = "<group>"; };
 		75757C73A7D74269DDC194DB /* Pods_cerenadaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cerenadaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -104,6 +106,7 @@
 				31FDE45A2995313800397DED /* ProductCardVC+CollectionViews.swift */,
 				31FDE45C2995315300397DED /* ProductCardVC+TableViews.swift */,
 				31FDE460299537B600397DED /* ProductCardVC+ScrollViewDelegate.swift */,
+				31FDE46F299A8C4800397DED /* ProductCardVC+TextFieldDelegate.swift */,
 				314B7FFF293CCE2F004CA151 /* Cells */,
 			);
 			path = ProductCardViewController;
@@ -393,6 +396,7 @@
 				317261B92948B4E700B73E41 /* AddToCartTableViewCell.swift in Sources */,
 				314B7FF529374FFA004CA151 /* ProductCardViewController.swift in Sources */,
 				314B7FFE293CCCFC004CA151 /* GalleryCollectionViewCell.swift in Sources */,
+				31FDE470299A8C4800397DED /* ProductCardVC+TextFieldDelegate.swift in Sources */,
 				310F966F2984410200B5F5B8 /* SizeListTableViewCell.swift in Sources */,
 				31958344292D0F9D000CB4DD /* InformationAbousUsViewController.swift in Sources */,
 				31FDE45F299532B700397DED /* ProductCardVC+CustomNavigationView.swift in Sources */,

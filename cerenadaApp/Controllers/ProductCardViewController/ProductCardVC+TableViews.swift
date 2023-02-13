@@ -23,6 +23,8 @@ extension ProductCardViewController: UITableViewDelegate, UITableViewDataSource 
         cell.priceLabel.text = price + " ₽"
         
         cell.delegate = self
+        cell.countOrderTextField.delegate = self
+        addDoneButtonOnKeyboard(cell.countOrderTextField)
                         
         DispatchQueue.main.async {
             cell.awakeFromNib()
@@ -45,10 +47,10 @@ extension ProductCardViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension ProductCardViewController: AddToCartDelegate {
-    
-    func stepper(_ stepper: UIStepper, at index: Int, didChangeValueTo newValue: Double) {
-        
+    func textFieldChange(_ stepper: UIStepper, _ textField: UITextField) {
     }
-    
-    
+
+    func stepper(_ stepper: UIStepper, at index: Int, didChangeValueTo newValue: Double) {
+    }
 }
+

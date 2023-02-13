@@ -229,6 +229,8 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         return cv
     }()
     
+    let tapOnDisplay = UITapGestureRecognizer()
+    
     //MARK: - ViewDidLoad
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -239,6 +241,7 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         navigationView.alpha = 0
         backButton.tintColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
@@ -270,6 +273,8 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         previousButton.addTarget(self, action: #selector(previousButtonTapped), for: .touchUpInside)
         
+        tapOnDisplay.addTarget(self, action: #selector(tapGesture))
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -280,6 +285,7 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     
     func addViews() {
         
+        view.addGestureRecognizer(tapOnDisplay)
         view.addSubview(scrollView)
         scrollView.addSubview(galleryCollectionView)
         scrollView.addSubview(nextButton)
@@ -398,6 +404,12 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         tableViewHeight = sizeTableView.heightAnchor.constraint(equalToConstant: 10)
         view.addConstraint(tableViewHeight)
         
+    }
+    
+    //MARK: - End Editing
+    
+    @objc func tapGesture() {
+        view.endEditing(true)
     }
 }
 
