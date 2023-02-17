@@ -68,6 +68,14 @@ class AddToCartTableViewCell: UITableViewCell {
         return button
     }()
     
+    let stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.distribution = .equalSpacing
+        return stack
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -101,35 +109,26 @@ class AddToCartTableViewCell: UITableViewCell {
     
     func createViews() {
         
-        addSubview(sizeLabel)
-        addSubview(priceLabel)
-        addSubview(countOrderTextField)
-        addSubview(addToCartButton)
-        addSubview(stepperForCountOrder)
+        addSubview(stackView)
+        stackView.addArrangedSubview(sizeLabel)
+        stackView.addArrangedSubview(priceLabel)
+        stackView.addArrangedSubview(countOrderTextField)
+        stackView.addArrangedSubview(stepperForCountOrder)
+        stackView.addArrangedSubview(addToCartButton)
         
         NSLayoutConstraint.activate([
             
-            sizeLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            sizeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            
-            priceLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            priceLabel.leadingAnchor.constraint(equalTo: sizeLabel.trailingAnchor, constant: 30),
-            
-            countOrderTextField.centerYAnchor.constraint(equalTo: centerYAnchor),
-            countOrderTextField.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 30),
             countOrderTextField.widthAnchor.constraint(equalToConstant: 30),
             countOrderTextField.heightAnchor.constraint(equalToConstant: 30),
-            
-            stepperForCountOrder.centerYAnchor.constraint(equalTo: centerYAnchor),
-            stepperForCountOrder.leadingAnchor.constraint(equalTo: countOrderTextField.trailingAnchor, constant: 5),
-            
-            addToCartButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            addToCartButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+                        
             addToCartButton.heightAnchor.constraint(equalToConstant: 30),
-            addToCartButton.widthAnchor.constraint(equalToConstant: 60)
+            addToCartButton.widthAnchor.constraint(equalToConstant: 60),
+                        
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             
         ])
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -141,6 +141,11 @@ class MainViewController: UIViewController{
     
     //MARK: - viewDidLoad
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

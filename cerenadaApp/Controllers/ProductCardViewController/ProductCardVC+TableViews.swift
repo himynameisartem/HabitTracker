@@ -36,12 +36,12 @@ extension ProductCardViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     @objc func addToCart(sender: UIButton) {
+        
         let index = sender.tag
         
         sender.showAnimation {
-            print(String(self.id) + "  " + self.size[index] + "  " + self.price)
+            print(String(self.id) + "  " + self.size[index] + "  " + self.price + "  " + self.productCounter)
         }
-        
     }
     
 }

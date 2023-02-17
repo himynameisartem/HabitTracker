@@ -10,9 +10,19 @@ import Kingfisher
 
 class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     
+    var ids = [Int]()
+    var related = [ProductCardData]()
+    
+    var productCounter = String()
+    var discription = String()
     
     let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+    
     let productCardClient = ProductCardClient()
+    let reviewClient = ReviewClient()
+    let relatedClient = RelatedClient()
+    
+    var reviews = [ReviewsData]()
     var id = Int()
     var tableViewHeight: NSLayoutConstraint!
     var cellsCounter = Int()
@@ -38,8 +48,33 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     let backButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = .black
         return button
+    }()
+    
+    let likeButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let likeImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "heart")
+        return image
+    }()
+    
+    let sharedButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let sharedImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "square.and.arrow.up")
+        return image
     }()
     
     let navigationView: UIView = {
@@ -181,6 +216,7 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         label.font = UIFont(name: "Helvetica", size: 13)
         label.textAlignment = .left
         label.text = ""
+        label.numberOfLines = 0
         label.textColor = .systemGray
         return label
     }()
@@ -229,19 +265,58 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         return cv
     }()
     
+    let addReviewButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("НАПИСАТЬ ОТЗЫВ", for: .normal)
+        button.layer.cornerRadius = 5
+        button.setTitleColor( #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1) , for: .normal)
+        button.layer.borderWidth = 2
+        button.layer.borderColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
+        button.titleLabel?.font = UIFont(name: "helvetica-Bold", size: 14)
+        return button
+    }()
+    
+    let relatedLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Helvetica-Bold", size: 16)
+        label.text = "Похожие товары: "
+        return label
+    }()
+    
+    let relatedCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 0
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.showsHorizontalScrollIndicator = false
+        cv.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        cv.backgroundColor = .clear
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
+    }()
+    
     let tapOnDisplay = UITapGestureRecognizer()
     
     //MARK: - ViewDidLoad
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         
-        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
+        tapOnDisplay.cancelsTouchesInView = false
         
         navigationView.alpha = 0
         backButton.tintColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
@@ -249,6 +324,14 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         scrollView.delegate = self
         productCardClient.delegate = self
         productCardClient.request(id: id)
+        
+        reviewClient.delegate = self
+        reviewClient.request(productId: 328353)
+        
+        relatedClient.delegate = self
+        for i in ids {
+            relatedClient.request(id: i)
+        }
         
         navigationController?.navigationBar.prefersLargeTitles = false
         view.backgroundColor = .systemGray6
@@ -265,26 +348,35 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         reviewsCollectionView.dataSource = self
         reviewsCollectionView.register(ReviewsCollectionViewCell.self, forCellWithReuseIdentifier: "reviewCell")
         
+        relatedCollectionView.delegate = self
+        relatedCollectionView.dataSource = self
+        relatedCollectionView.register(RelatedCollectionViewCell.self, forCellWithReuseIdentifier: "relatedCell")
+
         addViews()
         createNavigationView()
         addBackButton()
         setupConstraints()
         
+        likeButton.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
+        sharedButton.addTarget(self, action: #selector(sharedTapped), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         previousButton.addTarget(self, action: #selector(previousButtonTapped), for: .touchUpInside)
+        addReviewButton.addTarget(self, action: #selector(addReviewTapped), for: .touchUpInside)
         
         tapOnDisplay.addTarget(self, action: #selector(tapGesture))
-        
     }
     
     override func viewWillLayoutSubviews() {
         tableViewHeight.constant = self.sizeTableView.contentSize.height
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+
+    }
     //MARK: - Create Views
     
     func addViews() {
-        
+                
         view.addGestureRecognizer(tapOnDisplay)
         view.addSubview(scrollView)
         scrollView.addSubview(galleryCollectionView)
@@ -304,12 +396,19 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(sizeTableView)
         scrollView.addSubview(discriptionLabel)
         scrollView.addSubview(discriptionValue)
-        scrollView.addSubview(reviewsCollectionView)
         scrollView.addSubview(reviewsLabel)
-        
+        scrollView.addSubview(reviewsCollectionView)
+        scrollView.addSubview(addReviewButton)
+        scrollView.addSubview(relatedLabel)
+        scrollView.addSubview(relatedCollectionView)
     }
     
     func setupConstraints() {
+        
+        if discription.isEmpty {
+            discriptionLabel.isHidden = true
+            discriptionValue.isHidden = true
+        }
         
         NSLayoutConstraint.activate([
             
@@ -368,16 +467,15 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
             compoundLabel.widthAnchor.constraint(equalToConstant: 60),
             
             compoundValue.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
-            compoundValue.leadingAnchor.constraint(equalTo: compoundLabel.trailingAnchor),
-            compoundValue.trailingAnchor.constraint(equalTo: vendorCodeView.leadingAnchor, constant: -10),
+            compoundValue.leadingAnchor.constraint(equalTo: compoundLabel.trailingAnchor, constant: -5),
+            compoundValue.trailingAnchor.constraint(lessThanOrEqualTo: vendorCodeView.leadingAnchor, constant: -10),
             
             colorLabel.topAnchor.constraint(equalTo: compoundValue.bottomAnchor, constant: 5),
             colorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            colorLabel.widthAnchor.constraint(equalToConstant: 37),
             
             colorValue.centerYAnchor.constraint(equalTo: colorLabel.centerYAnchor),
-            colorValue.leadingAnchor.constraint(equalTo: colorLabel.trailingAnchor, constant: 10),
-            colorValue.trailingAnchor.constraint(equalTo: vendorCodeView.leadingAnchor, constant: -10),
+            colorValue.leadingAnchor.constraint(equalTo: colorLabel.trailingAnchor, constant: 5),
+            colorValue.trailingAnchor.constraint(lessThanOrEqualTo: vendorCodeView.leadingAnchor, constant: -10),
             
             sizeTableView.topAnchor.constraint(equalTo: colorLabel.bottomAnchor, constant: 30),
             sizeTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -390,14 +488,27 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
             discriptionValue.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             discriptionValue.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            reviewsLabel.topAnchor.constraint(equalTo: discriptionValue.bottomAnchor, constant: 20),
+            reviewsLabel.topAnchor.constraint(equalTo: discription.isEmpty ? sizeTableView.bottomAnchor : discriptionValue.bottomAnchor, constant: 20),
             reviewsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            reviewsCollectionView.topAnchor.constraint(equalTo: reviewsLabel.bottomAnchor, constant: 20),
+            reviewsCollectionView.topAnchor.constraint(equalTo: reviewsLabel.bottomAnchor, constant: 5),
             reviewsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             reviewsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            reviewsCollectionView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
             reviewsCollectionView.heightAnchor.constraint(equalToConstant: 180),
+            
+            addReviewButton.topAnchor.constraint(equalTo: reviewsCollectionView.bottomAnchor, constant: 5),
+            addReviewButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            addReviewButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            addReviewButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            relatedLabel.topAnchor.constraint(equalTo: addReviewButton.bottomAnchor, constant: 15),
+            relatedLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
+            relatedCollectionView.topAnchor.constraint(equalTo: relatedLabel.bottomAnchor, constant: 5),
+            relatedCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            relatedCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            relatedCollectionView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
+            relatedCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width / 1.625)
             
         ])
         
@@ -406,12 +517,44 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    //MARK: - End Editing
+//MARK: - End Editing
     
     @objc func tapGesture() {
         view.endEditing(true)
     }
+    
+//MARK: - Add Review Button Target
+    
+    @objc func addReviewTapped(_ sender: UIButton) {
+        
+        sender.showAnimation {
+            print("add review")
+        }
+    }
+    
+//MARK: - Like & Share Buttons Target
+    
+    @objc func likeTapped(_ sender: UIButton) {
+
+        sender.showAnimation {
+            
+            print("like")
+        }
+    }
+    
+    @objc func sharedTapped(_ sender: UIButton) {
+    
+        sender.showAnimation {
+            print("shared")
+        }
+    }
+    
 }
+
+
+
+
+
 
 //MARK: - Product Card Manager Delegate -
 
@@ -464,6 +607,32 @@ extension ProductCardViewController: ProductCardManagerDelegate {
     }
 }
 
+//MARK: - Review Delegate
+
+extension ProductCardViewController: ReviewsManagerDelegate {
+    func update(_: ReviewClient, with data: [ReviewsData]) {
+        
+        DispatchQueue.main.async {
+            self.reviews = data
+            self.reviewsCollectionView.reloadData()
+        }
+        
+    }
+
+}
+
+//MARK: Related Delegate
+
+extension ProductCardViewController: RelatedClientDelegate {
+    func updateInterface(_: RelatedClient, with data: ProductCardData) {
+        
+        if data.status == "publish" {
+            self.related.append(data)
+        }
+        self.relatedCollectionView.reloadData()
+    }
+}
+
 //MARK: - Scroll Button Target
 
 extension ProductCardViewController {
@@ -508,3 +677,5 @@ extension ProductCardViewController {
         }
     }
 }
+
+

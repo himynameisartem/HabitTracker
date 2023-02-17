@@ -17,6 +17,7 @@ struct ProductCardData: Codable {
     let images: [Images]
     let attributes: [Attributes]
     let meta_data: [MetaData]
+    let related_ids: [Int]?
 }
 
 struct Images: Codable {

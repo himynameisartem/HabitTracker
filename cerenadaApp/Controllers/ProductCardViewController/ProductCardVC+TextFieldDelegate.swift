@@ -34,7 +34,10 @@ extension ProductCardViewController: UITextFieldDelegate {
                     textField.text = ""
                     textField.placeholder = "-"
                 }
+            
+            
         }
+        productCounter = textField.text ?? "fail"
     }
     
     func addDoneButtonOnKeyboard(_ textField: UITextField) {

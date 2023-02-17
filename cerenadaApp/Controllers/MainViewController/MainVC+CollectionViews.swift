@@ -66,17 +66,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if collectionView == presentationCollectionView {
-            
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
-            
         } else if collectionView == newProductCollectionView {
-            
             return CGSize(width: collectionView.frame.height / 2, height: collectionView.frame.height)
-            
         } else {
-            
             return CGSize(width: collectionView.frame.width / 2 - 30 , height: collectionView.frame.height / 2 - 50)
-            
         }
     }
     
@@ -94,8 +88,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 
                 let vc = ProductCardViewController()
                 vc.id = self.data[index].id
-                self.navigationController?.navigationBar.isHidden = true
-                self.navigationController?.navigationBar.prefersLargeTitles = false
+                vc.discription = self.data[index].description
+                vc.ids = self.data[index].related_ids ?? [0]
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }

@@ -20,24 +20,31 @@ class ReviewsCollectionViewCell: UICollectionViewCell {
     let userPic: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.layer.cornerRadius = 20
+        image.clipsToBounds = true
         return image
     }()
     
     let userNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Helvetica-Bold", size: 16)
         return label
     }()
     
     let publishDataLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Helvetica-Light", size: 12)
+
         return label
     }()
     
     let rewiewLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = UIFont(name: "Helvetica", size: 14)
         return label
     }()
     
@@ -77,13 +84,13 @@ class ReviewsCollectionViewCell: UICollectionViewCell {
             userNameLabel.topAnchor.constraint(equalTo: shadowView.topAnchor, constant: 10),
             userNameLabel.leadingAnchor.constraint(equalTo: userPic.trailingAnchor, constant: 10),
             
-            publishDataLabel.topAnchor.constraint(equalTo: shadowView.topAnchor, constant: 10),
-            publishDataLabel.leadingAnchor.constraint(equalTo: userNameLabel.trailingAnchor, constant: 20),
+            publishDataLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 5),
+            publishDataLabel.leadingAnchor.constraint(equalTo: userPic.trailingAnchor, constant: 10),
             
-            rewiewLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 20),
-            rewiewLabel.leadingAnchor.constraint(equalTo: userPic.trailingAnchor, constant: 20),
-            rewiewLabel.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: 20),
-            rewiewLabel.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor, constant: -20)
+            rewiewLabel.topAnchor.constraint(equalTo: userPic.bottomAnchor, constant: 5),
+            rewiewLabel.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor, constant: 20),
+            rewiewLabel.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: -20),
+            rewiewLabel.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor, constant: -10)
             
         ])
         

@@ -41,6 +41,10 @@
 		31FDE46A29953B4200397DED /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE46929953B4200397DED /* PreviewData.swift */; };
 		31FDE46E2997890C00397DED /* ProductsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE46D2997890C00397DED /* ProductsListViewController.swift */; };
 		31FDE470299A8C4800397DED /* ProductCardVC+TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE46F299A8C4800397DED /* ProductCardVC+TextFieldDelegate.swift */; };
+		31FDE473299B76E700397DED /* ReviewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE472299B76E700397DED /* ReviewsModel.swift */; };
+		31FDE475299B76FA00397DED /* ReviewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE474299B76FA00397DED /* ReviewsManager.swift */; };
+		31FDE478299D3C4200397DED /* RelatedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE477299D3C4200397DED /* RelatedManager.swift */; };
+		31FDE47A299D706A00397DED /* RelatedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE479299D706A00397DED /* RelatedCollectionViewCell.swift */; };
 		F6D850EDFA69236E520232BF /* Pods_cerenadaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75757C73A7D74269DDC194DB /* Pods_cerenadaApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +86,10 @@
 		31FDE46929953B4200397DED /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 		31FDE46D2997890C00397DED /* ProductsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListViewController.swift; sourceTree = "<group>"; };
 		31FDE46F299A8C4800397DED /* ProductCardVC+TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductCardVC+TextFieldDelegate.swift"; sourceTree = "<group>"; };
+		31FDE472299B76E700397DED /* ReviewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsModel.swift; sourceTree = "<group>"; };
+		31FDE474299B76FA00397DED /* ReviewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsManager.swift; sourceTree = "<group>"; };
+		31FDE477299D3C4200397DED /* RelatedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedManager.swift; sourceTree = "<group>"; };
+		31FDE479299D706A00397DED /* RelatedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedCollectionViewCell.swift; sourceTree = "<group>"; };
 		39D0CB24D2B67817F1B430E9 /* Pods-cerenadaApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cerenadaApp.release.xcconfig"; path = "Target Support Files/Pods-cerenadaApp/Pods-cerenadaApp.release.xcconfig"; sourceTree = "<group>"; };
 		75757C73A7D74269DDC194DB /* Pods_cerenadaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cerenadaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -118,6 +126,8 @@
 				31FDE46829953B3400397DED /* PreviewData */,
 				314B7FF7293936DC004CA151 /* ProductData */,
 				31FDE46729953B1000397DED /* PartersData */,
+				31FDE471299B76BA00397DED /* ReviewsData */,
+				31FDE476299D3C1300397DED /* RelatedData */,
 				31FDE46429953A8A00397DED /* InformationAboutUsData */,
 			);
 			path = Model;
@@ -139,6 +149,7 @@
 				314B7FFD293CCCFC004CA151 /* GalleryCollectionViewCell.swift */,
 				317261B82948B4E700B73E41 /* AddToCartTableViewCell.swift */,
 				312DB30F294DBECE003A8043 /* ReviewsCollectionViewCell.swift */,
+				31FDE479299D706A00397DED /* RelatedCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -260,6 +271,23 @@
 				31FDE46D2997890C00397DED /* ProductsListViewController.swift */,
 			);
 			path = ProductsListViewController;
+			sourceTree = "<group>";
+		};
+		31FDE471299B76BA00397DED /* ReviewsData */ = {
+			isa = PBXGroup;
+			children = (
+				31FDE472299B76E700397DED /* ReviewsModel.swift */,
+				31FDE474299B76FA00397DED /* ReviewsManager.swift */,
+			);
+			path = ReviewsData;
+			sourceTree = "<group>";
+		};
+		31FDE476299D3C1300397DED /* RelatedData */ = {
+			isa = PBXGroup;
+			children = (
+				31FDE477299D3C4200397DED /* RelatedManager.swift */,
+			);
+			path = RelatedData;
 			sourceTree = "<group>";
 		};
 		5002F1A5CA36EB88CE4C8AFB /* Pods */ = {
@@ -416,14 +444,18 @@
 				316820722907CCC000E28F62 /* NewProductManager.swift in Sources */,
 				31FDE45B2995313800397DED /* ProductCardVC+CollectionViews.swift in Sources */,
 				31FDE46A29953B4200397DED /* PreviewData.swift in Sources */,
+				31FDE475299B76FA00397DED /* ReviewsManager.swift in Sources */,
 				31B710F2290E863A00E6CA04 /* NewProductsCollectionViewCell.swift in Sources */,
 				31FDE45D2995315300397DED /* ProductCardVC+TableViews.swift in Sources */,
 				31B710F4290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift in Sources */,
 				31FDE4522994E9F200397DED /* MainVC+CollectionViews.swift in Sources */,
 				316820702907CC8000E28F62 /* ProductCardModel.swift in Sources */,
+				31FDE473299B76E700397DED /* ReviewsModel.swift in Sources */,
 				310F9671298460A600B5F5B8 /* SizeContainerTableViewCell.swift in Sources */,
 				312DB310294DBECE003A8043 /* ReviewsCollectionViewCell.swift in Sources */,
+				31FDE478299D3C4200397DED /* RelatedManager.swift in Sources */,
 				31B710F6290FD0C500E6CA04 /* PartnersData.swift in Sources */,
+				31FDE47A299D706A00397DED /* RelatedCollectionViewCell.swift in Sources */,
 				31ACD44D27FE183B00DAD756 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
