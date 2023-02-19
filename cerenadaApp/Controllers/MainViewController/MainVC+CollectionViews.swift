@@ -12,14 +12,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+                
         if collectionView == presentationCollectionView {
             return previewArray.count
         } else if collectionView == newProductCollectionView {
             if data.count < 10 {
                 return data.count
             } else {
-                return 10
+                return 11
             }
         } else {
             return 4
@@ -49,8 +49,17 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.productName.text = data[indexPath.row].name
             cell.productPrice.text = price[indexPath.row] + " ₽"
             
+            if indexPath.item == 10 {
+                
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nextButton", for: indexPath) as! NextButtonCollectionViewCell
+                
+                cell.nextButton.addTarget(self, action: #selector(seeMoreButtonTapped), for: .touchUpInside)
+                
+                return cell
+            }
             
             return cell
+            
             
         } else {
             

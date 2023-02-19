@@ -84,18 +84,6 @@ class MainViewController: UIViewController{
         return label
     }()
     
-    let seeMoreButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("     Ещё...     ", for: .normal)
-        button.setTitleColor( .white , for: .normal)
-        button.titleLabel?.font = UIFont(name: "helvetica", size: 11)
-        button.backgroundColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
-        button.layer.cornerRadius = 5
-        button.makeShadow()
-        return button
-    }()
-    
     var newProductCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -103,7 +91,7 @@ class MainViewController: UIViewController{
         layout.minimumInteritemSpacing = 0
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsHorizontalScrollIndicator = false
-        cv.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        cv.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
         cv.backgroundColor = .clear
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
@@ -162,6 +150,8 @@ class MainViewController: UIViewController{
         newProductCollectionView.dataSource = self
         newProductCollectionView.register(NewProductsCollectionViewCell.self, forCellWithReuseIdentifier: "newProductCell")
         
+        newProductCollectionView.register(NextButtonCollectionViewCell.self, forCellWithReuseIdentifier: "nextButton")
+        
         partnersCollectionView.delegate = self
         partnersCollectionView.dataSource = self
         partnersCollectionView.register(PartnersCollectionViewCell.self, forCellWithReuseIdentifier: "partnersCell")
@@ -181,9 +171,7 @@ class MainViewController: UIViewController{
         createTimer()
         addViews()
         setupConstraints()
-        
-        seeMoreButton.addTarget(self, action: #selector(seeMoreButtonTapped), for: .touchUpInside)
-        
+                
     }
     
     //MARK: - Create Views
@@ -195,7 +183,6 @@ class MainViewController: UIViewController{
         shadowViewForPresentation.addSubview(presentationCollectionView)
         scrollView.addSubview(presentationPageView)
         scrollView.addSubview(newProductsLabel)
-        scrollView.addSubview(seeMoreButton)
         scrollView.addSubview(newProductCollectionView)
         scrollView.addSubview(partnersLabel)
         scrollView.addSubview(partnersCollectionView)
@@ -226,10 +213,6 @@ class MainViewController: UIViewController{
             newProductsLabel.topAnchor.constraint(equalTo: presentationCollectionView.bottomAnchor, constant: 20),
             newProductsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            seeMoreButton.centerYAnchor.constraint(equalTo: newProductsLabel.centerYAnchor),
-            seeMoreButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            seeMoreButton.leadingAnchor.constraint(greaterThanOrEqualTo: newProductsLabel.trailingAnchor, constant: 20),
-            
             newProductCollectionView.topAnchor.constraint(equalTo: newProductsLabel.bottomAnchor,constant: 10),
             newProductCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             newProductCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -257,10 +240,10 @@ class MainViewController: UIViewController{
     
     //MARK: - See More Button Tapped
     
-    @objc func seeMoreButtonTapped() {
+    @objc func seeMoreButtonTapped(sender: UIButton) {
         
         let vc = ProductsListViewController()
-        seeMoreButton.showAnimation {
+        sender.showAnimation {
 
             self.navigationController?.pushViewController(vc, animated: true)
             

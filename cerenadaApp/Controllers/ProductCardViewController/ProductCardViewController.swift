@@ -10,25 +10,28 @@ import Kingfisher
 
 class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     
-    var ids = [Int]()
-    var related = [ProductCardData]()
-    
-    var productCounter = String()
-    var discription = String()
-    
     let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-    
+    var selectedLikeImage = "heart"
+        
+
     let productCardClient = ProductCardClient()
     let reviewClient = ReviewClient()
     let relatedClient = RelatedClient()
     
+    let dateFormatter = DateFormatter()
+    let calendar = Calendar.current
+    
+    var related = [ProductCardData]()
     var reviews = [ReviewsData]()
     var id = Int()
+    var ids = [Int]()
     var tableViewHeight: NSLayoutConstraint!
     var cellsCounter = Int()
     var size = [String]()
     var price = String()
     var images = [Images]()
+    var productCounter = String()
+    var discription = String()
     var item = 0
     
     let coloredSafeArea: UIView = {
@@ -265,6 +268,41 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         return cv
     }()
     
+    let containerReviews: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.makeShadow()
+        view.layer.cornerRadius = 10
+        view.backgroundColor = .systemGray6
+        return view
+    }()
+    
+    let reviewStatusLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor.systemGray,
+                     NSAttributedString.Key.font: UIFont(name: "Helvetica-Bold", size: 18)!,
+                     NSAttributedString.Key.textEffect: NSAttributedString.TextEffectStyle.letterpressStyle as NSString
+                     ]
+        let string = NSAttributedString(string: "Здесь пока нет отзывов", attributes: attrs)
+        label.attributedText = string
+        return label
+    }()
+    
+    let reviewStatusDescription: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor.systemGray3,
+                     NSAttributedString.Key.font: UIFont(name: "Helvetica-light", size: 16)!,
+                     NSAttributedString.Key.textEffect: NSAttributedString.TextEffectStyle.letterpressStyle as NSString
+                     ]
+        let string = NSAttributedString(string: "Оцените товар первым. Вы поможете другим покупателям сделать правильный выбор.", attributes: attrs)
+        label.attributedText = string
+        return label
+    }()
+    
     let addReviewButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -326,7 +364,7 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         productCardClient.request(id: id)
         
         reviewClient.delegate = self
-        reviewClient.request(productId: 328353)
+        reviewClient.request(productId: id)
         
         relatedClient.delegate = self
         for i in ids {
@@ -355,6 +393,7 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         addViews()
         createNavigationView()
         addBackButton()
+//        reviewsStatus()
         setupConstraints()
         
         likeButton.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
@@ -370,9 +409,6 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         tableViewHeight.constant = self.sizeTableView.contentSize.height
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-
-    }
     //MARK: - Create Views
     
     func addViews() {
@@ -402,6 +438,31 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(relatedLabel)
         scrollView.addSubview(relatedCollectionView)
     }
+    
+    func reviewsStatus(data: [ReviewsData]) {
+            if data.isEmpty {
+                
+                reviewsCollectionView.addSubview(containerReviews)
+                containerReviews.addSubview(reviewStatusLabel)
+                containerReviews.addSubview(reviewStatusDescription)
+                
+                    NSLayoutConstraint.activate([
+                    
+                    containerReviews.topAnchor.constraint(equalTo: reviewsCollectionView.topAnchor, constant: 5),
+                    containerReviews.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+                    containerReviews.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+                    containerReviews.heightAnchor.constraint(equalToConstant: 160),
+                    
+                    reviewStatusLabel.topAnchor.constraint(equalTo: containerReviews.topAnchor, constant: 20),
+                    reviewStatusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    
+                    reviewStatusDescription.topAnchor.constraint(equalTo: reviewStatusLabel.bottomAnchor, constant: 10),
+                    reviewStatusDescription.bottomAnchor.constraint(equalTo: containerReviews.bottomAnchor, constant: -10),
+                    reviewStatusDescription.centerXAnchor.constraint(equalTo: containerReviews.centerXAnchor),
+                    reviewStatusDescription.widthAnchor.constraint(equalToConstant: view.frame.width / 1.2)
+                ])
+            }
+        }
     
     func setupConstraints() {
         
@@ -536,8 +597,14 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     
     @objc func likeTapped(_ sender: UIButton) {
 
+        if selectedLikeImage == "heart" {
+            selectedLikeImage = "heart.fill"
+        } else {
+            selectedLikeImage = "heart"
+        }
+        
         sender.showAnimation {
-            
+            self.likeImage.image = UIImage(systemName: self.selectedLikeImage)
             print("like")
         }
     }
@@ -550,11 +617,6 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     }
     
 }
-
-
-
-
-
 
 //MARK: - Product Card Manager Delegate -
 
@@ -611,12 +673,10 @@ extension ProductCardViewController: ProductCardManagerDelegate {
 
 extension ProductCardViewController: ReviewsManagerDelegate {
     func update(_: ReviewClient, with data: [ReviewsData]) {
-        
-        DispatchQueue.main.async {
+    
+            self.reviewsStatus(data: data)
             self.reviews = data
             self.reviewsCollectionView.reloadData()
-        }
-        
     }
 
 }
@@ -626,7 +686,7 @@ extension ProductCardViewController: ReviewsManagerDelegate {
 extension ProductCardViewController: RelatedClientDelegate {
     func updateInterface(_: RelatedClient, with data: ProductCardData) {
         
-        if data.status == "publish" {
+        if data.price != "1" && data.price != "-" {
             self.related.append(data)
         }
         self.relatedCollectionView.reloadData()
@@ -646,6 +706,7 @@ extension ProductCardViewController {
             let indexPath = IndexPath(item: self.item, section: 0)
             self.galleryCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
 
+        
     }
     
     @objc func previousButtonTapped() {

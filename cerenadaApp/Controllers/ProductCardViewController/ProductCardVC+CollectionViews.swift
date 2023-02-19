@@ -15,11 +15,11 @@ extension ProductCardViewController: UICollectionViewDelegate, UICollectionViewD
         }
         
         if collectionView == reviewsCollectionView {
-            return reviews.count
+                return reviews.count
         }
         
         if collectionView == relatedCollectionView{
-            return related.count
+                return related.count
         }
         
         return 0
@@ -40,19 +40,33 @@ extension ProductCardViewController: UICollectionViewDelegate, UICollectionViewD
         }
         
         if collectionView == reviewsCollectionView {
-            
+                        
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewCell", for: indexPath) as! ReviewsCollectionViewCell
-            
-            cell.shadowView.makeShadow()
-            cell.userNameLabel.text = reviews[indexPath.row].reviewer
-            cell.rewiewLabel.text = String(reviews[indexPath.row].review.dropFirst(3).dropLast(5))
-            cell.publishDataLabel.text = "12.02.2021, 14:41"
-            
-            DispatchQueue.main.async {
-                cell.userPic.kf.indicatorType = .activity
-                cell.userPic.kf.setImage(with: URL(string: self.reviews[indexPath.row].reviewer_avatar_urls.userPic48))
                 
-            }
+                cell.shadowView.makeShadow()
+                cell.userNameLabel.text = reviews[indexPath.row].reviewer
+                cell.rewiewLabel.text = String(reviews[indexPath.row].review.dropFirst(3).dropLast(5))
+                
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                
+                if !reviews.isEmpty {
+                    
+                    let date = self.dateFormatter.date(from: reviews[indexPath.row].date_created)
+                    let components = self.calendar.dateComponents([.day, .month, .year, .hour, .minute], from: date!)
+                    let day = components.day
+                    let month = components.month
+                    let year = components.year
+                    let hour = components.hour
+                    let minute = components.minute
+                    
+                    cell.publishDataLabel.text = "\(day!).\(month!).\(year!)  \(hour!):\(minute!)"
+                }
+                
+                DispatchQueue.main.async {
+                    cell.userPic.kf.indicatorType = .activity
+                    cell.userPic.kf.setImage(with: URL(string: self.reviews[indexPath.row].reviewer_avatar_urls.userPic48))
+                    
+                }
             
             return cell
             
@@ -62,11 +76,11 @@ extension ProductCardViewController: UICollectionViewDelegate, UICollectionViewD
 
         DispatchQueue.main.async {
             cell.productImageView.kf.indicatorType = .activity
-            cell.productImageView.kf.setImage(with: URL(string: self.related[indexPath.row].images[0].src))
+            cell.productImageView.kf.setImage(with: URL(string: self.related[indexPath.row].images[0].src.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? self.related[indexPath.row].images[0].src))
         }
 
         cell.productName.text = related[indexPath.row].name
-        cell.productPrice.text = related[indexPath.row].price
+        cell.productPrice.text = related[indexPath.row].price  + " ₽"
         
         return cell
                 
@@ -77,18 +91,20 @@ extension ProductCardViewController: UICollectionViewDelegate, UICollectionViewD
         if collectionView == galleryCollectionView {
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }
+        
+        if collectionView == reviewsCollectionView {
+                return CGSize(width: view.frame.width / 1.2 , height: 170)
+        }
 
         if collectionView == relatedCollectionView {
             return CGSize(width: collectionView.frame.height / 2, height: collectionView.frame.height)
-        } else {
-            return CGSize(width: view.frame.width / 1.2 , height: 170)
         }
+        
+            return CGSize()
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
-        item = indexPath.item
-        
+                
         if collectionView == galleryCollectionView {
             galleryPageControl.currentPage = indexPath.item
         }

@@ -18,7 +18,7 @@ class RelatedClient {
     
     func request(id: Int) {
         
-        let url = "https://cerenada.ru/wp-json/wc/v3/products/\(id)/?consumer_key=ck_92c8b3a8dad21a0c0c63ca32162d1de98741e8b7&consumer_secret=cs_50ddecfd1e1624327a381add4d7fb7b7464b98ae"
+        let url = "https://cerenada.ru/wp-json/wc/v3/products/\(id)/?consumer_key=ck_92c8b3a8dad21a0c0c63ca32162d1de98741e8b7&consumer_secret=cs_50ddecfd1e1624327a381add4d7fb7b7464b98ae&status=publish"
         
         AF.request(url).response { responce in
             switch responce.result {
