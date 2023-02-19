@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 struct Info {
     let title: String
     let options: [String]

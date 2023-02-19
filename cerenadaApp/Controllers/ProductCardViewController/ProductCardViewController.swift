@@ -13,7 +13,8 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
     var selectedLikeImage = "heart"
         
-
+//    public var productCounter = String()
+    
     let productCardClient = ProductCardClient()
     let reviewClient = ReviewClient()
     let relatedClient = RelatedClient()
@@ -30,7 +31,6 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     var size = [String]()
     var price = String()
     var images = [Images]()
-    var productCounter = String()
     var discription = String()
     var item = 0
     

@@ -40,7 +40,7 @@ extension ProductCardViewController: UITableViewDelegate, UITableViewDataSource 
         let index = sender.tag
         
         sender.showAnimation {
-            print(String(self.id) + "  " + self.size[index] + "  " + self.price + "  " + self.productCounter)
+            print(String(self.id) + "  " + self.size[index] + "  " + self.price + "  " + productCounter )
         }
     }
     

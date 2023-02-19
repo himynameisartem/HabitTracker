@@ -20,6 +20,7 @@
 		317261B92948B4E700B73E41 /* AddToCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317261B82948B4E700B73E41 /* AddToCartTableViewCell.swift */; };
 		31958344292D0F9D000CB4DD /* InformationAbousUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31958343292D0F9D000CB4DD /* InformationAbousUsViewController.swift */; };
 		319F668229A25406007100C0 /* NextButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F668129A25406007100C0 /* NextButtonCollectionViewCell.swift */; };
+		319F668429A260B9007100C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F668329A260B9007100C0 /* Constants.swift */; };
 		31ACD43927FE170500DAD756 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ACD43827FE170500DAD756 /* AppDelegate.swift */; };
 		31ACD44227FE170600DAD756 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31ACD44127FE170600DAD756 /* Assets.xcassets */; };
 		31ACD44527FE170600DAD756 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31ACD44327FE170600DAD756 /* LaunchScreen.storyboard */; };
@@ -64,6 +65,7 @@
 		317261B82948B4E700B73E41 /* AddToCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartTableViewCell.swift; sourceTree = "<group>"; };
 		31958343292D0F9D000CB4DD /* InformationAbousUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAbousUsViewController.swift; sourceTree = "<group>"; };
 		319F668129A25406007100C0 /* NextButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		319F668329A260B9007100C0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		31ACD43527FE170500DAD756 /* cerenadaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cerenadaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31ACD43827FE170500DAD756 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31ACD44127FE170600DAD756 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				31FDE471299B76BA00397DED /* ReviewsData */,
 				31FDE476299D3C1300397DED /* RelatedData */,
 				31FDE46429953A8A00397DED /* InformationAboutUsData */,
+				319F668329A260B9007100C0 /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				31958344292D0F9D000CB4DD /* InformationAbousUsViewController.swift in Sources */,
 				31FDE45F299532B700397DED /* ProductCardVC+CustomNavigationView.swift in Sources */,
 				310F967329850C0300B5F5B8 /* ContactTableViewCell.swift in Sources */,
+				319F668429A260B9007100C0 /* Constants.swift in Sources */,
 				31FDE46E2997890C00397DED /* ProductsListViewController.swift in Sources */,
 				31ACD43927FE170500DAD756 /* AppDelegate.swift in Sources */,
 				31FDE4502994E99500397DED /* MainVC+SearchBar+UpdateSearchResults.swift in Sources */,
