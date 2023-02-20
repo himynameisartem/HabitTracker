@@ -78,9 +78,7 @@ class NewProductsCollectionViewCell: UICollectionViewCell {
             productName.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 5),
             productName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
             productName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
-//            productName.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25),
             
-//            productPrice.topAnchor.constraint(equalTo: productName.bottomAnchor),
             productPrice.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
             productPrice.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
             productPrice.bottomAnchor.constraint(equalTo: bottomAnchor),

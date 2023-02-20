@@ -1,13 +1,13 @@
 //
-//  ProductCardVC+CustomNavigationView.swift
+//  WriteReviewController+CustomNavigationView.swift
 //  cerenadaApp
 //
-//  Created by Артем Кудрявцев on 09.02.2023.
+//  Created by Артем Кудрявцев on 19.02.2023.
 //
 
 import UIKit
 
-extension ProductCardViewController {
+extension WriteReviewViewController {
     
     func createNavigationView() {
         
@@ -16,19 +16,20 @@ extension ProductCardViewController {
         navigationView.addSubview(navigationTitle)
         
         guard let top = window?.safeAreaInsets.top else { return }
+        let safeArea = top < 21 ? 0 : top
         let heightNavigationView = 96 - (top < 21 ? top : 0)
                 
         NSLayoutConstraint.activate([
             
             coloredSafeArea.topAnchor.constraint(equalTo: view.topAnchor),
-            coloredSafeArea.heightAnchor.constraint(equalToConstant: top),
+            coloredSafeArea.heightAnchor.constraint(equalToConstant: safeArea),
             coloredSafeArea.widthAnchor.constraint(equalToConstant: view.frame.width),
             
             navigationView.topAnchor.constraint(equalTo: view.topAnchor),
             navigationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             navigationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             navigationView.heightAnchor.constraint(equalToConstant: heightNavigationView),
-                        
+            
             navigationTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             navigationTitle.centerYAnchor.constraint(equalTo: navigationView.safeAreaLayoutGuide.centerYAnchor),
             navigationTitle.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 50),
@@ -41,10 +42,6 @@ extension ProductCardViewController {
         
         view.addSubview(backButton)
         backButton.addSubview(backImage)
-        view.addSubview(likeButton)
-        likeButton.addSubview(likeImage)
-        view.addSubview(sharedButton)
-        sharedButton.addSubview(sharedImage)
         
         backButton.addTarget(self, action: #selector(returnButtonTapped), for: .touchUpInside)
         
@@ -60,32 +57,13 @@ extension ProductCardViewController {
             backImage.trailingAnchor.constraint(equalTo: backButton.trailingAnchor),
             backImage.bottomAnchor.constraint(equalTo: backButton.bottomAnchor),
             
-            sharedButton.centerYAnchor.constraint(equalTo: navigationView.safeAreaLayoutGuide.centerYAnchor),
-            sharedButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            sharedButton.heightAnchor.constraint(equalToConstant: 20),
-            sharedButton.widthAnchor.constraint(equalToConstant: 20),
-            
-            sharedImage.topAnchor.constraint(equalTo: sharedButton.topAnchor),
-            sharedImage.leadingAnchor.constraint(equalTo: sharedButton.leadingAnchor),
-            sharedImage.trailingAnchor.constraint(equalTo: sharedButton.trailingAnchor),
-            sharedImage.bottomAnchor.constraint(equalTo: sharedButton.bottomAnchor),
-            
-            likeButton.centerYAnchor.constraint(equalTo: navigationView.safeAreaLayoutGuide.centerYAnchor),
-            likeButton.trailingAnchor.constraint(equalTo: sharedButton.leadingAnchor, constant: -5),
-            likeButton.heightAnchor.constraint(equalToConstant: 20),
-            likeButton.widthAnchor.constraint(equalToConstant: 20),
-            
-            likeImage.topAnchor.constraint(equalTo: likeButton.topAnchor),
-            likeImage.leadingAnchor.constraint(equalTo: likeButton.leadingAnchor),
-            likeImage.trailingAnchor.constraint(equalTo: likeButton.trailingAnchor),
-            likeImage.bottomAnchor.constraint(equalTo: likeButton.bottomAnchor),
-            
         ])
     }
     
     @objc func returnButtonTapped() {
         backButton.showAnimation {
-            self.navigationController?.popViewController(animated: true)            
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
+    

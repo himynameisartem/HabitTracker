@@ -12,9 +12,7 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     
     let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
     var selectedLikeImage = "heart"
-        
-//    public var productCounter = String()
-    
+            
     let productCardClient = ProductCardClient()
     let reviewClient = ReviewClient()
     let relatedClient = RelatedClient()
@@ -24,6 +22,7 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     
     var related = [ProductCardData]()
     var reviews = [ReviewsData]()
+    var name = String()
     var id = Int()
     var ids = [Int]()
     var tableViewHeight: NSLayoutConstraint!
@@ -295,7 +294,7 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         label.numberOfLines = 0
         label.textAlignment = .center
         let attrs = [NSAttributedString.Key.foregroundColor: UIColor.systemGray3,
-                     NSAttributedString.Key.font: UIFont(name: "Helvetica-light", size: 16)!,
+                     NSAttributedString.Key.font: UIFont(name: "Helvetica-light", size: 14)!,
                      NSAttributedString.Key.textEffect: NSAttributedString.TextEffectStyle.letterpressStyle as NSString
                      ]
         let string = NSAttributedString(string: "Оцените товар первым. Вы поможете другим покупателям сделать правильный выбор.", attributes: attrs)
@@ -393,7 +392,6 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
         addViews()
         createNavigationView()
         addBackButton()
-//        reviewsStatus()
         setupConstraints()
         
         likeButton.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
@@ -589,7 +587,11 @@ class ProductCardViewController: UIViewController, UIScrollViewDelegate {
     @objc func addReviewTapped(_ sender: UIButton) {
         
         sender.showAnimation {
-            print("add review")
+            let vc = WriteReviewViewController()
+            vc.productName = self.name
+            vc.productImageUrl = self.images[0].src
+            self.navigationController?.pushViewController(vc, animated: true)
+            
         }
     }
     
@@ -625,6 +627,7 @@ extension ProductCardViewController: ProductCardManagerDelegate {
         
         DispatchQueue.main.async {
 
+            self.name = data.name
             self.images = data.images
             self.galleryPageControl.numberOfPages = data.images.count
             self.navigationTitle.text = data.name

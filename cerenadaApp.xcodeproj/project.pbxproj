@@ -21,6 +21,9 @@
 		31958344292D0F9D000CB4DD /* InformationAbousUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31958343292D0F9D000CB4DD /* InformationAbousUsViewController.swift */; };
 		319F668229A25406007100C0 /* NextButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F668129A25406007100C0 /* NextButtonCollectionViewCell.swift */; };
 		319F668429A260B9007100C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F668329A260B9007100C0 /* Constants.swift */; };
+		319F668729A264F9007100C0 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F668629A264F9007100C0 /* WriteReviewViewController.swift */; };
+		319F668929A27624007100C0 /* WriteReviewController+CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F668829A27624007100C0 /* WriteReviewController+CustomNavigationView.swift */; };
+		319F668B29A3BB13007100C0 /* WriteReviewVC+TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319F668A29A3BB13007100C0 /* WriteReviewVC+TextFieldDelegate.swift */; };
 		31ACD43927FE170500DAD756 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ACD43827FE170500DAD756 /* AppDelegate.swift */; };
 		31ACD44227FE170600DAD756 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31ACD44127FE170600DAD756 /* Assets.xcassets */; };
 		31ACD44527FE170600DAD756 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31ACD44327FE170600DAD756 /* LaunchScreen.storyboard */; };
@@ -66,6 +69,9 @@
 		31958343292D0F9D000CB4DD /* InformationAbousUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAbousUsViewController.swift; sourceTree = "<group>"; };
 		319F668129A25406007100C0 /* NextButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		319F668329A260B9007100C0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		319F668629A264F9007100C0 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
+		319F668829A27624007100C0 /* WriteReviewController+CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WriteReviewController+CustomNavigationView.swift"; sourceTree = "<group>"; };
+		319F668A29A3BB13007100C0 /* WriteReviewVC+TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WriteReviewVC+TextFieldDelegate.swift"; sourceTree = "<group>"; };
 		31ACD43527FE170500DAD756 /* cerenadaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cerenadaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31ACD43827FE170500DAD756 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31ACD44127FE170600DAD756 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -159,6 +165,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		319F668529A264CA007100C0 /* WriteReviewController */ = {
+			isa = PBXGroup;
+			children = (
+				319F668629A264F9007100C0 /* WriteReviewViewController.swift */,
+				319F668829A27624007100C0 /* WriteReviewController+CustomNavigationView.swift */,
+				319F668A29A3BB13007100C0 /* WriteReviewVC+TextFieldDelegate.swift */,
+			);
+			path = WriteReviewController;
+			sourceTree = "<group>";
+		};
 		31ACD42C27FE170500DAD756 = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +222,7 @@
 		31B710F0290D49CE00E6CA04 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				319F668529A264CA007100C0 /* WriteReviewController */,
 				31B710EF290D49C300E6CA04 /* MainViewController */,
 				314B7FF329374FD1004CA151 /* ProductCardViewController */,
 				31FDE4592995300000397DED /* InformationAboutUsViewController */,
@@ -441,6 +458,8 @@
 				31FDE4502994E99500397DED /* MainVC+SearchBar+UpdateSearchResults.swift in Sources */,
 				319F668229A25406007100C0 /* NextButtonCollectionViewCell.swift in Sources */,
 				31FDE461299537B600397DED /* ProductCardVC+ScrollViewDelegate.swift in Sources */,
+				319F668B29A3BB13007100C0 /* WriteReviewVC+TextFieldDelegate.swift in Sources */,
+				319F668729A264F9007100C0 /* WriteReviewViewController.swift in Sources */,
 				314B7FFC2939392C004CA151 /* ProductCardManager.swift in Sources */,
 				31FDE4542994EA4D00397DED /* MainVC+TableViews.swift in Sources */,
 				31FDE4582995055F00397DED /* UIViewExtensions.swift in Sources */,
@@ -455,6 +474,7 @@
 				31FDE475299B76FA00397DED /* ReviewsManager.swift in Sources */,
 				31B710F2290E863A00E6CA04 /* NewProductsCollectionViewCell.swift in Sources */,
 				31FDE45D2995315300397DED /* ProductCardVC+TableViews.swift in Sources */,
+				319F668929A27624007100C0 /* WriteReviewController+CustomNavigationView.swift in Sources */,
 				31B710F4290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift in Sources */,
 				31FDE4522994E9F200397DED /* MainVC+CollectionViews.swift in Sources */,
 				316820702907CC8000E28F62 /* ProductCardModel.swift in Sources */,
@@ -622,6 +642,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = himynameisartem.cerenadaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
