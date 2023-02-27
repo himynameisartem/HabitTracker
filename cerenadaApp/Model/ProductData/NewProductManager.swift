@@ -16,9 +16,9 @@ class NetworkClient {
     
     var delegate: NewProductManagerDelegate?
     
-    func request() {
+    func request(category: Int) {
         
-        let url = "https://cerenada.ru/wp-json/wc/v3/products?consumer_key=ck_92c8b3a8dad21a0c0c63ca32162d1de98741e8b7&consumer_secret=cs_50ddecfd1e1624327a381add4d7fb7b7464b98ae&per_page=100&category=2215&status=publish"
+        let url = "https://cerenada.ru/wp-json/wc/v3/products?&consumer_key=ck_92c8b3a8dad21a0c0c63ca32162d1de98741e8b7&consumer_secret=cs_50ddecfd1e1624327a381add4d7fb7b7464b98ae&per_page=100&category=\(category)&status=publish"
         
         AF.request(url).response { responce in
             switch responce.result {

@@ -21,6 +21,8 @@ class MainViewController: UIViewController{
     var price = [String]()
     let navBar = UINavigationBar()
     
+    let newProductCategoryID = 2215
+    
     let navLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
@@ -140,7 +142,7 @@ class MainViewController: UIViewController{
         navigationController?.navigationBar.prefersLargeTitles = true
         
         networkClient.delegate = self
-        networkClient.request()
+        networkClient.request(category: newProductCategoryID)
         
         presentationCollectionView.delegate = self
         presentationCollectionView.dataSource = self
@@ -243,6 +245,9 @@ class MainViewController: UIViewController{
     @objc func seeMoreButtonTapped(sender: UIButton) {
         
         let vc = ProductsListViewController()
+        vc.categoryID = self.newProductCategoryID
+        vc.categoryName = "Новинки"
+        
         sender.showAnimation {
 
             self.navigationController?.pushViewController(vc, animated: true)
@@ -309,7 +314,7 @@ extension MainViewController: MFMailComposeViewControllerDelegate {
 extension MainViewController: NewProductManagerDelegate {
     func updateInterface(_: NetworkClient, with data: [ProductCardData]) {
         self.data = data
-        
+                
         for i in self.data {
             for j in i.meta_data {
                 if j.key == "adv_sp" {
