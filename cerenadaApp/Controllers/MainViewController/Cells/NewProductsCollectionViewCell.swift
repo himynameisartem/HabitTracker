@@ -42,7 +42,10 @@ class NewProductsCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "helvetica", size: 12)
         label.contentMode = .center
-        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 0.6385813328)
+        label.textColor = .white
+        label.layer.cornerRadius = 8
+        label.clipsToBounds = true
+        label.backgroundColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
         return label
     }()
     
@@ -80,7 +83,6 @@ class NewProductsCollectionViewCell: UICollectionViewCell {
             productName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
             
             productPrice.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
-            productPrice.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
             productPrice.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
         

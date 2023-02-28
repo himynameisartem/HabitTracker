@@ -11,9 +11,13 @@ import Kingfisher
 class ProductsListViewController: UIViewController {
     
     let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+    
     var categoryID = Int()
     var categoryName = String()
     var productList = [ProductCardData]()
+    var categoryDelegate: SelectCategoriesViewCellProtocol?
+    var topCategoryCollectionViewConstraint = NSLayoutConstraint()
+    var currentScale : CGFloat = 6.0
     
     let productListClient = NetworkClient()
     
@@ -66,6 +70,16 @@ class ProductsListViewController: UIViewController {
         return label
     }()
     
+    let categoriesCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = .clear
+        cv.showsHorizontalScrollIndicator = false
+        return cv
+    }()
+    
     let productCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -73,7 +87,7 @@ class ProductsListViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        cv.contentInset = UIEdgeInsets(top: 10, left: 5, bottom: 0, right: 5)
         cv.backgroundColor = .clear
         return cv
     }()
@@ -97,19 +111,21 @@ class ProductsListViewController: UIViewController {
         productListClient.delegate = self
         productListClient.request(category: categoryID)
         
+        categoriesCollectionView.delegate = self
+        categoriesCollectionView.dataSource = self
+        categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: "categoriesCell")
+        
         productCollectionView.delegate = self
         productCollectionView.dataSource = self
         productCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: "productCell")
         
-        createNavigationView()
-        addBackButton()
         addViews()
         setupConstraints()
+        createNavigationView()
+        addBackButton()
         
         view.backgroundColor = .systemGray6
-        
-        print(view.frame.height)
-        
+            
     }
     
     //MARK: - Create Views
@@ -117,12 +133,35 @@ class ProductsListViewController: UIViewController {
     func addViews() {
         
         view.addSubview(productCollectionView)
+        if !categories.isEmpty {
+            view.addSubview(categoriesCollectionView)
+        }
     }
     
     func setupConstraints() {
         
+        guard let top = window?.safeAreaInsets.top else { return }
+        let heightNavigationView = 96 - (top < 21 ? top : 0)
+        
+        if !categories.isEmpty {
+            topCategoryCollectionViewConstraint = NSLayoutConstraint(item: categoriesCollectionView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: heightNavigationView)
+            
+            view.addConstraint(topCategoryCollectionViewConstraint)
+            
+            NSLayoutConstraint.activate([
+                categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                categoriesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                categoriesCollectionView.heightAnchor.constraint(equalToConstant: 50),
+            ])
+            
+            productCollectionView.contentInset = UIEdgeInsets(top: 45, left: 5, bottom: 0, right: 5)
+            
+        }
+        
+        
         NSLayoutConstraint.activate([
-            productCollectionView.topAnchor.constraint(equalTo: navigationView.bottomAnchor),
+
+            productCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: heightNavigationView),
             productCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             productCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             productCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

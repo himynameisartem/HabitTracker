@@ -9,3 +9,4 @@ import Foundation
 
 var productCounter = String()
 
+let categories = ["Новинки", "Женская одежда", "Мужская одежда", "Детская одежда", "Скидки"]

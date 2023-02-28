@@ -47,7 +47,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             
             cell.productName.text = data[indexPath.row].name
-            cell.productPrice.text = price[indexPath.row] + " ₽"
+            cell.productPrice.text = " " + price[indexPath.row] + " ₽ "
             
             if indexPath.item == 10 {
                 
