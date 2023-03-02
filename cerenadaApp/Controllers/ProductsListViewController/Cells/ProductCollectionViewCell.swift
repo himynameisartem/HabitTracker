@@ -9,6 +9,7 @@ import UIKit
 
 class ProductCollectionViewCell: UICollectionViewCell {
     
+    let tapGesture = UITapGestureRecognizer()
     var images = [Images]()
     
     let galleryCollectionView: UICollectionView = {
@@ -20,6 +21,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.layer.cornerRadius = 10
         cv.showsHorizontalScrollIndicator = false
+        cv.clipsToBounds = true
         return cv
     }()
     
@@ -36,7 +38,22 @@ class ProductCollectionViewCell: UICollectionViewCell {
         page.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         return page
     }()
-        
+    
+    let likeButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.tintColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
+        return button
+    }()
+    
+    let likeImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "heart")
+        return image
+    }()
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -74,8 +91,12 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     func addViews() {
+        
+        addGestureRecognizer(tapGesture)
         addSubview(galleryCollectionView)
         galleryCollectionView.addSubview(galleryPageControl)
+        addSubview(likeButton)
+//        likeButton.addSubview(likeImage)
         addSubview(nameLabel)
         addSubview(priceLabel)
     }
@@ -84,7 +105,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         
         
         NSLayoutConstraint.activate([
-        
+            
             galleryCollectionView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             galleryCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
             galleryCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
@@ -93,19 +114,24 @@ class ProductCollectionViewCell: UICollectionViewCell {
             galleryPageControl.bottomAnchor.constraint(equalTo: galleryCollectionView.topAnchor, constant: frame.width * 1.35),
             galleryPageControl.centerXAnchor.constraint(equalTo: centerXAnchor),
             
+            likeButton.topAnchor.constraint(equalTo: galleryCollectionView.topAnchor , constant: 5),
+            likeButton.trailingAnchor.constraint(equalTo: galleryCollectionView.trailingAnchor, constant: -5),
+            likeButton.heightAnchor.constraint(equalToConstant: 20),
+            likeButton.widthAnchor.constraint(equalToConstant: 20),
+            
+//            likeImage.topAnchor.constraint(equalTo: likeButton.topAnchor),
+//            likeImage.leadingAnchor.constraint(equalTo: likeButton.leadingAnchor),
+//            likeImage.trailingAnchor.constraint(equalTo: likeButton.trailingAnchor),
+//            likeImage.bottomAnchor.constraint(equalTo: likeButton.bottomAnchor),
+            
             nameLabel.topAnchor.constraint(equalTo: galleryCollectionView.bottomAnchor, constant: 5),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-
+            
             priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-//            priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
-                        
+            
         ])
-        
-     
-       
-        
     }
 }
 
@@ -118,7 +144,8 @@ extension ProductCollectionViewCell: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "galleryCell", for: indexPath) as! ProductsGalleryCollectionViewCell
-                
+        
+        
         DispatchQueue.main.async {
             cell.imageView.kf.indicatorType = .activity
             cell.imageView.kf.setImage(with: URL(string: self.images[indexPath.row].src.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? self.images[indexPath.row].src))
@@ -129,9 +156,7 @@ extension ProductCollectionViewCell: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-    return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
-    
-            
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

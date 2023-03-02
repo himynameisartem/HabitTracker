@@ -7,7 +7,10 @@
 
 import UIKit
 
+
+
 class ProductsGalleryCollectionViewCell: UICollectionViewCell {
+    
     
     let imageView: UIImageView = {
         let image = UIImageView()

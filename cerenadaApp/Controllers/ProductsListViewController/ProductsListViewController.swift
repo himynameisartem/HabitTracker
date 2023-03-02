@@ -18,8 +18,8 @@ class ProductsListViewController: UIViewController {
     var categoryDelegate: SelectCategoriesViewCellProtocol?
     var topCategoryCollectionViewConstraint = NSLayoutConstraint()
     var currentScale : CGFloat = 6.0
-    
     let productListClient = NetworkClient()
+    var selectedLikeImage = "heart"
     
     let coloredSafeArea: UIView = {
         let view = UIView()
@@ -40,19 +40,6 @@ class ProductsListViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .white
         return button
-    }()
-    
-    let likeButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    let likeImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "heart")
-        return image
     }()
     
     let navigationView: UIView = {

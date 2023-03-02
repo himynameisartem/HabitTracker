@@ -96,7 +96,6 @@ class AddToCartTableViewCell: UITableViewCell {
         }
         
         productCounter = countOrderTextField.text ?? "0"
-//        print(countOrderTextField.text)
         delegate?.stepper(stepperForCountOrder, at: stepperForCountOrder.tag, didChangeValueTo: stepperForCountOrder.value)
     }
     
@@ -106,7 +105,6 @@ class AddToCartTableViewCell: UITableViewCell {
             stepperForCountOrder.value = Double(sender.text ?? "0.0") ?? 0.0
             
             productCounter = countOrderTextField.text ?? "0"
-//            print(countOrderTextField.text)
         }
         
         delegate?.textFieldChange(stepperForCountOrder, countOrderTextField)

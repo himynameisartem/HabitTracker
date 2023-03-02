@@ -26,19 +26,23 @@ extension ProductsListViewController: UICollectionViewDelegate, UICollectionView
         if collectionView == productCollectionView {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCollectionViewCell
+            cell.layer.cornerRadius = 10
+            cell.makeShadow()
             
             cell.galleryPageControl.numberOfPages = productList[indexPath.row].images.count
             cell.images = productList[indexPath.row].images
             cell.nameLabel.text = productList[indexPath.row].name
             cell.priceLabel.text = " " + productList[indexPath.row].price + " ₽ "
-            
             cell.nameLabel.font = UIFont(name: "Helvetica-Bold", size: fontSizeForNameLabel(viewHeight: view.frame.height))
             cell.priceLabel.font = UIFont(name: "Helvetica", size: fontSizeForPriceLabel(viewHeight: view.frame.height))
             
-            cell.galleryCollectionView.reloadData()
+            cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+            cell.likeButton.tag = indexPath.item
             
-            cell.layer.cornerRadius = 10
-            cell.makeShadow()
+            cell.tapGesture.addTarget(self, action: #selector(tapItem))
+            cell.tapGesture.view?.tag = indexPath.item
+            
+            cell.galleryCollectionView.reloadData()
             
             return cell
             
@@ -53,7 +57,7 @@ extension ProductsListViewController: UICollectionViewDelegate, UICollectionView
             
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if collectionView == productCollectionView {
@@ -68,23 +72,48 @@ extension ProductsListViewController: UICollectionViewDelegate, UICollectionView
         }
     }
     
+
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        guard let animatedCell = collectionView.cellForItem(at: indexPath) else {return}
-        
+                
         if collectionView == categoriesCollectionView {
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-//            animatedCell.showAnimation {
-                self.categoryDelegate?.categoryName(name: categories[indexPath.row])
-//            }
+            self.categoryDelegate?.categoryName(name: categories[indexPath.row])
         }
+    }
+}
+
+
+//MARK: - objc Method
+
+extension ProductsListViewController {
+    
+    @objc func tapItem(sender: UITapGestureRecognizer) {
         
-        if collectionView == productCollectionView {
-            animatedCell.showAnimation {
-                print("tapped product")
-            }
-            
+        guard let tag = sender.view?.tag else { return }
+        let index = IndexPath(item: tag, section: 0)
+        guard let animatedCell = productCollectionView.cellForItem(at: index) else {return}
+        animatedCell.showAnimation {
+            let vc = ProductCardViewController()
+            vc.id = self.productList[index.item].id
+            vc.discription = self.productList[index.item].description
+            vc.ids = self.productList[index.item].related_ids ?? [0]
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
+    @objc func likeButtonTapped(sender: UIButton) {
+        let index = IndexPath(item: sender.tag, section: 0)
+        
+        if selectedLikeImage == "heart" {
+            selectedLikeImage = "heart.fill"
+        } else {
+            selectedLikeImage = "heart"
+        }
+        
+        sender.showAnimation {
+            sender.setImage(UIImage(systemName: self.selectedLikeImage), for: .normal)
+            print(index.item)
+        }
+    }
 }

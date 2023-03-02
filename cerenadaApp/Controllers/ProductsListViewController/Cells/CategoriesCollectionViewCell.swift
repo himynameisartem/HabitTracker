@@ -26,7 +26,6 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super .init(frame: frame)
         
-        
         addViews()
         setupConstraints()
         

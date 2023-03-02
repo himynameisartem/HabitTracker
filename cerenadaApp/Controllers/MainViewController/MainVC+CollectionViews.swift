@@ -93,14 +93,17 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         if collectionView == newProductCollectionView {
             
-            animatedCell.showAnimation {
+            if index <= 9 {
                 
-                let vc = ProductCardViewController()
-                vc.id = self.data[index].id
-                vc.discription = self.data[index].description
-                vc.ids = self.data[index].related_ids ?? [0]
-                self.navigationController?.pushViewController(vc, animated: true)
-                
+                animatedCell.showAnimation {
+                    
+                    let vc = ProductCardViewController()
+                    vc.id = self.data[index].id
+                    vc.discription = self.data[index].description
+                    vc.ids = self.data[index].related_ids ?? [0]
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    
+                }
             }
             
         } else if collectionView == partnersCollectionView {
