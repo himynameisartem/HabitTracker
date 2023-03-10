@@ -35,10 +35,10 @@ extension ProductsListViewController: UICollectionViewDelegate, UICollectionView
             cell.priceLabel.text = " " + productList[indexPath.row].price + " ₽ "
             cell.nameLabel.font = UIFont(name: "Helvetica-Bold", size: fontSizeForNameLabel(viewHeight: view.frame.height))
             cell.priceLabel.font = UIFont(name: "Helvetica", size: fontSizeForPriceLabel(viewHeight: view.frame.height))
-            
+
             cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
             cell.likeButton.tag = indexPath.item
-            
+
             cell.tapGesture.addTarget(self, action: #selector(tapItem))
             cell.tapGesture.view?.tag = indexPath.item
             
@@ -90,6 +90,7 @@ extension ProductsListViewController {
     
     @objc func tapItem(sender: UITapGestureRecognizer) {
         
+        
         guard let tag = sender.view?.tag else { return }
         let index = IndexPath(item: tag, section: 0)
         guard let animatedCell = productCollectionView.cellForItem(at: index) else {return}
@@ -99,6 +100,11 @@ extension ProductsListViewController {
             vc.discription = self.productList[index.item].description
             vc.ids = self.productList[index.item].related_ids ?? [0]
             self.navigationController?.pushViewController(vc, animated: true)
+            
+            if self.searchIsActive {
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
+            }
         }
     }
     

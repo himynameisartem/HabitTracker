@@ -11,6 +11,8 @@
 		310F966F2984410200B5F5B8 /* SizeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310F966E2984410200B5F5B8 /* SizeListTableViewCell.swift */; };
 		310F9671298460A600B5F5B8 /* SizeContainerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310F9670298460A600B5F5B8 /* SizeContainerTableViewCell.swift */; };
 		310F967329850C0300B5F5B8 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310F967229850C0300B5F5B8 /* ContactTableViewCell.swift */; };
+		31261E2429B9F3D20072CC86 /* ProductLIstVC+SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31261E2329B9F3D20072CC86 /* ProductLIstVC+SearchBarDelegate.swift */; };
+		31261E2629BA1C400072CC86 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31261E2529BA1C400072CC86 /* SearchVC.swift */; };
 		312DB310294DBECE003A8043 /* ReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312DB30F294DBECE003A8043 /* ReviewsCollectionViewCell.swift */; };
 		314B7FF529374FFA004CA151 /* ProductCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314B7FF429374FFA004CA151 /* ProductCardViewController.swift */; };
 		314B7FFC2939392C004CA151 /* ProductCardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314B7FFB2939392C004CA151 /* ProductCardManager.swift */; };
@@ -65,6 +67,8 @@
 		310F966E2984410200B5F5B8 /* SizeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeListTableViewCell.swift; sourceTree = "<group>"; };
 		310F9670298460A600B5F5B8 /* SizeContainerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeContainerTableViewCell.swift; sourceTree = "<group>"; };
 		310F967229850C0300B5F5B8 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		31261E2329B9F3D20072CC86 /* ProductLIstVC+SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductLIstVC+SearchBarDelegate.swift"; sourceTree = "<group>"; };
+		31261E2529BA1C400072CC86 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		312DB30F294DBECE003A8043 /* ReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		314B7FF429374FFA004CA151 /* ProductCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardViewController.swift; sourceTree = "<group>"; };
 		314B7FFB2939392C004CA151 /* ProductCardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCardManager.swift; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 				31FDE4592995300000397DED /* InformationAboutUsViewController */,
 				31FDE46C299788C400397DED /* ProductsListViewController */,
 				31FDE46B29953BB000397DED /* ClassesExtensions */,
+				31261E2529BA1C400072CC86 /* SearchVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				31FDE46D2997890C00397DED /* ProductsListViewController.swift */,
+				31261E2329B9F3D20072CC86 /* ProductLIstVC+SearchBarDelegate.swift */,
 				319F668C29A4084B007100C0 /* ProductsListVC+CustomNavigationController.swift */,
 				319F669129A40D2C007100C0 /* ProductsListVC+CollectionViewDlegate.swift */,
 				319F669729AE1536007100C0 /* ProductListVC+ScrollViewDelegate.swift */,
@@ -497,6 +503,7 @@
 				310F966D297C6B7200B5F5B8 /* InformationAboutUsModel.swift in Sources */,
 				31B710FB290FF7E700E6CA04 /* InfoTableViewCell.swift in Sources */,
 				31B710EE290D495C00E6CA04 /* PresentationCollectionViewCell.swift in Sources */,
+				31261E2629BA1C400072CC86 /* SearchVC.swift in Sources */,
 				31FDE4562994EBF100397DED /* MainVC+CustomNavigationView.swift in Sources */,
 				31FDE46629953ABC00397DED /* InformationAboutUsData.swift in Sources */,
 				316820722907CCC000E28F62 /* NewProductManager.swift in Sources */,
@@ -509,6 +516,7 @@
 				31B710F4290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift in Sources */,
 				31FDE4522994E9F200397DED /* MainVC+CollectionViews.swift in Sources */,
 				316820702907CC8000E28F62 /* ProductCardModel.swift in Sources */,
+				31261E2429B9F3D20072CC86 /* ProductLIstVC+SearchBarDelegate.swift in Sources */,
 				31FDE473299B76E700397DED /* ReviewsModel.swift in Sources */,
 				310F9671298460A600B5F5B8 /* SizeContainerTableViewCell.swift in Sources */,
 				312DB310294DBECE003A8043 /* ReviewsCollectionViewCell.swift in Sources */,

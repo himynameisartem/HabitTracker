@@ -11,9 +11,12 @@ import MessageUI
 
 class MainViewController: UIViewController{
     
+    let vc = ProductsListViewController()
+    
     let networkClient = NetworkClient()
     var data = [ProductCardData]()
-    let searchController = UISearchController(searchResultsController: nil)
+    var searchController = UISearchController()
+    
     let alert = InformationAbousUsViewController()
     
     var timer = Timer()
@@ -141,6 +144,10 @@ class MainViewController: UIViewController{
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        searchController = UISearchController(searchResultsController: vc)
+        searchController.searchBar.delegate = vc
+        searchController.delegate = self
+        
         networkClient.delegate = self
         networkClient.request(category: newProductCategoryID)
         
@@ -245,6 +252,7 @@ class MainViewController: UIViewController{
     @objc func seeMoreButtonTapped(sender: UIButton) {
         
         let vc = ProductsListViewController()
+        vc.searchIsActive = false
         vc.categoryID = self.newProductCategoryID
         vc.categoryName = "Новинки"
         

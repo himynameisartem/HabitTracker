@@ -7,21 +7,20 @@
 
 import UIKit
 
-extension MainViewController: UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+extension MainViewController: UISearchControllerDelegate {
     
     func createSearchBar() {
-        
+                
+        searchController.searchResultsUpdater = vc
         searchController.searchBar.placeholder = "Поиск"
         searchController.searchBar.layer.borderColor = UIColor.white.cgColor
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.navigationController?.hidesBarsOnSwipe = false
+        searchController.definesPresentationContext = false
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.showsSearchResultsController = true
         searchController.searchBar.sizeToFit()
         
         navigationItem.searchController = searchController
         
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-        
-    }
 }

@@ -47,13 +47,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
         return button
     }()
     
-    let likeImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "heart")
-        return image
-    }()
-    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -96,7 +89,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
         addSubview(galleryCollectionView)
         galleryCollectionView.addSubview(galleryPageControl)
         addSubview(likeButton)
-//        likeButton.addSubview(likeImage)
         addSubview(nameLabel)
         addSubview(priceLabel)
     }
@@ -118,11 +110,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
             likeButton.trailingAnchor.constraint(equalTo: galleryCollectionView.trailingAnchor, constant: -5),
             likeButton.heightAnchor.constraint(equalToConstant: 20),
             likeButton.widthAnchor.constraint(equalToConstant: 20),
-            
-//            likeImage.topAnchor.constraint(equalTo: likeButton.topAnchor),
-//            likeImage.leadingAnchor.constraint(equalTo: likeButton.leadingAnchor),
-//            likeImage.trailingAnchor.constraint(equalTo: likeButton.trailingAnchor),
-//            likeImage.bottomAnchor.constraint(equalTo: likeButton.bottomAnchor),
             
             nameLabel.topAnchor.constraint(equalTo: galleryCollectionView.bottomAnchor, constant: 5),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),

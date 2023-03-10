@@ -10,6 +10,7 @@ import Kingfisher
 
 class ProductsListViewController: UIViewController {
     
+    var searchIsActive = true
     let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
     
     var categoryID = Int()
@@ -57,6 +58,34 @@ class ProductsListViewController: UIViewController {
         return label
     }()
     
+    let sortedButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .white
+        return button
+    }()
+    
+    let sortedButtonImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "arrow.up.arrow.down")
+        return image
+    }()
+    
+    let filterButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .white
+        return button
+    }()
+    
+    let fiterButtonImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "slider.horizontal.3")
+        return image
+    }()
+    
     let categoriesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -75,7 +104,7 @@ class ProductsListViewController: UIViewController {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.contentInset = UIEdgeInsets(top: 10, left: 5, bottom: 0, right: 5)
-        cv.backgroundColor = .clear
+        cv.backgroundColor = .systemGray6
         return cv
     }()
     
@@ -96,8 +125,8 @@ class ProductsListViewController: UIViewController {
         super.viewDidLoad()
         
         productListClient.delegate = self
-        productListClient.request(category: categoryID)
-        
+        productListClient.request(category: 2215)
+
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: "categoriesCell")
@@ -110,9 +139,10 @@ class ProductsListViewController: UIViewController {
         setupConstraints()
         createNavigationView()
         addBackButton()
+        addSettingsButtons()
         
         view.backgroundColor = .systemGray6
-            
+        
     }
     
     //MARK: - Create Views
@@ -127,28 +157,31 @@ class ProductsListViewController: UIViewController {
     
     func setupConstraints() {
         
-        guard let top = window?.safeAreaInsets.top else { return }
-        let heightNavigationView = 96 - (top < 21 ? top : 0)
+        var heightView =  CGFloat()
         
-        if !categories.isEmpty {
-            topCategoryCollectionViewConstraint = NSLayoutConstraint(item: categoriesCollectionView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: heightNavigationView)
+        if !searchIsActive {
+            guard let top = window?.safeAreaInsets.top else { return }
+            let heightNavigationView = 96 - (top < 21 ? top : 0)
+            heightView = heightNavigationView
             
-            view.addConstraint(topCategoryCollectionViewConstraint)
-            
-            NSLayoutConstraint.activate([
-                categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                categoriesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                categoriesCollectionView.heightAnchor.constraint(equalToConstant: 50),
-            ])
-            
-            productCollectionView.contentInset = UIEdgeInsets(top: 45, left: 5, bottom: 0, right: 5)
-            
+            if !categories.isEmpty {
+                topCategoryCollectionViewConstraint = NSLayoutConstraint(item: categoriesCollectionView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: heightNavigationView)
+                
+                view.addConstraint(topCategoryCollectionViewConstraint)
+                
+                NSLayoutConstraint.activate([
+                    categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                    categoriesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                    categoriesCollectionView.heightAnchor.constraint(equalToConstant: 50),
+                ])
+                
+                productCollectionView.contentInset = UIEdgeInsets(top: 45, left: 5, bottom: 0, right: 5)
+            }
         }
-        
         
         NSLayoutConstraint.activate([
 
-            productCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: heightNavigationView),
+            productCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: searchIsActive ? 0 : heightView),
             productCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             productCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             productCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -158,7 +191,7 @@ class ProductsListViewController: UIViewController {
 
 extension ProductsListViewController: NewProductManagerDelegate {
     func updateInterface(_: NetworkClient, with data: [ProductCardData]) {
-        
+                
         self.productList = data
         self.productCollectionView.reloadData()
         

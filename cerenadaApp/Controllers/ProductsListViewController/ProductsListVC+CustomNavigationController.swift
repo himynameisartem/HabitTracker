@@ -15,6 +15,7 @@ extension ProductsListViewController {
         view.addSubview(navigationView)
         navigationView.addSubview(navigationTitle)
         
+        
         navigationTitle.text = categoryName
         
         guard let top = window?.safeAreaInsets.top else { return }
@@ -62,9 +63,54 @@ extension ProductsListViewController {
         ])
     }
     
+    func addSettingsButtons() {
+        
+        navigationView.addSubview(sortedButton)
+        sortedButton.addSubview(sortedButtonImage)
+        navigationView.addSubview(filterButton)
+        filterButton.addSubview(fiterButtonImage)
+        
+        sortedButton.addTarget(self, action: #selector(sortedButtonTapped), for: .touchUpInside)
+        filterButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            filterButton.centerYAnchor.constraint(equalTo: navigationView.safeAreaLayoutGuide.centerYAnchor),
+            filterButton.trailingAnchor.constraint(equalTo: navigationView.trailingAnchor, constant: -10),
+            filterButton.heightAnchor.constraint(equalToConstant: 20),
+            filterButton.widthAnchor.constraint(equalToConstant: 20),
+            fiterButtonImage.topAnchor.constraint(equalTo: filterButton.topAnchor),
+            fiterButtonImage.leadingAnchor.constraint(equalTo: filterButton.leadingAnchor),
+            fiterButtonImage.trailingAnchor.constraint(equalTo: filterButton.trailingAnchor),
+            fiterButtonImage.bottomAnchor.constraint(equalTo: filterButton.bottomAnchor),
+            
+            sortedButton.centerYAnchor.constraint(equalTo: navigationView.safeAreaLayoutGuide.centerYAnchor),
+            sortedButton.trailingAnchor.constraint(equalTo: filterButton.leadingAnchor, constant: -10),
+            sortedButton.heightAnchor.constraint(equalToConstant: 20),
+            sortedButton.widthAnchor.constraint(equalToConstant: 20),
+            sortedButtonImage.topAnchor.constraint(equalTo: sortedButton.topAnchor),
+            sortedButtonImage.leadingAnchor.constraint(equalTo: sortedButton.leadingAnchor),
+            sortedButtonImage.trailingAnchor.constraint(equalTo: sortedButton.trailingAnchor),
+            sortedButtonImage.bottomAnchor.constraint(equalTo: sortedButton.bottomAnchor)
+        ])
+        
+    }
+    
     @objc func returnButtonTapped() {
         backButton.showAnimation {
             self.navigationController?.popViewController(animated: true)
         }
     }
+    
+    @objc func sortedButtonTapped(sender: UIButton) {
+        sender.showAnimation {
+            print("sorted")
+        }
+    }
+    
+    @objc func filterButtonTapped(sender: UIButton) {
+        sender.showAnimation {
+            print("filter")
+        }
+    }
+    
 }
