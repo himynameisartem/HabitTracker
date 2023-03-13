@@ -45,6 +45,10 @@
 		31DAA58C29BC795200BCD245 /* CategoriesVC+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA58B29BC795200BCD245 /* CategoriesVC+TableViewDelegate.swift */; };
 		31DAA58F29BC79B300BCD245 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA58E29BC79B300BCD245 /* CategoriesTableViewCell.swift */; };
 		31DAA59129BC7A9D00BCD245 /* CategoriesVC+SearchControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA59029BC7A9D00BCD245 /* CategoriesVC+SearchControllerDelegate.swift */; };
+		31DAA59429BC82CB00BCD245 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA59329BC82CB00BCD245 /* CartViewController.swift */; };
+		31DAA59729BC837300BCD245 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA59629BC837300BCD245 /* FavouritesViewController.swift */; };
+		31DAA59A29BC840200BCD245 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA59929BC840200BCD245 /* UserProfileViewController.swift */; };
+		31DAA59C29BF113600BCD245 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA59B29BF113600BCD245 /* SearchManager.swift */; };
 		31FDE4502994E99500397DED /* MainVC+SearchBar+UpdateSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE44F2994E99500397DED /* MainVC+SearchBar+UpdateSearchResults.swift */; };
 		31FDE4522994E9F200397DED /* MainVC+CollectionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE4512994E9F200397DED /* MainVC+CollectionViews.swift */; };
 		31FDE4542994EA4D00397DED /* MainVC+TableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE4532994EA4D00397DED /* MainVC+TableViews.swift */; };
@@ -107,6 +111,11 @@
 		31DAA58B29BC795200BCD245 /* CategoriesVC+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesVC+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		31DAA58E29BC79B300BCD245 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		31DAA59029BC7A9D00BCD245 /* CategoriesVC+SearchControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesVC+SearchControllerDelegate.swift"; sourceTree = "<group>"; };
+		31DAA59329BC82CB00BCD245 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		31DAA59629BC837300BCD245 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		31DAA59929BC840200BCD245 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		31DAA59B29BF113600BCD245 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
+		31DAA59D29BF1B8900BCD245 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		31FDE44F2994E99500397DED /* MainVC+SearchBar+UpdateSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+SearchBar+UpdateSearchResults.swift"; sourceTree = "<group>"; };
 		31FDE4512994E9F200397DED /* MainVC+CollectionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+CollectionViews.swift"; sourceTree = "<group>"; };
 		31FDE4532994EA4D00397DED /* MainVC+TableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+TableViews.swift"; sourceTree = "<group>"; };
@@ -174,6 +183,7 @@
 				3168206F2907CC8000E28F62 /* ProductCardModel.swift */,
 				314B7FFB2939392C004CA151 /* ProductCardManager.swift */,
 				316820712907CCC000E28F62 /* NewProductManager.swift */,
+				31DAA59B29BF113600BCD245 /* SearchManager.swift */,
 			);
 			path = ProductData;
 			sourceTree = "<group>";
@@ -256,11 +266,14 @@
 		31B710F0290D49CE00E6CA04 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				319F668529A264CA007100C0 /* WriteReviewController */,
 				31DAA58329BC6E9400BCD245 /* TabBarController */,
 				31B710EF290D49C300E6CA04 /* MainViewController */,
 				31DAA58629BC781B00BCD245 /* CategoriesViewController */,
+				31DAA59229BC829A00BCD245 /* CartViewController */,
+				31DAA59529BC836000BCD245 /* FavouritesViewController */,
+				31DAA59829BC83EB00BCD245 /* UserProfileViewController */,
 				314B7FF329374FD1004CA151 /* ProductCardViewController */,
+				319F668529A264CA007100C0 /* WriteReviewController */,
 				31FDE4592995300000397DED /* InformationAboutUsViewController */,
 				31FDE46C299788C400397DED /* ProductsListViewController */,
 				31FDE46B29953BB000397DED /* ClassesExtensions */,
@@ -308,6 +321,30 @@
 				31DAA58E29BC79B300BCD245 /* CategoriesTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		31DAA59229BC829A00BCD245 /* CartViewController */ = {
+			isa = PBXGroup;
+			children = (
+				31DAA59329BC82CB00BCD245 /* CartViewController.swift */,
+			);
+			path = CartViewController;
+			sourceTree = "<group>";
+		};
+		31DAA59529BC836000BCD245 /* FavouritesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				31DAA59629BC837300BCD245 /* FavouritesViewController.swift */,
+			);
+			path = FavouritesViewController;
+			sourceTree = "<group>";
+		};
+		31DAA59829BC83EB00BCD245 /* UserProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				31DAA59929BC840200BCD245 /* UserProfileViewController.swift */,
+			);
+			path = UserProfileViewController;
 			sourceTree = "<group>";
 		};
 		31FDE4592995300000397DED /* InformationAboutUsViewController */ = {
@@ -442,6 +479,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 31ACD42C27FE170500DAD756;
 			productRefGroup = 31ACD43627FE170500DAD756 /* Products */;
@@ -515,11 +553,13 @@
 				317261B92948B4E700B73E41 /* AddToCartTableViewCell.swift in Sources */,
 				314B7FF529374FFA004CA151 /* ProductCardViewController.swift in Sources */,
 				314B7FFE293CCCFC004CA151 /* GalleryCollectionViewCell.swift in Sources */,
+				31DAA59729BC837300BCD245 /* FavouritesViewController.swift in Sources */,
 				31FDE470299A8C4800397DED /* ProductCardVC+TextFieldDelegate.swift in Sources */,
 				319F669629AE0005007100C0 /* CategoriesCollectionViewCell.swift in Sources */,
 				310F966F2984410200B5F5B8 /* SizeListTableViewCell.swift in Sources */,
 				31958344292D0F9D000CB4DD /* InformationAbousUsViewController.swift in Sources */,
 				319F669029A40CBC007100C0 /* ProductCollectionViewCell.swift in Sources */,
+				31DAA59A29BC840200BCD245 /* UserProfileViewController.swift in Sources */,
 				31FDE45F299532B700397DED /* ProductCardVC+CustomNavigationView.swift in Sources */,
 				310F967329850C0300B5F5B8 /* ContactTableViewCell.swift in Sources */,
 				319F668429A260B9007100C0 /* Constants.swift in Sources */,
@@ -528,6 +568,7 @@
 				31FDE4502994E99500397DED /* MainVC+SearchBar+UpdateSearchResults.swift in Sources */,
 				319F668229A25406007100C0 /* NextButtonCollectionViewCell.swift in Sources */,
 				31DAA58C29BC795200BCD245 /* CategoriesVC+TableViewDelegate.swift in Sources */,
+				31DAA59C29BF113600BCD245 /* SearchManager.swift in Sources */,
 				319F669229A40D2C007100C0 /* ProductsListVC+CollectionViewDlegate.swift in Sources */,
 				319F668D29A4084B007100C0 /* ProductsListVC+CustomNavigationController.swift in Sources */,
 				319F669429A5280E007100C0 /* ProductsGalleryCollectionViewCell.swift in Sources */,
@@ -564,6 +605,7 @@
 				31FDE478299D3C4200397DED /* RelatedManager.swift in Sources */,
 				31B710F6290FD0C500E6CA04 /* PartnersData.swift in Sources */,
 				31FDE47A299D706A00397DED /* RelatedCollectionViewCell.swift in Sources */,
+				31DAA59429BC82CB00BCD245 /* CartViewController.swift in Sources */,
 				31ACD44D27FE183B00DAD756 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,6 +617,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				31ACD44427FE170600DAD756 /* Base */,
+				31DAA59D29BF1B8900BCD245 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -586,6 +629,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -647,6 +691,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -711,8 +756,8 @@
 				INFOPLIST_FILE = cerenadaApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -725,7 +770,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -742,8 +787,9 @@
 				INFOPLIST_FILE = cerenadaApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -754,7 +800,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

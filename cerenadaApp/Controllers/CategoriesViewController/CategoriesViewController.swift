@@ -21,6 +21,10 @@ class CategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        categoriesTableView.delegate = self
+        categoriesTableView.dataSource = self
+        categoriesTableView.register(CategoriesTableViewCell.self, forCellReuseIdentifier: "categoriesCell")
+        
         addViews()
         setupConstraints()
         

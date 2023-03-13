@@ -12,19 +12,30 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         generateTabBar()
+        setTabBarAppearance()
+        
     }
     
     private func generateTabBar() {
-        let navVC = UINavigationController()
-        navVC.viewControllers = [MainViewController()]
+        let mainNavVC = UINavigationController()
+        mainNavVC.viewControllers = [MainViewController()]
+        let categoriesNavVC = UINavigationController()
+        categoriesNavVC.viewControllers = [CategoriesViewController()]
         
-        viewControllers = [generateViewControllers(viewController: navVC,
+        viewControllers = [generateViewControllers(viewController: mainNavVC,
                                                    title: "Главная",
                                                    image: UIImage(systemName: "house")),
-//                           generateViewControllers(viewController: <#T##UIViewController#>, title: <#T##String#>, image: <#T##UIImage?#>),
-//                           generateViewControllers(viewController: <#T##UIViewController#>, title: <#T##String#>, image: <#T##UIImage?#>),
-//                           generateViewControllers(viewController: <#T##UIViewController#>, title: <#T##String#>, image: <#T##UIImage?#>),
-//                           generateViewControllers(viewController: <#T##UIViewController#>, title: <#T##String#>, image: <#T##UIImage?#>)
+                           generateViewControllers(viewController: categoriesNavVC,
+                                                   title: "Каталог",
+                                                   image: UIImage(systemName: "text.magnifyingglass")),
+                           generateViewControllers(viewController: CartViewController(),
+                                                   title: "Корзина", image: UIImage(systemName: "bag")),
+                           generateViewControllers(viewController: FavouritesViewController(),
+                                                   title: "Избранное",
+                                                   image: UIImage(systemName: "heart")),
+                           generateViewControllers(viewController: UserProfileViewController(),
+                                                   title: "Профиль",
+                                                   image: UIImage(systemName: "person"))
         ]
     }
     
@@ -33,5 +44,12 @@ class TabBarController: UITabBarController {
         viewController.tabBarItem.image = image
         
         return viewController
+    }
+    
+    private func setTabBarAppearance() {
+        
+        tabBar.backgroundColor = .systemGray6
+        tabBar.tintColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
+        tabBar.unselectedItemTintColor = #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 0.8902369619)
     }
 }

@@ -117,7 +117,7 @@ class MainViewController: UIViewController{
         layout.minimumInteritemSpacing = 0
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsHorizontalScrollIndicator = false
-        cv.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 50, right: 20)
+        cv.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
         cv.layer.cornerRadius = 10
         cv.backgroundColor = .clear
         cv.translatesAutoresizingMaskIntoConstraints = false
@@ -141,9 +141,7 @@ class MainViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
+                
         searchController = UISearchController(searchResultsController: vc)
         searchController.searchBar.delegate = vc
         searchController.delegate = self

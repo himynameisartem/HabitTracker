@@ -1,24 +1,24 @@
 //
-//  CategoryManager.swift
+//  SearchManager.swift
 //  cerenadaApp
 //
-//  Created by Артем Кудрявцев on 25.10.2022.
+//  Created by Артем Кудрявцев on 13.03.2023.
 //
 
 import UIKit
 import Alamofire
 
-protocol NewProductManagerDelegate {
-    func updateInterface(_: NetworkClient, with data: [ProductCardData])
+protocol SearchManagerDelegate {
+    func updateInterface(_: SearchManager, with data: [ProductCardData])
 }
 
-class NetworkClient {
+class SearchManager {
     
-    var delegate: NewProductManagerDelegate?
+    var delegate: SearchManagerDelegate?
     
-    func request(category: Int) {
+    func request(searchText: String) {
         
-        let parameters = ["category": category]
+        let parameters = ["search": searchText]
         
         let url = "https://cerenada.ru/wp-json/wc/v3/products?&consumer_key=ck_92c8b3a8dad21a0c0c63ca32162d1de98741e8b7&consumer_secret=cs_50ddecfd1e1624327a381add4d7fb7b7464b98ae&per_page=100&category=&status=publish"
         

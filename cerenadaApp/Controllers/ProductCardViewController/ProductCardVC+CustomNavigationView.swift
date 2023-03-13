@@ -85,7 +85,8 @@ extension ProductCardViewController {
     
     @objc func returnButtonTapped() {
         backButton.showAnimation {
-            self.navigationController?.popViewController(animated: true)            
+            self.navigationController?.popViewController(animated: true)
+//            self.dismiss(animated: true)
         }
     }
 }

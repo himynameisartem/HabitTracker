@@ -20,6 +20,7 @@ class ProductsListViewController: UIViewController {
     var topCategoryCollectionViewConstraint = NSLayoutConstraint()
     var currentScale : CGFloat = 6.0
     let productListClient = NetworkClient()
+    let searchListClient = SearchManager()
     var selectedLikeImage = "heart"
     
     let coloredSafeArea: UIView = {
@@ -125,7 +126,9 @@ class ProductsListViewController: UIViewController {
         super.viewDidLoad()
         
         productListClient.delegate = self
-        productListClient.request(category: 2215)
+        productListClient.request(category: categoryID)
+        
+        searchListClient.delegate = self
 
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
@@ -191,10 +194,8 @@ class ProductsListViewController: UIViewController {
 
 extension ProductsListViewController: NewProductManagerDelegate {
     func updateInterface(_: NetworkClient, with data: [ProductCardData]) {
-                
-        self.productList = data
-        self.productCollectionView.reloadData()
-        
+            self.productList = data
+            self.productCollectionView.reloadData()
     }
 }
 
@@ -221,4 +222,14 @@ extension ProductsListViewController {
        }
        return size
    }
+}
+
+extension ProductsListViewController: SearchManagerDelegate {
+    func updateInterface(_: SearchManager, with data: [ProductCardData]) {
+        self.productList = data
+        self.productCollectionView.reloadData()
+    }
+    
+    
+    
 }

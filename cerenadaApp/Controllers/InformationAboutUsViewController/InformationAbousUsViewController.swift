@@ -105,6 +105,7 @@ class InformationAbousUsViewController {
             viewController.navigationItem.titleView?.alpha = 0
             searchController.searchBar.alpha = 0
             infoButton.alpha = 0
+            viewController.tabBarController?.tabBar.isHidden = true
             
         } completion: { done in
             
@@ -171,7 +172,9 @@ class InformationAbousUsViewController {
                     self.targetSearch.searchBar.isHidden = false
                     self.targetSearch.searchBar.alpha = 1
                     self.targetInfoButton.alpha = 0.5
+                    self.targetVC.tabBarController?.tabBar.isHidden = false
 
+                    
                 } completion: { done in
                     
                     if done {
