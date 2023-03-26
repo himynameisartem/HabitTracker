@@ -14,8 +14,6 @@ extension CategoriesViewController: UISearchControllerDelegate {
         searchController.searchResultsUpdater = vc
         searchController.searchBar.placeholder = "Поиск"
         searchController.searchBar.layer.borderColor = UIColor.white.cgColor
-        searchController.definesPresentationContext = false
-        searchController.hidesNavigationBarDuringPresentation = true
         searchController.showsSearchResultsController = true
         searchController.searchBar.sizeToFit()
 

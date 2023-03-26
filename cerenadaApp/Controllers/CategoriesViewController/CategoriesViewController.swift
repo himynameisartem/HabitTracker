@@ -11,22 +11,29 @@ class CategoriesViewController: UIViewController {
     
     let vc = ProductsListViewController()
     let searchController = UISearchController()
+    let navigationBarAppearance = UINavigationBar.appearance()
     
     let categoriesTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.layer.cornerRadius = 10
+        tableView.makeShadow()
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         categoriesTableView.delegate = self
         categoriesTableView.dataSource = self
         categoriesTableView.register(CategoriesTableViewCell.self, forCellReuseIdentifier: "categoriesCell")
         
         addViews()
         setupConstraints()
+        
+        navigationController?.navigationBar.barTintColor = .systemGray6
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationItem.hidesSearchBarWhenScrolling = false
         
         view.backgroundColor = .systemGray6
     }
@@ -38,11 +45,10 @@ class CategoriesViewController: UIViewController {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            categoriesTableView.topAnchor.constraint(equalTo: view.topAnchor),
-            categoriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            categoriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            categoriesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            categoriesTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            categoriesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            categoriesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            categoriesTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
-    
 }
