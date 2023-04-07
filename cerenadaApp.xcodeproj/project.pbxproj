@@ -49,6 +49,8 @@
 		31DAA59729BC837300BCD245 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA59629BC837300BCD245 /* FavouritesViewController.swift */; };
 		31DAA59A29BC840200BCD245 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA59929BC840200BCD245 /* UserProfileViewController.swift */; };
 		31DAA59C29BF113600BCD245 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA59B29BF113600BCD245 /* SearchManager.swift */; };
+		31E3172529DD7DFE00F7BF57 /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E3172429DD7DFE00F7BF57 /* CategoriesModel.swift */; };
+		31E3172729DD7E0800F7BF57 /* CategoriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E3172629DD7E0800F7BF57 /* CategoriesManager.swift */; };
 		31FDE4502994E99500397DED /* MainVC+SearchBar+UpdateSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE44F2994E99500397DED /* MainVC+SearchBar+UpdateSearchResults.swift */; };
 		31FDE4522994E9F200397DED /* MainVC+CollectionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE4512994E9F200397DED /* MainVC+CollectionViews.swift */; };
 		31FDE4542994EA4D00397DED /* MainVC+TableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FDE4532994EA4D00397DED /* MainVC+TableViews.swift */; };
@@ -116,6 +118,8 @@
 		31DAA59929BC840200BCD245 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		31DAA59B29BF113600BCD245 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		31DAA59D29BF1B8900BCD245 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		31E3172429DD7DFE00F7BF57 /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
+		31E3172629DD7E0800F7BF57 /* CategoriesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesManager.swift; sourceTree = "<group>"; };
 		31FDE44F2994E99500397DED /* MainVC+SearchBar+UpdateSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+SearchBar+UpdateSearchResults.swift"; sourceTree = "<group>"; };
 		31FDE4512994E9F200397DED /* MainVC+CollectionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+CollectionViews.swift"; sourceTree = "<group>"; };
 		31FDE4532994EA4D00397DED /* MainVC+TableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+TableViews.swift"; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 			children = (
 				31FDE46829953B3400397DED /* PreviewData */,
 				314B7FF7293936DC004CA151 /* ProductData */,
+				31E3172329DD7DBD00F7BF57 /* CategoriesData */,
 				31FDE46729953B1000397DED /* PartersData */,
 				31FDE471299B76BA00397DED /* ReviewsData */,
 				31FDE476299D3C1300397DED /* RelatedData */,
@@ -347,6 +352,15 @@
 			path = UserProfileViewController;
 			sourceTree = "<group>";
 		};
+		31E3172329DD7DBD00F7BF57 /* CategoriesData */ = {
+			isa = PBXGroup;
+			children = (
+				31E3172429DD7DFE00F7BF57 /* CategoriesModel.swift */,
+				31E3172629DD7E0800F7BF57 /* CategoriesManager.swift */,
+			);
+			path = CategoriesData;
+			sourceTree = "<group>";
+		};
 		31FDE4592995300000397DED /* InformationAboutUsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,7 +460,7 @@
 				31ACD43127FE170500DAD756 /* Sources */,
 				31ACD43227FE170500DAD756 /* Frameworks */,
 				31ACD43327FE170500DAD756 /* Resources */,
-				76014484756C657CD516A71C /* [CP] Embed Pods Frameworks */,
+				EE1F1D41BE2099BDE81E629D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -526,7 +540,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		76014484756C657CD516A71C /* [CP] Embed Pods Frameworks */ = {
+		EE1F1D41BE2099BDE81E629D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -567,6 +581,7 @@
 				31ACD43927FE170500DAD756 /* AppDelegate.swift in Sources */,
 				31FDE4502994E99500397DED /* MainVC+SearchBar+UpdateSearchResults.swift in Sources */,
 				319F668229A25406007100C0 /* NextButtonCollectionViewCell.swift in Sources */,
+				31E3172729DD7E0800F7BF57 /* CategoriesManager.swift in Sources */,
 				31DAA58C29BC795200BCD245 /* CategoriesVC+TableViewDelegate.swift in Sources */,
 				31DAA59C29BF113600BCD245 /* SearchManager.swift in Sources */,
 				319F669229A40D2C007100C0 /* ProductsListVC+CollectionViewDlegate.swift in Sources */,
@@ -577,6 +592,7 @@
 				319F668729A264F9007100C0 /* WriteReviewViewController.swift in Sources */,
 				314B7FFC2939392C004CA151 /* ProductCardManager.swift in Sources */,
 				31FDE4542994EA4D00397DED /* MainVC+TableViews.swift in Sources */,
+				31E3172529DD7DFE00F7BF57 /* CategoriesModel.swift in Sources */,
 				31FDE4582995055F00397DED /* UIViewExtensions.swift in Sources */,
 				310F966D297C6B7200B5F5B8 /* InformationAboutUsModel.swift in Sources */,
 				31B710FB290FF7E700E6CA04 /* InfoTableViewCell.swift in Sources */,

@@ -13,6 +13,8 @@ class CategoriesViewController: UIViewController {
     let searchController = UISearchController()
     let navigationBarAppearance = UINavigationBar.appearance()
     
+    let categoriesClient = CategoriesClient()
+    
     let categoriesTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,6 +25,9 @@ class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        categoriesClient.delegate = self
+        categoriesClient.request()
                 
         categoriesTableView.delegate = self
         categoriesTableView.dataSource = self
@@ -51,4 +56,31 @@ class CategoriesViewController: UIViewController {
             categoriesTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
+}
+
+extension CategoriesViewController: CategoriesManagerDelegate {
+    func updateInterface(_: CategoriesClient, with data: [Categories]) {
+        for i in data {
+            
+//            if i.parent == 0 {
+                
+                if i.name.contains("Женские") {
+                    print(i.name + " " + "\(i.id)")
+                } else {
+                    print(i.name + " " + "\(i.id)")
+                    
+//                    for j in data {
+//                        if j.parent == i.id {
+//                            print("     " + j.name + " " + "\(j.parent)")
+//                        }
+//                    }
+                }
+                
+//            }
+            
+        }
+    }
+    
+    
+    
 }
