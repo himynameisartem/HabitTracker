@@ -9,9 +9,7 @@ import UIKit
 import MessageUI
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         infoArray.count
     }

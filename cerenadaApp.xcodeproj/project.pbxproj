@@ -40,6 +40,15 @@
 		31B710F4290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B710F3290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift */; };
 		31B710F6290FD0C500E6CA04 /* PartnersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B710F5290FD0C500E6CA04 /* PartnersData.swift */; };
 		31B710FB290FF7E700E6CA04 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B710FA290FF7E700E6CA04 /* InfoTableViewCell.swift */; };
+		31C52E6829FABF21009F6859 /* MainScreenViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C52E6729FABF21009F6859 /* MainScreenViewModelProtocol.swift */; };
+		31C52E6A29FABF4C009F6859 /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C52E6929FABF4C009F6859 /* MainScreenViewModel.swift */; };
+		31C52E6E29FAC3C7009F6859 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C52E6D29FAC3C7009F6859 /* Product.swift */; };
+		31C52E7129FAC4A1009F6859 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C52E7029FAC4A1009F6859 /* NetworkManager.swift */; };
+		31C52E7429FAC7AB009F6859 /* MainScreenNewProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C52E7329FAC7AB009F6859 /* MainScreenNewProductsCollectionViewCell.swift */; };
+		31C52E7629FAC816009F6859 /* MainScreenNewProductsCollectionViewCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C52E7529FAC816009F6859 /* MainScreenNewProductsCollectionViewCellViewModelProtocol.swift */; };
+		31C52E7829FAC82B009F6859 /* MainScreenNewProductsCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C52E7729FAC82B009F6859 /* MainScreenNewProductsCollectionViewCellViewModel.swift */; };
+		31C52E7A29FACF1E009F6859 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C52E7929FACF1E009F6859 /* MainScreenViewController.swift */; };
+		31C52E7E29FAF075009F6859 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C52E7D29FAF075009F6859 /* ImageManager.swift */; };
 		31DAA58529BC6EBD00BCD245 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA58429BC6EBD00BCD245 /* TabBarController.swift */; };
 		31DAA58A29BC787600BCD245 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA58929BC787600BCD245 /* CategoriesViewController.swift */; };
 		31DAA58C29BC795200BCD245 /* CategoriesVC+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DAA58B29BC795200BCD245 /* CategoriesVC+TableViewDelegate.swift */; };
@@ -108,6 +117,15 @@
 		31B710F3290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersCollectionViewCell.swift; sourceTree = "<group>"; };
 		31B710F5290FD0C500E6CA04 /* PartnersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersData.swift; sourceTree = "<group>"; };
 		31B710FA290FF7E700E6CA04 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		31C52E6729FABF21009F6859 /* MainScreenViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModelProtocol.swift; sourceTree = "<group>"; };
+		31C52E6929FABF4C009F6859 /* MainScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModel.swift; sourceTree = "<group>"; };
+		31C52E6D29FAC3C7009F6859 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		31C52E7029FAC4A1009F6859 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		31C52E7329FAC7AB009F6859 /* MainScreenNewProductsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenNewProductsCollectionViewCell.swift; sourceTree = "<group>"; };
+		31C52E7529FAC816009F6859 /* MainScreenNewProductsCollectionViewCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenNewProductsCollectionViewCellViewModelProtocol.swift; sourceTree = "<group>"; };
+		31C52E7729FAC82B009F6859 /* MainScreenNewProductsCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenNewProductsCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		31C52E7929FACF1E009F6859 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		31C52E7D29FAF075009F6859 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		31DAA58429BC6EBD00BCD245 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		31DAA58929BC787600BCD245 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		31DAA58B29BC795200BCD245 /* CategoriesVC+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesVC+TableViewDelegate.swift"; sourceTree = "<group>"; };
@@ -227,6 +245,7 @@
 		31ACD42C27FE170500DAD756 = {
 			isa = PBXGroup;
 			children = (
+				31C52E6B29FAC396009F6859 /* MVC */,
 				31ACD43727FE170500DAD756 /* cerenadaApp */,
 				31ACD43627FE170500DAD756 /* Products */,
 				5002F1A5CA36EB88CE4C8AFB /* Pods */,
@@ -245,12 +264,10 @@
 		31ACD43727FE170500DAD756 /* cerenadaApp */ = {
 			isa = PBXGroup;
 			children = (
-				31ACD43827FE170500DAD756 /* AppDelegate.swift */,
-				314B7FF6293936BD004CA151 /* Model */,
-				31B710F0290D49CE00E6CA04 /* Controllers */,
-				31ACD44127FE170600DAD756 /* Assets.xcassets */,
-				31ACD44327FE170600DAD756 /* LaunchScreen.storyboard */,
-				31ACD44627FE170600DAD756 /* Info.plist */,
+				31C52E6629FABEE0009F6859 /* MainScreenViewController */,
+				31C52E6C29FAC3A8009F6859 /* Models */,
+				31C52E6F29FAC482009F6859 /* Services */,
+				31C52E6529FABE81009F6859 /* Support */,
 			);
 			path = cerenadaApp;
 			sourceTree = "<group>";
@@ -299,6 +316,64 @@
 				310F967229850C0300B5F5B8 /* ContactTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		31C52E6529FABE81009F6859 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				31ACD43827FE170500DAD756 /* AppDelegate.swift */,
+				31ACD44127FE170600DAD756 /* Assets.xcassets */,
+				31ACD44627FE170600DAD756 /* Info.plist */,
+				31ACD44327FE170600DAD756 /* LaunchScreen.storyboard */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		31C52E6629FABEE0009F6859 /* MainScreenViewController */ = {
+			isa = PBXGroup;
+			children = (
+				31C52E7929FACF1E009F6859 /* MainScreenViewController.swift */,
+				31C52E6729FABF21009F6859 /* MainScreenViewModelProtocol.swift */,
+				31C52E6929FABF4C009F6859 /* MainScreenViewModel.swift */,
+				31C52E7229FAC77D009F6859 /* MainScreenNewProductsCollectionViewCell */,
+			);
+			path = MainScreenViewController;
+			sourceTree = "<group>";
+		};
+		31C52E6B29FAC396009F6859 /* MVC */ = {
+			isa = PBXGroup;
+			children = (
+				314B7FF6293936BD004CA151 /* Model */,
+				31B710F0290D49CE00E6CA04 /* Controllers */,
+			);
+			path = MVC;
+			sourceTree = "<group>";
+		};
+		31C52E6C29FAC3A8009F6859 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				31C52E6D29FAC3C7009F6859 /* Product.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		31C52E6F29FAC482009F6859 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				31C52E7029FAC4A1009F6859 /* NetworkManager.swift */,
+				31C52E7D29FAF075009F6859 /* ImageManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		31C52E7229FAC77D009F6859 /* MainScreenNewProductsCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				31C52E7329FAC7AB009F6859 /* MainScreenNewProductsCollectionViewCell.swift */,
+				31C52E7529FAC816009F6859 /* MainScreenNewProductsCollectionViewCellViewModelProtocol.swift */,
+				31C52E7729FAC82B009F6859 /* MainScreenNewProductsCollectionViewCellViewModel.swift */,
+			);
+			path = MainScreenNewProductsCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		31DAA58329BC6E9400BCD245 /* TabBarController */ = {
@@ -567,6 +642,7 @@
 				317261B92948B4E700B73E41 /* AddToCartTableViewCell.swift in Sources */,
 				314B7FF529374FFA004CA151 /* ProductCardViewController.swift in Sources */,
 				314B7FFE293CCCFC004CA151 /* GalleryCollectionViewCell.swift in Sources */,
+				31C52E7829FAC82B009F6859 /* MainScreenNewProductsCollectionViewCellViewModel.swift in Sources */,
 				31DAA59729BC837300BCD245 /* FavouritesViewController.swift in Sources */,
 				31FDE470299A8C4800397DED /* ProductCardVC+TextFieldDelegate.swift in Sources */,
 				319F669629AE0005007100C0 /* CategoriesCollectionViewCell.swift in Sources */,
@@ -587,6 +663,7 @@
 				319F669229A40D2C007100C0 /* ProductsListVC+CollectionViewDlegate.swift in Sources */,
 				319F668D29A4084B007100C0 /* ProductsListVC+CustomNavigationController.swift in Sources */,
 				319F669429A5280E007100C0 /* ProductsGalleryCollectionViewCell.swift in Sources */,
+				31C52E7629FAC816009F6859 /* MainScreenNewProductsCollectionViewCellViewModelProtocol.swift in Sources */,
 				31FDE461299537B600397DED /* ProductCardVC+ScrollViewDelegate.swift in Sources */,
 				319F668B29A3BB13007100C0 /* WriteReviewVC+TextFieldDelegate.swift in Sources */,
 				319F668729A264F9007100C0 /* WriteReviewViewController.swift in Sources */,
@@ -596,9 +673,12 @@
 				31FDE4582995055F00397DED /* UIViewExtensions.swift in Sources */,
 				310F966D297C6B7200B5F5B8 /* InformationAboutUsModel.swift in Sources */,
 				31B710FB290FF7E700E6CA04 /* InfoTableViewCell.swift in Sources */,
+				31C52E6829FABF21009F6859 /* MainScreenViewModelProtocol.swift in Sources */,
+				31C52E7E29FAF075009F6859 /* ImageManager.swift in Sources */,
 				31B710EE290D495C00E6CA04 /* PresentationCollectionViewCell.swift in Sources */,
 				31FDE4562994EBF100397DED /* MainVC+CustomNavigationView.swift in Sources */,
 				31FDE46629953ABC00397DED /* InformationAboutUsData.swift in Sources */,
+				31C52E6A29FABF4C009F6859 /* MainScreenViewModel.swift in Sources */,
 				31DAA59129BC7A9D00BCD245 /* CategoriesVC+SearchControllerDelegate.swift in Sources */,
 				316820722907CCC000E28F62 /* NewProductManager.swift in Sources */,
 				31FDE45B2995313800397DED /* ProductCardVC+CollectionViews.swift in Sources */,
@@ -606,11 +686,14 @@
 				31FDE475299B76FA00397DED /* ReviewsManager.swift in Sources */,
 				31B710F2290E863A00E6CA04 /* NewProductsCollectionViewCell.swift in Sources */,
 				31DAA58A29BC787600BCD245 /* CategoriesViewController.swift in Sources */,
+				31C52E7A29FACF1E009F6859 /* MainScreenViewController.swift in Sources */,
 				31FDE45D2995315300397DED /* ProductCardVC+TableViews.swift in Sources */,
+				31C52E7129FAC4A1009F6859 /* NetworkManager.swift in Sources */,
 				31DAA58F29BC79B300BCD245 /* CategoriesTableViewCell.swift in Sources */,
 				319F668929A27624007100C0 /* WriteReviewController+CustomNavigationView.swift in Sources */,
 				31B710F4290FCC0E00E6CA04 /* PartnersCollectionViewCell.swift in Sources */,
 				31FDE4522994E9F200397DED /* MainVC+CollectionViews.swift in Sources */,
+				31C52E6E29FAC3C7009F6859 /* Product.swift in Sources */,
 				316820702907CC8000E28F62 /* ProductCardModel.swift in Sources */,
 				31261E2429B9F3D20072CC86 /* ProductLIstVC+SearchBarDelegate.swift in Sources */,
 				31FDE473299B76E700397DED /* ReviewsModel.swift in Sources */,
@@ -619,6 +702,7 @@
 				312DB310294DBECE003A8043 /* ReviewsCollectionViewCell.swift in Sources */,
 				319F669829AE1536007100C0 /* ProductListVC+ScrollViewDelegate.swift in Sources */,
 				31FDE478299D3C4200397DED /* RelatedManager.swift in Sources */,
+				31C52E7429FAC7AB009F6859 /* MainScreenNewProductsCollectionViewCell.swift in Sources */,
 				31B710F6290FD0C500E6CA04 /* PartnersData.swift in Sources */,
 				31FDE47A299D706A00397DED /* RelatedCollectionViewCell.swift in Sources */,
 				31DAA59429BC82CB00BCD245 /* CartViewController.swift in Sources */,
@@ -769,7 +853,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HZU66MWZY7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = cerenadaApp/Info.plist;
+				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/CommercialApp/CerenadaApp/cerenadaApp/cerenadaApp/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
@@ -800,7 +884,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HZU66MWZY7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = cerenadaApp/Info.plist;
+				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/CommercialApp/CerenadaApp/cerenadaApp/cerenadaApp/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
