@@ -80,7 +80,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     contactCell.contactButton.setTitleColor(.black, for: .normal)
                     contactCell.contactButton.isHidden = false
                     
-                    
                 } else if indexPath.row == 2 {
                     
                     contactCell.contactButton.tintColor = #colorLiteral(red: 0, green: 0.6783743501, blue: 0, alpha: 1)
@@ -98,7 +97,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     
                 }
                 return contactCell
-                
             }
         }
         

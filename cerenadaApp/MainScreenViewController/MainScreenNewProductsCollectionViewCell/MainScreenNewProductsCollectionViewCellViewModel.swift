@@ -10,10 +10,12 @@ import Foundation
 class MainScreenNewProductsCollectionViewCellViewModel: MainScreenNewProductsCollectionViewCellViewModelProtocol {
     
     private var product: Product
-    var productImage: Data? {
+    
+    var imageString: String? {
         guard let image = product.images?[0].src else { return nil }
-        return ImageManager.shared.getImageData(from: image)
+        return image
     }
+    
     var productName: String? {
         return product.name
     }

@@ -9,17 +9,16 @@ import UIKit
 
 class MainScreenNewProductsCollectionViewCell: UICollectionViewCell {
     
-    let shadowView = UIView()
-    let imageView = UIImageView()
-    let name = UILabel()
-    let price = UILabel()
+    private let shadowView = UIView()
+    private let imageView = UIImageView()
+    private let name = UILabel()
+    private let price = UILabel()
     
     var viewModel: MainScreenNewProductsCollectionViewCellViewModelProtocol! {
         didSet {
             name.text = viewModel.productName
-            price.text = viewModel.productPrice
-            guard let image = viewModel.productImage else { return }
-            imageView.image = UIImage(data: image)
+            price.text = "  \(viewModel.productPrice ?? "")  "
+            ImageManager.shared.getImageData(from: viewModel.imageString, imageView: imageView)
         }
     }
     
@@ -29,6 +28,7 @@ class MainScreenNewProductsCollectionViewCell: UICollectionViewCell {
         setupStyle()
         setupUI()
         setupConstraints()
+        
     }
     
     func setupUI() {
@@ -67,12 +67,12 @@ class MainScreenNewProductsCollectionViewCell: UICollectionViewCell {
     func setupConstraints() {
         
         NSLayoutConstraint.activate([
-            shadowView.topAnchor.constraint(equalTo: topAnchor),
+            shadowView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             shadowView.leadingAnchor.constraint(equalTo: leadingAnchor),
             shadowView.trailingAnchor.constraint(equalTo: trailingAnchor),
             shadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -45),
             
-            imageView.topAnchor.constraint(equalTo: shadowView.topAnchor, constant: 10),
+            imageView.topAnchor.constraint(equalTo: shadowView.topAnchor, constant: 0),
             imageView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor, constant: 0),
             imageView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: 0),
             imageView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor, constant: 0),

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MainScreenNewProductsCollectionViewCellViewModelProtocol {
-    var productImage: Data? { get }
+    var imageString: String? { get }
     var productName: String? { get }
     var productPrice: String? { get }
     init(product: Product)
