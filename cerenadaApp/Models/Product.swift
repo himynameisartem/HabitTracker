@@ -1,22 +1,22 @@
 //
-//  ProductCardModel.swift
+//  ProductModel.swift
 //  cerenadaApp
 //
-//  Created by Артем Кудрявцев on 25.10.2022.
+//  Created by Артем Кудрявцев on 27.04.2023.
 //
 
-import UIKit
+import Foundation
 
-struct ProductCardData: Codable {
-    let id: Int
-    let name: String
-    let description: String
-    let sku: String
-    let price: String
-    let status: String
-    let images: [Images]
-    let attributes: [Attributes]
-    let meta_data: [MetaData]
+class Product: Codable {
+    let id: Int?
+    let name: String?
+    let description: String?
+    let sku: String?
+    let price: String?
+    let status: String?
+    let images: [Images]?
+    let attributes: [Attributes]?
+    let meta_data: [MetaData]?
     let related_ids: [Int]?
 }
 

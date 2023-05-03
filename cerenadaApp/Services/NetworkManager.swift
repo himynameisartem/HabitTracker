@@ -1,24 +1,21 @@
 //
-//  CategoryManager.swift
+//  NetworkManager.swift
 //  cerenadaApp
 //
-//  Created by Артем Кудрявцев on 25.10.2022.
+//  Created by Артем Кудрявцев on 27.04.2023.
 //
 
 import UIKit
 import Alamofire
 
-protocol NewProductManagerDelegate {
-    func updateInterface(_: NetworkClient, with data: [ProductCardData])
-}
 
-class NetworkClient {
+class NetworkManager {
+
+    static let shared = NetworkManager()
     
-    var delegate: NewProductManagerDelegate?
-    
-    func request(category: Int) {
+    func request(completion: @escaping(_ products: [Product]) -> ()) {
         
-        let parameters = ["category": category]
+        let parameters = ["category": 2215]
         
         let url = "https://cerenada.ru/wp-json/wc/v3/products?&consumer_key=ck_92c8b3a8dad21a0c0c63ca32162d1de98741e8b7&consumer_secret=cs_50ddecfd1e1624327a381add4d7fb7b7464b98ae&per_page=100&category=&status=publish"
         
@@ -26,17 +23,17 @@ class NetworkClient {
             switch responce.result {
             case .success(let data) :
                 do {
-                    let jsonData = try JSONDecoder().decode([ProductCardData].self, from: data!)
-                    self.delegate?.updateInterface(self, with: jsonData)
+                    let jsonData = try JSONDecoder().decode([Product].self, from: data!)
+                    completion(jsonData)
                 } catch {
                     print("MatchesParseError")
                 }
             case .failure(let error):
                 print(error.localizedDescription)
-                
             }
         }
         
     }
     
 }
+

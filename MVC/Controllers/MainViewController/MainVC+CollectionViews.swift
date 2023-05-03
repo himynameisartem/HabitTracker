@@ -36,6 +36,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.previewImageView.image = UIImage(named: previewArray[indexPath.row])
             
             return cell
+            
         } else if collectionView == newProductCollectionView {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newProductCell", for: indexPath) as! NewProductsCollectionViewCell
