@@ -8,6 +8,10 @@
 import Foundation
 
 protocol MainScreenViewModelProtocol {
+        //Presentation
+    var previewImages: [String] { get }
+    func previewCellViewModel(for indexPath: IndexPath) -> PreviewCollectionViewModelProtocol?
+    
         //NewProduct
     var newProducts: [Product] { get }
     func fetchNewProducts(complition: @escaping() -> Void)
@@ -29,4 +33,9 @@ protocol MainScreenViewModelProtocol {
         //Contacts
     var contacts: Contacts { get }
     func contactsCellViewModel() -> ContactsTableViewCellViewModelProtocol?
+    
+        //Partners
+    var partners: [Partner] { get }
+    func partnersViewModel(for indexPath: IndexPath) -> OurPartnersCollectionViewCellViewModelProtocol?
+    
 }

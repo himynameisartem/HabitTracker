@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import MessageUI
 
 class ContactsTableViewCell: UITableViewCell {
     
+    private let mailComposeVC = MFMailComposeViewController()
     private let infoLabel = UILabel()
     private let contactButton = UIButton()
     private let imagePoint = UIImageView()
@@ -25,23 +27,23 @@ class ContactsTableViewCell: UITableViewCell {
         didSet {
             guard let indexPath = indexPath else { return }
             if indexPath.row == 1 {
+                
                 guard let email = viewModel.email else { return }
-                self.contactButton.setTitle("  \(email)  ", for: .normal)
-                self.contactButton.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-                self.contactButton.setImage(UIImage(systemName: "envelope"), for: .normal)
-                self.contactButton.titleLabel?.adjustsFontSizeToFitWidth = true
-                self.contactButton.titleLabel?.minimumScaleFactor = 0.5
-                self.contactButton.setTitleColor(.black, for: .normal)
-                self.contactButton.addTarget(self, action: #selector(sendEmail), for: .touchDown)
+                buttonSetting(button: self.contactButton,
+                              title: email,
+                              color: Color.shared.mailButtonColor,
+                              imageSystemName: "envelope")
+                self.contactButton.addTarget(self, action: #selector(sendMail), for: .touchDown)
+                
             } else if indexPath.row == 2 {
+                
                 guard let phoneNumber = viewModel.phoneNumber else { return }
-                self.contactButton.setTitle("  \(phoneNumber)  ", for: .normal)
-                self.contactButton.tintColor = #colorLiteral(red: 0, green: 0.6783743501, blue: 0, alpha: 1)
-                self.contactButton.setImage(UIImage(systemName: "phone.fill"), for: .normal)
-                self.contactButton.titleLabel?.adjustsFontSizeToFitWidth = true
-                self.contactButton.titleLabel?.minimumScaleFactor = 0.5
-                self.contactButton.setTitleColor(.black, for: .normal)
+                buttonSetting(button: self.contactButton,
+                              title: phoneNumber,
+                              color: Color.shared.phoneButtonColor,
+                              imageSystemName: "phone.fill")
                 self.contactButton.addTarget(self, action: #selector(callPhone), for: .touchDown)
+                
             } else {
                 self.contactButton.isHidden = true
             }
@@ -73,11 +75,18 @@ class ContactsTableViewCell: UITableViewCell {
         contactButton.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 14)
         contactButton.layer.cornerRadius = 5
         contactButton.backgroundColor = .white
+        contactButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        contactButton.titleLabel?.minimumScaleFactor = 0.5
+        contactButton.setTitleColor(.black, for: .normal)
         contactButton.makeShadow()
         
         imagePoint.translatesAutoresizingMaskIntoConstraints = false
         imagePoint.image = UIImage(systemName: "circle.fill")
         imagePoint.tintColor = .black
+        
+        mailComposeVC.mailComposeDelegate = self
+        mailComposeVC.setToRecipients([contactsData.email])
+        mailComposeVC.setSubject("")
     }
     
     func setupConstraints() {
@@ -87,7 +96,7 @@ class ContactsTableViewCell: UITableViewCell {
             contactButton.leadingAnchor.constraint(equalTo: infoLabel.trailingAnchor, constant: 10),
             contactButton.heightAnchor.constraint(equalToConstant: 25),
             contactButton.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -20),
-
+            
             infoLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
             infoLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
@@ -101,15 +110,35 @@ class ContactsTableViewCell: UITableViewCell {
         ])
     }
     
-    @objc func sendEmail(sender: UIButton) {
+    private func buttonSetting(button: UIButton, title: String, color: UIColor, imageSystemName: String) {
+        button.setTitle("  \(title)  ", for: .normal)
+        button.tintColor = color
+        button.setImage(UIImage(systemName: imageSystemName), for: .normal)
+    }
+    
+    @objc private func sendMail(sender: UIButton) {
         sender.showAnimation {
-            print("sendEmail")
+            self.sendEmail(viewController: MainScreenViewController())
         }
     }
     
-    @objc func callPhone(sender: UIButton) {
+    @objc private func callPhone(sender: UIButton) {
         sender.showAnimation {
-            print("callPhone")
+            CallPhone.shared.callPhone(with: contactsData.phoneNumber)
+        }
+    }
+}
+
+//MARK: -MFMailComposeViewControllerDelegate
+
+extension ContactsTableViewCell: MFMailComposeViewControllerDelegate {
+        
+    private func sendEmail(viewController: UIViewController) {
+        let mailComposeViewController = mailComposeVC
+        if MFMailComposeViewController.canSendMail() {
+            viewController.present(mailComposeViewController, animated: true)
+        } else {
+            print("Нет доступа к iCloud")
         }
     }
 }

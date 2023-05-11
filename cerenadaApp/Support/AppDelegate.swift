@@ -16,8 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         let navVC = UINavigationController()
-//        let vc = TabBarController()
         let vc = MainScreenViewController()
+//        let vc = TabBarController()
+//        let vc = MainViewController()
 //        vc.selectedIndex = 0
         navVC.viewControllers = [vc]
         window?.rootViewController = navVC

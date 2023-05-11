@@ -29,18 +29,21 @@ class InformationView {
     }()
     
     private var exitButton = UIButton()
-    
     private var targetVC = UIViewController()
     private var targetSearch = UISearchController()
     private var targetTableView = UITableView()
     private var targetInfoButton = UIButton()
     
+    //MARK: - ShowInformationView
+    
     func showInformation(viewController: UIViewController, tableView: UITableView) {
+        
             //SetupTargetView
         guard let targetView = viewController.view else { return }
         blurView.frame = targetView.bounds
         frame = targetView.frame
-
+        targetVC = viewController
+        
             //SetupUI
         targetView.addSubview(blurView)
         targetView.addSubview(informationView)
@@ -59,20 +62,34 @@ class InformationView {
         setupConstraints(view: informationView, tableView: tableView)
         tableView.reloadData()
         
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: exitButton.bottomAnchor, constant: 10),
-            tableView.leadingAnchor.constraint(equalTo: informationView.leadingAnchor, constant: 10),
-            tableView.trailingAnchor.constraint(equalTo: informationView.trailingAnchor, constant: -10),
-            tableView.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -10)
-        ])
-        
             //OpenAnimationInformationView
         UIView.animate(withDuration: 0.3) {
+            self.targetVC.navigationController?.navigationBar.alpha = 0
             self.blurView.alpha = BlurInformationView.blurAlpha
         } completion: { done in
             if done {
                 UIView.animate(withDuration: 0.3) {
                     self.informationView.center = targetView.center
+                } completion: { done in
+                    if done {
+                    }
+                }
+            }
+        }
+    }
+    
+        //CloseAnimationInformationView
+    @objc func exitButtonTapped() {
+        UIView.animate(withDuration: 0.3) {
+            self.informationView.frame = CGRect(x: (self.targetVC.view.frame.width - (self.targetVC.view.frame.width / 1.11)) / 2,
+                                                y: -900,
+                                                width: self.targetVC.view.frame.width / 1.11,
+                                                height: self.targetVC.view.frame.width * 1.62)
+        } completion: { done in
+            if done {
+                UIView.animate(withDuration: 0.3) {
+                    self.targetVC.navigationController?.navigationBar.alpha = 1
+                    self.blurView.alpha = 0
                 } completion: { done in
                     if done {
                     }
@@ -98,26 +115,6 @@ class InformationView {
             tableView.trailingAnchor.constraint(equalTo: informationView.trailingAnchor, constant: -10),
             tableView.bottomAnchor.constraint(equalTo: informationView.bottomAnchor, constant: -10)
         ])
-    }
-    
-    
-        //CloseAnimationInformationView
-    @objc func exitButtonTapped() {
-        UIView.animate(withDuration: 0.3) {
-            self.informationView.frame = CGRect(x: (self.targetVC.view.frame.width - (self.targetVC.view.frame.width / 1.11)) / 2,
-                                                y: -900,
-                                                width: self.targetVC.view.frame.width / 1.11,
-                                                height: self.targetVC.view.frame.width * 1.62)
-        } completion: { done in
-            self.blurView.alpha = 0
-            if done {
-                UIView.animate(withDuration: 0.3) {
-                } completion: { done in
-                    if done {
-                    }
-                }
-            }
-        }
     }
 }
 
