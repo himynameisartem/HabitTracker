@@ -8,8 +8,9 @@
 import Foundation
 
 protocol MainScreenNewProductsCollectionViewCellViewModelProtocol {
-    var imageString: String? { get }
     var productName: String? { get }
     var productPrice: String? { get }
+    func numberOfItems() -> Int?
+    func galleryCellViewModel(for indexPath: IndexPath) -> NewProductGalleryCollectionViewCellViewModelProtocol?
     init(product: Product)
 }

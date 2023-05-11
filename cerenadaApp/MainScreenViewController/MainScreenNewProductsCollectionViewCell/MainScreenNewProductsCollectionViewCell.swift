@@ -10,15 +10,20 @@ import UIKit
 class MainScreenNewProductsCollectionViewCell: UICollectionViewCell {
     
     private let shadowView = UIView()
-    private let imageView = UIImageView()
+    private let galleryCollectionViewLayout = UICollectionViewFlowLayout()
+    private var galleryCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    private let galleryPageControl = UIPageControl()
+    private let tapTransition = UITapGestureRecognizer()
     private let name = UILabel()
     private let price = UILabel()
     
     var viewModel: MainScreenNewProductsCollectionViewCellViewModelProtocol! {
         didSet {
             name.text = viewModel.productName
-            price.text = "  \(viewModel.productPrice ?? "")  "
-            ImageManager.shared.getImageData(from: viewModel.imageString, imageView: imageView)
+            price.text = "  \(viewModel.productPrice ?? "") ₽  "
+            guard let count = viewModel.numberOfItems() else { return }
+            galleryPageControl.numberOfPages = count
+            galleryCollectionView.reloadData()
         }
     }
     
@@ -28,26 +33,45 @@ class MainScreenNewProductsCollectionViewCell: UICollectionViewCell {
         setupStyle()
         setupUI()
         setupConstraints()
-        
     }
     
     func setupUI() {
         addSubview(shadowView)
-        shadowView.addSubview(imageView)
+        shadowView.addSubview(galleryCollectionView)
+        shadowView.addSubview(galleryPageControl)
         shadowView.addSubview(name)
         shadowView.addSubview(price)
+        addGestureRecognizer(tapTransition)
     }
     
     func setupStyle() {
         shadowView.translatesAutoresizingMaskIntoConstraints = false
         shadowView.makeShadow()
         
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 10
-        imageView.layer.borderWidth = 0.1
-        imageView.layer.borderColor = UIColor.systemGray.cgColor
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
+        galleryCollectionViewLayout.scrollDirection = .horizontal
+        galleryCollectionViewLayout.minimumInteritemSpacing = 0
+        galleryCollectionViewLayout.minimumLineSpacing = 0
+        galleryCollectionView = UICollectionView(frame: .zero, collectionViewLayout: galleryCollectionViewLayout)
+        galleryCollectionView.register(NewProductGalleryCollectionViewCell.self, forCellWithReuseIdentifier: "newProductsGalleryCell")
+        galleryCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        galleryCollectionView.layer.cornerRadius = 10
+        galleryCollectionView.showsHorizontalScrollIndicator = false
+        galleryCollectionView.clipsToBounds = true
+        galleryCollectionView.backgroundColor = .clear
+        galleryCollectionView.dataSource = self
+        galleryCollectionView.delegate = self
+        galleryCollectionView.isPagingEnabled = true
+        galleryCollectionView.bounces = false
+        
+        galleryPageControl.translatesAutoresizingMaskIntoConstraints = false
+        galleryPageControl.activityItemsConfiguration = .none
+        galleryPageControl.isUserInteractionEnabled = false
+        galleryPageControl.numberOfPages = 5
+        galleryPageControl.backgroundColor = #colorLiteral(red: 0.370555222, green: 0.3705646992, blue: 0.3705595732, alpha: 0.2648230546)
+        galleryPageControl.layer.cornerRadius = 15
+        galleryPageControl.pageIndicatorTintColor = .systemGray5
+        galleryPageControl.currentPageIndicatorTintColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
+        galleryPageControl.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         
         name.translatesAutoresizingMaskIntoConstraints = false
         name.font = UIFont(name: "helvetica-bold", size: 10)
@@ -62,22 +86,28 @@ class MainScreenNewProductsCollectionViewCell: UICollectionViewCell {
         price.layer.cornerRadius = 8
         price.clipsToBounds = true
         price.backgroundColor = #colorLiteral(red: 0.9072937369, green: 0.3698979914, blue: 0.4464819431, alpha: 1)
+        
+        tapTransition.addTarget(self, action: #selector(tapTransitionTapped))
     }
     
     func setupConstraints() {
         
         NSLayoutConstraint.activate([
+            
             shadowView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             shadowView.leadingAnchor.constraint(equalTo: leadingAnchor),
             shadowView.trailingAnchor.constraint(equalTo: trailingAnchor),
             shadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -45),
             
-            imageView.topAnchor.constraint(equalTo: shadowView.topAnchor, constant: 0),
-            imageView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor, constant: 0),
-            imageView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: 0),
-            imageView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor, constant: 0),
+            galleryCollectionView.topAnchor.constraint(equalTo: shadowView.topAnchor, constant: 0),
+            galleryCollectionView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor, constant: 0),
+            galleryCollectionView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor, constant: 0),
+            galleryCollectionView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor, constant: 0),
             
-            name.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
+            galleryPageControl.bottomAnchor.constraint(equalTo: galleryCollectionView.bottomAnchor),
+            galleryPageControl.centerXAnchor.constraint(equalTo: galleryCollectionView.centerXAnchor),
+            
+            name.topAnchor.constraint(equalTo: galleryCollectionView.bottomAnchor, constant: 5),
             name.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
             name.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
             
@@ -90,4 +120,38 @@ class MainScreenNewProductsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func tapTransitionTapped(sender: UITapGestureRecognizer) {
+        showAnimation {
+
+        }
+    }
+    
+}
+
+extension MainScreenNewProductsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.numberOfItems() ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let galleryCell = collectionView.dequeueReusableCell(withReuseIdentifier: "newProductsGalleryCell", for: indexPath) as! NewProductGalleryCollectionViewCell
+        
+        let cellViewModel = viewModel.galleryCellViewModel(for: indexPath)
+        galleryCell.viewModel = cellViewModel
+        
+        return galleryCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: galleryCollectionView.frame.width, height: galleryCollectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        galleryPageControl.currentPage = indexPath.item
+    }
 }

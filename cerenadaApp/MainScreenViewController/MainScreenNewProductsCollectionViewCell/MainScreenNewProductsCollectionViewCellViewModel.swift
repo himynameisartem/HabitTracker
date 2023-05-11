@@ -11,9 +11,13 @@ class MainScreenNewProductsCollectionViewCellViewModel: MainScreenNewProductsCol
     
     private var product: Product
     
-    var imageString: String? {
-        guard let image = product.images?[0].src else { return nil }
-        return image
+    func galleryCellViewModel(for indexPath: IndexPath) -> NewProductGalleryCollectionViewCellViewModelProtocol? {
+        guard let image = product.images?[indexPath.row] else { return nil }
+        return NewProductGalleryCollectionViewCellViewModel(image: image)
+    }
+    
+    func numberOfItems() -> Int? {
+        return product.images?.count
     }
     
     var productName: String? {
@@ -22,6 +26,7 @@ class MainScreenNewProductsCollectionViewCellViewModel: MainScreenNewProductsCol
     var productPrice: String? {
         return product.price
     }
+    
     
     required init(product: Product) {
         self.product = product

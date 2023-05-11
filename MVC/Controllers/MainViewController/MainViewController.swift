@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import MessageUI
 
-class MainViewController: UIViewController{
+class MainViewController: UIViewController {
     
     let vc = ProductsListViewController()
     
@@ -141,6 +141,8 @@ class MainViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.backgroundColor = .blue
                 
         searchController = UISearchController(searchResultsController: vc)
         searchController.searchBar.delegate = vc
@@ -156,7 +158,6 @@ class MainViewController: UIViewController{
         newProductCollectionView.delegate = self
         newProductCollectionView.dataSource = self
         newProductCollectionView.register(NewProductsCollectionViewCell.self, forCellWithReuseIdentifier: "newProductCell")
-        
         newProductCollectionView.register(NextButtonCollectionViewCell.self, forCellWithReuseIdentifier: "nextButton")
         
         partnersCollectionView.delegate = self
