@@ -170,7 +170,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HZU66MWZY7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/PortfolioApp/HabbitTracker/HabbitTracker/Info.plist;
+				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/PortfolioApp/HabbitTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -198,7 +198,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HZU66MWZY7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/PortfolioApp/HabbitTracker/HabbitTracker/Info.plist;
+				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/PortfolioApp/HabbitTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
