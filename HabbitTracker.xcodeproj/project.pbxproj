@@ -26,6 +26,16 @@
 		31BA5C682E0BDD60003F627B /* InputHabbitConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C672E0BDD60003F627B /* InputHabbitConfigurator.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		31BA5C712E0BF103003F627B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 31BA5BF62E0AE6B5003F627B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 31BA5BFD2E0AE6B5003F627B;
+			remoteInfo = HabbitTracker;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		31BA5BFE2E0AE6B5003F627B /* HabbitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabbitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31BA5C012E0AE6B5003F627B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,10 +56,26 @@
 		31BA5C632E0BD8E0003F627B /* HabbitsListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitsListConfigurator.swift; sourceTree = "<group>"; };
 		31BA5C652E0BDA35003F627B /* DetailsHabbitConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHabbitConfigurator.swift; sourceTree = "<group>"; };
 		31BA5C672E0BDD60003F627B /* InputHabbitConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHabbitConfigurator.swift; sourceTree = "<group>"; };
+		31BA5C6D2E0BF103003F627B /* HabbitTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabbitTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		31BA5C6E2E0BF103003F627B /* HabbitTrackerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HabbitTrackerTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		31BA5BFB2E0AE6B5003F627B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31BA5C6A2E0BF103003F627B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -62,12 +88,8 @@
 		31BA5BF52E0AE6B5003F627B = {
 			isa = PBXGroup;
 			children = (
-				31BA5C4B2E0BD45A003F627B /* Application */,
-				31BA5C4C2E0BD4C7003F627B /* HabbitsListModule */,
-				31BA5C532E0BD51F003F627B /* DetailsHabbitModule */,
-				31BA5C5A2E0BD57F003F627B /* InputHabbitModule */,
-				31BA5C612E0BD5F6003F627B /* Services */,
-				31BA5C622E0BD616003F627B /* Helpers */,
+				31BA5C762E0BF181003F627B /* HabbitTracker */,
+				31BA5C6E2E0BF103003F627B /* HabbitTrackerTests */,
 				31BA5BFF2E0AE6B5003F627B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				31BA5BFE2E0AE6B5003F627B /* HabbitTracker.app */,
+				31BA5C6D2E0BF103003F627B /* HabbitTrackerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +163,19 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		31BA5C762E0BF181003F627B /* HabbitTracker */ = {
+			isa = PBXGroup;
+			children = (
+				31BA5C4B2E0BD45A003F627B /* Application */,
+				31BA5C4C2E0BD4C7003F627B /* HabbitsListModule */,
+				31BA5C532E0BD51F003F627B /* DetailsHabbitModule */,
+				31BA5C5A2E0BD57F003F627B /* InputHabbitModule */,
+				31BA5C612E0BD5F6003F627B /* Services */,
+				31BA5C622E0BD616003F627B /* Helpers */,
+			);
+			path = HabbitTracker;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,6 +198,29 @@
 			productReference = 31BA5BFE2E0AE6B5003F627B /* HabbitTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
+		31BA5C6C2E0BF103003F627B /* HabbitTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31BA5C732E0BF103003F627B /* Build configuration list for PBXNativeTarget "HabbitTrackerTests" */;
+			buildPhases = (
+				31BA5C692E0BF103003F627B /* Sources */,
+				31BA5C6A2E0BF103003F627B /* Frameworks */,
+				31BA5C6B2E0BF103003F627B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				31BA5C722E0BF103003F627B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				31BA5C6E2E0BF103003F627B /* HabbitTrackerTests */,
+			);
+			name = HabbitTrackerTests;
+			packageProductDependencies = (
+			);
+			productName = HabbitTrackerTests;
+			productReference = 31BA5C6D2E0BF103003F627B /* HabbitTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -174,6 +233,10 @@
 				TargetAttributes = {
 					31BA5BFD2E0AE6B5003F627B = {
 						CreatedOnToolsVersion = 16.4;
+					};
+					31BA5C6C2E0BF103003F627B = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 31BA5BFD2E0AE6B5003F627B;
 					};
 				};
 			};
@@ -192,6 +255,7 @@
 			projectRoot = "";
 			targets = (
 				31BA5BFD2E0AE6B5003F627B /* HabbitTracker */,
+				31BA5C6C2E0BF103003F627B /* HabbitTrackerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -203,6 +267,13 @@
 			files = (
 				31BA5C0E2E0AE6B7003F627B /* LaunchScreen.storyboard in Resources */,
 				31BA5C0B2E0AE6B7003F627B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31BA5C6B2E0BF103003F627B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +302,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		31BA5C692E0BF103003F627B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		31BA5C722E0BF103003F627B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 31BA5BFD2E0AE6B5003F627B /* HabbitTracker */;
+			targetProxy = 31BA5C712E0BF103003F627B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		31BA5C0C2E0AE6B7003F627B /* LaunchScreen.storyboard */ = {
@@ -254,7 +340,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HZU66MWZY7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/PortfolioApp/HabbitTracker/Application/Info.plist;
+				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/PortfolioApp/HabbitTracker/HabbitTracker/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -281,7 +367,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HZU66MWZY7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/PortfolioApp/HabbitTracker/Application/Info.plist;
+				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/PortfolioApp/HabbitTracker/HabbitTracker/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -420,6 +506,42 @@
 			};
 			name = Release;
 		};
+		31BA5C742E0BF103003F627B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HZU66MWZY7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.himynameisartem.HabbitTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HabbitTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HabbitTracker";
+			};
+			name = Debug;
+		};
+		31BA5C752E0BF103003F627B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HZU66MWZY7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.himynameisartem.HabbitTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HabbitTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HabbitTracker";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -437,6 +559,15 @@
 			buildConfigurations = (
 				31BA5C122E0AE6B7003F627B /* Debug */,
 				31BA5C132E0AE6B7003F627B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		31BA5C732E0BF103003F627B /* Build configuration list for PBXNativeTarget "HabbitTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31BA5C742E0BF103003F627B /* Debug */,
+				31BA5C752E0BF103003F627B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
