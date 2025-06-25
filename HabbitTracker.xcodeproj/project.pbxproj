@@ -9,21 +9,22 @@
 /* Begin PBXBuildFile section */
 		31BA5C022E0AE6B5003F627B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C012E0AE6B5003F627B /* AppDelegate.swift */; };
 		31BA5C042E0AE6B5003F627B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C032E0AE6B5003F627B /* SceneDelegate.swift */; };
-		31BA5C062E0AE6B5003F627B /* HabbitsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C052E0AE6B5003F627B /* HabbitsListViewController.swift */; };
+		31BA5C062E0AE6B5003F627B /* HabitsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C052E0AE6B5003F627B /* HabitsListViewController.swift */; };
 		31BA5C0B2E0AE6B7003F627B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31BA5C0A2E0AE6B7003F627B /* Assets.xcassets */; };
 		31BA5C0E2E0AE6B7003F627B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31BA5C0C2E0AE6B7003F627B /* LaunchScreen.storyboard */; };
-		31BA5C4E2E0BD4E0003F627B /* HabbitsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C4D2E0BD4E0003F627B /* HabbitsListPresenter.swift */; };
-		31BA5C502E0BD50D003F627B /* HabbitsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C4F2E0BD50D003F627B /* HabbitsListInteractor.swift */; };
-		31BA5C522E0BD516003F627B /* HabbitsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C512E0BD516003F627B /* HabbitsListRouter.swift */; };
-		31BA5C552E0BD549003F627B /* DetailsHabbitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C542E0BD549003F627B /* DetailsHabbitViewController.swift */; };
-		31BA5C572E0BD554003F627B /* DetailsHabbitPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C562E0BD554003F627B /* DetailsHabbitPresenter.swift */; };
-		31BA5C592E0BD55F003F627B /* DetailsHabbitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C582E0BD55F003F627B /* DetailsHabbitInteractor.swift */; };
-		31BA5C5C2E0BD5D8003F627B /* InputHabbitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C5B2E0BD5D8003F627B /* InputHabbitViewController.swift */; };
-		31BA5C5E2E0BD5E1003F627B /* InputHabbitPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C5D2E0BD5E1003F627B /* InputHabbitPresenter.swift */; };
-		31BA5C602E0BD5ED003F627B /* InputHabbitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C5F2E0BD5ED003F627B /* InputHabbitInteractor.swift */; };
-		31BA5C642E0BD8E0003F627B /* HabbitsListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C632E0BD8E0003F627B /* HabbitsListConfigurator.swift */; };
-		31BA5C662E0BDA35003F627B /* DetailsHabbitConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C652E0BDA35003F627B /* DetailsHabbitConfigurator.swift */; };
-		31BA5C682E0BDD60003F627B /* InputHabbitConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C672E0BDD60003F627B /* InputHabbitConfigurator.swift */; };
+		31BA5C4E2E0BD4E0003F627B /* HabitsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C4D2E0BD4E0003F627B /* HabitsListPresenter.swift */; };
+		31BA5C502E0BD50D003F627B /* HabitsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C4F2E0BD50D003F627B /* HabitsListInteractor.swift */; };
+		31BA5C522E0BD516003F627B /* HabitsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C512E0BD516003F627B /* HabitsListRouter.swift */; };
+		31BA5C552E0BD549003F627B /* DetailsHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C542E0BD549003F627B /* DetailsHabitViewController.swift */; };
+		31BA5C572E0BD554003F627B /* DetailsHabitPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C562E0BD554003F627B /* DetailsHabitPresenter.swift */; };
+		31BA5C592E0BD55F003F627B /* DetailsHabitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C582E0BD55F003F627B /* DetailsHabitInteractor.swift */; };
+		31BA5C5C2E0BD5D8003F627B /* InputHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C5B2E0BD5D8003F627B /* InputHabitViewController.swift */; };
+		31BA5C5E2E0BD5E1003F627B /* InputHabitPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C5D2E0BD5E1003F627B /* InputHabitPresenter.swift */; };
+		31BA5C602E0BD5ED003F627B /* InputHabitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C5F2E0BD5ED003F627B /* InputHabitInteractor.swift */; };
+		31BA5C642E0BD8E0003F627B /* HabitsListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C632E0BD8E0003F627B /* HabitsListConfigurator.swift */; };
+		31BA5C662E0BDA35003F627B /* DetailsHabitConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C652E0BDA35003F627B /* DetailsHabitConfigurator.swift */; };
+		31BA5C682E0BDD60003F627B /* InputHabitConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C672E0BDD60003F627B /* InputHabitConfigurator.swift */; };
+		31BA5C792E0BF57D003F627B /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C782E0BF57D003F627B /* Habit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,29 +41,30 @@
 		31BA5BFE2E0AE6B5003F627B /* HabbitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabbitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31BA5C012E0AE6B5003F627B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31BA5C032E0AE6B5003F627B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		31BA5C052E0AE6B5003F627B /* HabbitsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitsListViewController.swift; sourceTree = "<group>"; };
+		31BA5C052E0AE6B5003F627B /* HabitsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsListViewController.swift; sourceTree = "<group>"; };
 		31BA5C0A2E0AE6B7003F627B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31BA5C0D2E0AE6B7003F627B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		31BA5C0F2E0AE6B7003F627B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		31BA5C4D2E0BD4E0003F627B /* HabbitsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitsListPresenter.swift; sourceTree = "<group>"; };
-		31BA5C4F2E0BD50D003F627B /* HabbitsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitsListInteractor.swift; sourceTree = "<group>"; };
-		31BA5C512E0BD516003F627B /* HabbitsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitsListRouter.swift; sourceTree = "<group>"; };
-		31BA5C542E0BD549003F627B /* DetailsHabbitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHabbitViewController.swift; sourceTree = "<group>"; };
-		31BA5C562E0BD554003F627B /* DetailsHabbitPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHabbitPresenter.swift; sourceTree = "<group>"; };
-		31BA5C582E0BD55F003F627B /* DetailsHabbitInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHabbitInteractor.swift; sourceTree = "<group>"; };
-		31BA5C5B2E0BD5D8003F627B /* InputHabbitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHabbitViewController.swift; sourceTree = "<group>"; };
-		31BA5C5D2E0BD5E1003F627B /* InputHabbitPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHabbitPresenter.swift; sourceTree = "<group>"; };
-		31BA5C5F2E0BD5ED003F627B /* InputHabbitInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHabbitInteractor.swift; sourceTree = "<group>"; };
-		31BA5C632E0BD8E0003F627B /* HabbitsListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitsListConfigurator.swift; sourceTree = "<group>"; };
-		31BA5C652E0BDA35003F627B /* DetailsHabbitConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHabbitConfigurator.swift; sourceTree = "<group>"; };
-		31BA5C672E0BDD60003F627B /* InputHabbitConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHabbitConfigurator.swift; sourceTree = "<group>"; };
+		31BA5C4D2E0BD4E0003F627B /* HabitsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsListPresenter.swift; sourceTree = "<group>"; };
+		31BA5C4F2E0BD50D003F627B /* HabitsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsListInteractor.swift; sourceTree = "<group>"; };
+		31BA5C512E0BD516003F627B /* HabitsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsListRouter.swift; sourceTree = "<group>"; };
+		31BA5C542E0BD549003F627B /* DetailsHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHabitViewController.swift; sourceTree = "<group>"; };
+		31BA5C562E0BD554003F627B /* DetailsHabitPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHabitPresenter.swift; sourceTree = "<group>"; };
+		31BA5C582E0BD55F003F627B /* DetailsHabitInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHabitInteractor.swift; sourceTree = "<group>"; };
+		31BA5C5B2E0BD5D8003F627B /* InputHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHabitViewController.swift; sourceTree = "<group>"; };
+		31BA5C5D2E0BD5E1003F627B /* InputHabitPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHabitPresenter.swift; sourceTree = "<group>"; };
+		31BA5C5F2E0BD5ED003F627B /* InputHabitInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHabitInteractor.swift; sourceTree = "<group>"; };
+		31BA5C632E0BD8E0003F627B /* HabitsListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsListConfigurator.swift; sourceTree = "<group>"; };
+		31BA5C652E0BDA35003F627B /* DetailsHabitConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHabitConfigurator.swift; sourceTree = "<group>"; };
+		31BA5C672E0BDD60003F627B /* InputHabitConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHabitConfigurator.swift; sourceTree = "<group>"; };
 		31BA5C6D2E0BF103003F627B /* HabbitTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabbitTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		31BA5C782E0BF57D003F627B /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		31BA5C6E2E0BF103003F627B /* HabbitTrackerTests */ = {
+		31BA5C6E2E0BF103003F627B /* HabitTrackerTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = HabbitTrackerTests;
+			path = HabitTrackerTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -88,8 +90,8 @@
 		31BA5BF52E0AE6B5003F627B = {
 			isa = PBXGroup;
 			children = (
-				31BA5C762E0BF181003F627B /* HabbitTracker */,
-				31BA5C6E2E0BF103003F627B /* HabbitTrackerTests */,
+				31BA5C762E0BF181003F627B /* HabitTracker */,
+				31BA5C6E2E0BF103003F627B /* HabitTrackerTests */,
 				31BA5BFF2E0AE6B5003F627B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,38 +117,38 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		31BA5C4C2E0BD4C7003F627B /* HabbitsListModule */ = {
+		31BA5C4C2E0BD4C7003F627B /* HabitsListModule */ = {
 			isa = PBXGroup;
 			children = (
-				31BA5C052E0AE6B5003F627B /* HabbitsListViewController.swift */,
-				31BA5C4D2E0BD4E0003F627B /* HabbitsListPresenter.swift */,
-				31BA5C4F2E0BD50D003F627B /* HabbitsListInteractor.swift */,
-				31BA5C512E0BD516003F627B /* HabbitsListRouter.swift */,
-				31BA5C632E0BD8E0003F627B /* HabbitsListConfigurator.swift */,
+				31BA5C052E0AE6B5003F627B /* HabitsListViewController.swift */,
+				31BA5C4D2E0BD4E0003F627B /* HabitsListPresenter.swift */,
+				31BA5C4F2E0BD50D003F627B /* HabitsListInteractor.swift */,
+				31BA5C512E0BD516003F627B /* HabitsListRouter.swift */,
+				31BA5C632E0BD8E0003F627B /* HabitsListConfigurator.swift */,
 			);
-			path = HabbitsListModule;
+			path = HabitsListModule;
 			sourceTree = "<group>";
 		};
-		31BA5C532E0BD51F003F627B /* DetailsHabbitModule */ = {
+		31BA5C532E0BD51F003F627B /* DetailsHabitModule */ = {
 			isa = PBXGroup;
 			children = (
-				31BA5C542E0BD549003F627B /* DetailsHabbitViewController.swift */,
-				31BA5C562E0BD554003F627B /* DetailsHabbitPresenter.swift */,
-				31BA5C582E0BD55F003F627B /* DetailsHabbitInteractor.swift */,
-				31BA5C652E0BDA35003F627B /* DetailsHabbitConfigurator.swift */,
+				31BA5C542E0BD549003F627B /* DetailsHabitViewController.swift */,
+				31BA5C562E0BD554003F627B /* DetailsHabitPresenter.swift */,
+				31BA5C582E0BD55F003F627B /* DetailsHabitInteractor.swift */,
+				31BA5C652E0BDA35003F627B /* DetailsHabitConfigurator.swift */,
 			);
-			path = DetailsHabbitModule;
+			path = DetailsHabitModule;
 			sourceTree = "<group>";
 		};
-		31BA5C5A2E0BD57F003F627B /* InputHabbitModule */ = {
+		31BA5C5A2E0BD57F003F627B /* InputHabitModule */ = {
 			isa = PBXGroup;
 			children = (
-				31BA5C5B2E0BD5D8003F627B /* InputHabbitViewController.swift */,
-				31BA5C5D2E0BD5E1003F627B /* InputHabbitPresenter.swift */,
-				31BA5C5F2E0BD5ED003F627B /* InputHabbitInteractor.swift */,
-				31BA5C672E0BDD60003F627B /* InputHabbitConfigurator.swift */,
+				31BA5C5B2E0BD5D8003F627B /* InputHabitViewController.swift */,
+				31BA5C5D2E0BD5E1003F627B /* InputHabitPresenter.swift */,
+				31BA5C5F2E0BD5ED003F627B /* InputHabitInteractor.swift */,
+				31BA5C672E0BDD60003F627B /* InputHabitConfigurator.swift */,
 			);
-			path = InputHabbitModule;
+			path = InputHabitModule;
 			sourceTree = "<group>";
 		};
 		31BA5C612E0BD5F6003F627B /* Services */ = {
@@ -163,17 +165,26 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		31BA5C762E0BF181003F627B /* HabbitTracker */ = {
+		31BA5C762E0BF181003F627B /* HabitTracker */ = {
 			isa = PBXGroup;
 			children = (
 				31BA5C4B2E0BD45A003F627B /* Application */,
-				31BA5C4C2E0BD4C7003F627B /* HabbitsListModule */,
-				31BA5C532E0BD51F003F627B /* DetailsHabbitModule */,
-				31BA5C5A2E0BD57F003F627B /* InputHabbitModule */,
+				31BA5C4C2E0BD4C7003F627B /* HabitsListModule */,
+				31BA5C532E0BD51F003F627B /* DetailsHabitModule */,
+				31BA5C5A2E0BD57F003F627B /* InputHabitModule */,
+				31BA5C772E0BF570003F627B /* Models */,
 				31BA5C612E0BD5F6003F627B /* Services */,
 				31BA5C622E0BD616003F627B /* Helpers */,
 			);
-			path = HabbitTracker;
+			path = HabitTracker;
+			sourceTree = "<group>";
+		};
+		31BA5C772E0BF570003F627B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				31BA5C782E0BF57D003F627B /* Habit.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,7 +223,7 @@
 				31BA5C722E0BF103003F627B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				31BA5C6E2E0BF103003F627B /* HabbitTrackerTests */,
+				31BA5C6E2E0BF103003F627B /* HabitTrackerTests */,
 			);
 			name = HabbitTrackerTests;
 			packageProductDependencies = (
@@ -284,21 +295,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31BA5C062E0AE6B5003F627B /* HabbitsListViewController.swift in Sources */,
-				31BA5C5C2E0BD5D8003F627B /* InputHabbitViewController.swift in Sources */,
-				31BA5C5E2E0BD5E1003F627B /* InputHabbitPresenter.swift in Sources */,
+				31BA5C062E0AE6B5003F627B /* HabitsListViewController.swift in Sources */,
+				31BA5C792E0BF57D003F627B /* Habit.swift in Sources */,
+				31BA5C5C2E0BD5D8003F627B /* InputHabitViewController.swift in Sources */,
+				31BA5C5E2E0BD5E1003F627B /* InputHabitPresenter.swift in Sources */,
 				31BA5C022E0AE6B5003F627B /* AppDelegate.swift in Sources */,
-				31BA5C4E2E0BD4E0003F627B /* HabbitsListPresenter.swift in Sources */,
-				31BA5C592E0BD55F003F627B /* DetailsHabbitInteractor.swift in Sources */,
-				31BA5C502E0BD50D003F627B /* HabbitsListInteractor.swift in Sources */,
-				31BA5C602E0BD5ED003F627B /* InputHabbitInteractor.swift in Sources */,
-				31BA5C552E0BD549003F627B /* DetailsHabbitViewController.swift in Sources */,
-				31BA5C662E0BDA35003F627B /* DetailsHabbitConfigurator.swift in Sources */,
-				31BA5C522E0BD516003F627B /* HabbitsListRouter.swift in Sources */,
-				31BA5C682E0BDD60003F627B /* InputHabbitConfigurator.swift in Sources */,
-				31BA5C642E0BD8E0003F627B /* HabbitsListConfigurator.swift in Sources */,
+				31BA5C4E2E0BD4E0003F627B /* HabitsListPresenter.swift in Sources */,
+				31BA5C592E0BD55F003F627B /* DetailsHabitInteractor.swift in Sources */,
+				31BA5C502E0BD50D003F627B /* HabitsListInteractor.swift in Sources */,
+				31BA5C602E0BD5ED003F627B /* InputHabitInteractor.swift in Sources */,
+				31BA5C552E0BD549003F627B /* DetailsHabitViewController.swift in Sources */,
+				31BA5C662E0BDA35003F627B /* DetailsHabitConfigurator.swift in Sources */,
+				31BA5C522E0BD516003F627B /* HabitsListRouter.swift in Sources */,
+				31BA5C682E0BDD60003F627B /* InputHabitConfigurator.swift in Sources */,
+				31BA5C642E0BD8E0003F627B /* HabitsListConfigurator.swift in Sources */,
 				31BA5C042E0AE6B5003F627B /* SceneDelegate.swift in Sources */,
-				31BA5C572E0BD554003F627B /* DetailsHabbitPresenter.swift in Sources */,
+				31BA5C572E0BD554003F627B /* DetailsHabitPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +352,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HZU66MWZY7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/PortfolioApp/HabbitTracker/HabbitTracker/Application/Info.plist;
+				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/PortfolioApp/HabbitTracker/HabitTracker/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -367,7 +379,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HZU66MWZY7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/PortfolioApp/HabbitTracker/HabbitTracker/Application/Info.plist;
+				INFOPLIST_FILE = /Users/himynameisartem/Documents/Development/myApp/PortfolioApp/HabbitTracker/HabitTracker/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
