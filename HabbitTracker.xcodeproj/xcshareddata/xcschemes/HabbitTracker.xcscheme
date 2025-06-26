@@ -35,7 +35,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "31BA5C412E0BCE7A003F627B"
+               BlueprintIdentifier = "31BA5C6C2E0BF103003F627B"
                BuildableName = "HabbitTrackerTests.xctest"
                BlueprintName = "HabbitTrackerTests"
                ReferencedContainer = "container:HabbitTracker.xcodeproj">

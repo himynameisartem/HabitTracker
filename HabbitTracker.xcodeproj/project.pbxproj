@@ -25,6 +25,8 @@
 		31BA5C662E0BDA35003F627B /* DetailsHabitConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C652E0BDA35003F627B /* DetailsHabitConfigurator.swift */; };
 		31BA5C682E0BDD60003F627B /* InputHabitConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C672E0BDD60003F627B /* InputHabitConfigurator.swift */; };
 		31BA5C792E0BF57D003F627B /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C782E0BF57D003F627B /* Habit.swift */; };
+		31BA5C7E2E0C2AC2003F627B /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C7D2E0C2AC2003F627B /* Frequency.swift */; };
+		31BA5C852E0C3249003F627B /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BA5C842E0C3249003F627B /* Weekday.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		31BA5C672E0BDD60003F627B /* InputHabitConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHabitConfigurator.swift; sourceTree = "<group>"; };
 		31BA5C6D2E0BF103003F627B /* HabbitTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabbitTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31BA5C782E0BF57D003F627B /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
+		31BA5C7D2E0C2AC2003F627B /* Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
+		31BA5C842E0C3249003F627B /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -183,6 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				31BA5C782E0BF57D003F627B /* Habit.swift */,
+				31BA5C7D2E0C2AC2003F627B /* Frequency.swift */,
+				31BA5C842E0C3249003F627B /* Weekday.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,8 +303,10 @@
 			files = (
 				31BA5C062E0AE6B5003F627B /* HabitsListViewController.swift in Sources */,
 				31BA5C792E0BF57D003F627B /* Habit.swift in Sources */,
+				31BA5C852E0C3249003F627B /* Weekday.swift in Sources */,
 				31BA5C5C2E0BD5D8003F627B /* InputHabitViewController.swift in Sources */,
 				31BA5C5E2E0BD5E1003F627B /* InputHabitPresenter.swift in Sources */,
+				31BA5C7E2E0C2AC2003F627B /* Frequency.swift in Sources */,
 				31BA5C022E0AE6B5003F627B /* AppDelegate.swift in Sources */,
 				31BA5C4E2E0BD4E0003F627B /* HabitsListPresenter.swift in Sources */,
 				31BA5C592E0BD55F003F627B /* DetailsHabitInteractor.swift in Sources */,
