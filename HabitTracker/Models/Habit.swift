@@ -38,7 +38,7 @@ struct Habit {
         if !completionDates.contains(normolized) {
             completionDates.append(normolized)
         }
-    }
+}
     
     mutating func unmarkCompleted(on date: Date = Date()) {
         let normolized = Calendar.current.startOfDay(for: date)
@@ -64,4 +64,3 @@ struct Habit {
         return completedDaysCount() >= durationInDays
     }
 }
-
