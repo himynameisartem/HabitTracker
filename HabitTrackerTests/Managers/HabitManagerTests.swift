@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import HabbitTracker
+@testable import HabitTracker
 
 class HabitManagerTests: XCTestCase {
     
@@ -22,15 +22,20 @@ class HabitManagerTests: XCTestCase {
         sut = nil
     }
     
-    func testHabitCountIsZero() {
-        XCTAssertEqual(sut.totalHabitCount, 0)
+    func testInitHabitManagerWithZeroHabit() {
+        XCTAssertEqual(sut.habits.count, 0)
     }
     
-    func testTodayHabitCountIsZero() {
-        XCTAssertEqual(sut.todayHabitCount , 0)
+    func testAddHabitIncrementHabitsCount() {
+        let habit = Habit(title: "Foo")
+        sut.addHabit(habit)
+        XCTAssertEqual(sut.habits.count, 1)
     }
     
-    func testTodayHabitDoneCountIsZero() {
-        XCTAssertEqual(sut.todayHabitDoneCount, 0)
+    func testMarkHabitAsDone() {
+        let habit = Habit(title: "Foo")
+        sut.addHabit(habit)
+        
     }
+    
 }

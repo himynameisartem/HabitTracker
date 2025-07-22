@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import HabbitTracker
+@testable import HabitTracker
 
 class HabitTests: XCTestCase {
     override func setUp() {

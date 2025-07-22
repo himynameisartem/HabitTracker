@@ -8,7 +8,10 @@
 import Foundation
 
 class HabitManager {
-    let totalHabitCount: Int = 0
-    let todayHabitCount: Int = 0
-    let todayHabitDoneCount: Int = 0
+    
+    private(set) var habits: [Habit] = []
+    
+    func addHabit(_ habit: Habit) {
+        habits.append(habit)
+    }
 }
