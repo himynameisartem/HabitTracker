@@ -32,10 +32,26 @@ class HabitManagerTests: XCTestCase {
         XCTAssertEqual(sut.habits.count, 1)
     }
     
-    func testMarkHabitAsDone() {
+    func testHabitAtIndexIsAddedHabit() {
         let habit = Habit(title: "Foo")
         sut.addHabit(habit)
-        
+        let returnedHabit = sut.habit(at: 0)
+        XCTAssertEqual(habit.title, returnedHabit.title)
     }
     
+    func testDoneHabitAtIndexIsMarkedAsDone() {
+        var habit = Habit(title: "Foo")
+        habit.durationInDays = 1
+        sut.addHabit(habit)
+        sut.markDoneToday(at: 0, for: Date())
+        XCTAssertEqual(sut.habits.count, 0)
+    }
+    
+    func testDoneHabitWhenMarkAllComletionDates() {
+        var habit = Habit(title: "Foo")
+        habit.durationInDays = 1
+        sut.addHabit(habit)
+        sut.markDoneToday(at: 0, for: Date())
+        XCTAssertEqual(sut.comletedHabits.count, 1)
+    }
 }

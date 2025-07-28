@@ -66,101 +66,38 @@ class HabitTests: XCTestCase {
         XCTAssertEqual(habit.frequency, frequency)
     }
     
-    func testMarkComletedAddsDate() {
-        var habit = Habit(title: "Foo")
-        let date = Date()
-        habit.markCompleted(on: date)
-        XCTAssertTrue(habit.isComplete(on: date))
+    func testWhenGivenCompetionDatesSetsCompletionDates() {
+        let completionDates: [Date] = [Date()]
+        let habit = Habit(title: "Foo", completionDates: completionDates)
+        XCTAssertEqual(habit.completionDates, completionDates)
     }
     
-    func testMarkCompletedDoesNotAddDuplicateDates() {
+    func testCompletionDatesAddedDate() {
         var habit = Habit(title: "Foo")
-        let date = Date()
-        habit.markCompleted(on: date)
-        habit.markCompleted(on: date)
+        habit.addComletionDate(Date())
         XCTAssertEqual(habit.completionDates.count, 1)
     }
     
-    func testWhenIsComletedReturnsTrue() {
+    func testOutOfRangeComletionDates() {
         var habit = Habit(title: "Foo")
-        habit.markCompleted()
-        XCTAssertTrue(habit.isComplete())
+        habit.durationInDays = 2
+        habit.addComletionDate(Date())
+        habit.addComletionDate(Date())
+        habit.addComletionDate(Date())
+        XCTAssertEqual(habit.completionDates.count, 2)
     }
     
-    func testWhenIsComleteReturnsFalse() {
-        let habit = Habit(title: "Foo")
-        XCTAssertFalse(habit.isComplete())
-    }
-    
-    func testUnmarkComletedRemovesDate() {
+    func testComletionDatesAddedSameDate() {
         var habit = Habit(title: "Foo")
-        let date = Date()
-        habit.markCompleted(on: date)
-        habit.unmarkCompleted(on: date)
-        XCTAssertFalse(habit.isComplete(on: date))
-    }
-    
-    func testUnmarkCompletedDoesNothingIfDateDoesNotExist() {
-        var habit = Habit(title: "Foo")
-        habit.unmarkCompleted(on: Date())
-        XCTAssertFalse(habit.isComplete())
-    }
-    
-    func testMarkAndCheckPreviousDate() {
-        var habit = Habit(title: "Foo")
-        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
-        let today = Date()
-        habit.markCompleted(on: yesterday)
-        XCTAssertTrue(habit.isComplete(on: yesterday))
-        XCTAssertFalse(habit.isComplete(on: today))
-    }
-    
-    func testWhenGivenColorSetsColor() {
-        var habit = Habit(title: "Foo")
-        let color = "#FFFFFF"
-        habit.colorHex = color
-        XCTAssertEqual(habit.colorHex, color)
-    }
-    
-    func testWhenGivenDurationInDaysSetsDurationInDays() {
-        var habit = Habit(title: "Foo")
-        let durationInDays = 30
-        habit.durationInDays = durationInDays
-        XCTAssertEqual(habit.durationInDays, durationInDays)
-    }
-    
-    func testCompletedDaysCount() {
-        var habit = Habit(title: "Foo")
-        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
-        let today = Date()
-        habit.markCompleted(on: yesterday)
-        habit.markCompleted(on: today)
-        XCTAssertEqual(habit.completedDaysCount(), 2)
-    }
-    
-    func testDaysLeft() {
-        var habit = Habit(title: "Foo")
-        let duration = 30
-        let today = Date()
-        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)!
-        let dayBeforeYesterday = Calendar.current.date(byAdding: .day, value: -1, to: yesterday)!
-        habit.durationInDays = duration
-        habit.markCompleted(on: dayBeforeYesterday)
-        habit.markCompleted(on: yesterday)
-        habit.markCompleted(on: today)
-        XCTAssertEqual(habit.daysLeft(), 27)
-    }
-    
-    func testIsCompleted() {
-        var habit = Habit(title: "Foo")
-        let duration = 3
-        let today = Date()
-        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)!
-        let dayBeforeYesterday = Calendar.current.date(byAdding: .day, value: -1, to: yesterday)!
-        habit.durationInDays = duration
-        habit.markCompleted(on: dayBeforeYesterday)
-        habit.markCompleted(on: yesterday)
-        habit.markCompleted(on: today)
-        XCTAssertTrue(habit.isCompleted())
+        let calendar = Calendar.current
+        let components = DateComponents(year: 2025, month: 7, day: 29)
+        let date = calendar.date(from: components)!
+        let date2 = calendar.date(from: components)!
+        habit.addComletionDate(Date())
+        habit.addComletionDate(Date())
+        habit.addComletionDate(Date())
+        habit.addComletionDate(date)
+        habit.addComletionDate(date2)
+        XCTAssertEqual(habit.completionDates.count, 2)
     }
 }

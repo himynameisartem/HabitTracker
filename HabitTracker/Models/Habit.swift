@@ -33,34 +33,11 @@ struct Habit {
         self.durationInDays = durationInDays
     }
     
-    mutating func markCompleted(on date: Date = Date()) {
-        let normolized = Calendar.current.startOfDay(for: date)
-        if !completionDates.contains(normolized) {
-            completionDates.append(normolized)
-        }
-}
-    
-    mutating func unmarkCompleted(on date: Date = Date()) {
-        let normolized = Calendar.current.startOfDay(for: date)
-        if let index = completionDates.firstIndex(of: normolized) {
-            completionDates.remove(at: index)
-        }
-    }
-    
-    func isComplete(on date: Date = Date()) -> Bool {
-        let normolized = Calendar.current.startOfDay(for: date)
-        return completionDates.contains(normolized)
-    }
-    
-    func completedDaysCount() -> Int {
-        return completionDates.count
-    }
-    
-    func daysLeft() -> Int {
-        return max(durationInDays - completedDaysCount(), 0)
-    }
-    
-    func isCompleted() -> Bool {
-        return completedDaysCount() >= durationInDays
+    mutating func addComletionDate(_ date: Date) {
+        if !completionDates.contains(where: {$0.isSameDay(as: date)}) &&
+            completionDates.count < durationInDays {
+                completionDates.append(date)
+            }
+        print(completionDates)
     }
 }
