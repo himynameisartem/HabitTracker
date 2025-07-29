@@ -8,5 +8,5 @@
 import Foundation
 
 enum Weekday: Int, Equatable {
-    case monday = 1, tuesday, wednesday, thursday, friday, saturday, sunday
+    case sunday = 1, monday, tuesday, wednesday, thursday, friday, saturday
 }

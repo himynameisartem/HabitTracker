@@ -100,4 +100,9 @@ class HabitTests: XCTestCase {
         habit.addComletionDate(date2)
         XCTAssertEqual(habit.completionDates.count, 2)
     }
+    
+    func testHabitCalendarWhereInitHabit() {
+        let habit = Habit(title: "Foo", frequency: .weekly(days: [.monday, .tuesday, .wednesday, .thursday, .friday]), durationInDays: 20)
+        XCTAssertEqual(habit.habitCalendar.count, 10)
+    }
 }
