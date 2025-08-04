@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>HabitTrackerTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>31BA5BFD2E0AE6B5003F627B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>31BA5C6C2E0BF103003F627B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

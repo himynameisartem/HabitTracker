@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "19F4F5CC-4413-4563-9B16-BB49A202FAEC",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "uiTestingScreenshotsLifetime" : "keepNever"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:HabitTracker.xcodeproj",
+        "identifier" : "31BA5C6C2E0BF103003F627B",
+        "name" : "HabitTrackerTests"
+      }
+    }
+  ],
+  "version" : 1
+}
