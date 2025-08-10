@@ -11,8 +11,9 @@ struct Habit {
     var title: String
     var description: String?
     var startDate: Date
+    var endDate: Date
     var frequency: Frequency
-    private(set) var habitCalendar: [Date]
+    private(set) var scheduledDates: [Date] = []
     private(set) var completionDates: [Date]
     var colorHex: String
     var durationInDays: Int
@@ -20,10 +21,11 @@ struct Habit {
     init(title: String,
          description: String? = nil,
          startDate: Date = Date(),
+         endDate: Date? = nil,
          frequency: Frequency = .daily,
          completionDates: [Date] = [],
          colorHex: String = "#FFFFFF",
-         durationInDays: Int = 21
+         durationInDays: Int? = nil
     ){
         self.title = title
         self.description = description
@@ -31,49 +33,37 @@ struct Habit {
         self.frequency = frequency
         self.completionDates = completionDates
         self.colorHex = colorHex
-        self.durationInDays = durationInDays
         
-        var dates: [Date] {
-            let calendar = Calendar.current
-            var dates: [Date] = []
-            var date = startDate
-
-            switch frequency {
-            case .daily:
-                for i in 0..<durationInDays {
-                    if let newDate = calendar.date(byAdding: .day, value: i, to: startDate) {
-                        dates.append(newDate)
-                    }
-                }
-            case .custom(let daysInterval):
-                for i in 0..<durationInDays {
-                    if let newDate = calendar.date(byAdding: .day, value: i * daysInterval, to: startDate) {
-                        dates.append(newDate)
-                    }
-                }
-            case .weekly(let weekdays):
-                let sortedWeekdays = weekdays.sorted(by: { $0.rawValue < $1.rawValue })
-                while dates.count < durationInDays {
-                    let weekday = calendar.component(.weekday, from: date)
-                    if sortedWeekdays.contains(where: { $0.rawValue == weekday }) {
-                        dates.append(date)
-                    }
-                    guard let nextDate = calendar.date(byAdding: .day, value: 1, to: date) else {
-                        break
-                    }
-                    date = nextDate
-                }
-            }
-            return dates
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "UTC")!
+        self.startDate = calendar.startOfDay(for: startDate)
+        
+        if let end = endDate {
+            self.endDate = calendar.startOfDay(for: end)
+            self.durationInDays = calendar.dateComponents([.day], from: self.startDate, to: self.endDate).day!
+        } else if let duration = durationInDays {
+            self.durationInDays = duration
+            self.endDate = calendar.date(byAdding: .day, value: duration, to: self.startDate)!
+        } else {
+            self.durationInDays = 21
+            self.endDate = calendar.date(byAdding: .day, value: 21, to: self.startDate)!
         }
-        habitCalendar = dates
+        
+        self.scheduledDates = frequency.generateDates(
+            start: self.startDate,
+            end: self.endDate
+        )
     }
     
     mutating func addComletionDate(_ date: Date) {
-        if !completionDates.contains(where: {$0.isSameDay(as: date)}) &&
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "UTC")!
+        
+        let normalizedDate = calendar.startOfDay(for: date)
+        if !completionDates.contains(where: {$0.isSameDay(as: normalizedDate)}) &&
             completionDates.count < durationInDays {
-                completionDates.append(date)
-            }
+            completionDates.append(normalizedDate)
+        }
     }
 }
 
