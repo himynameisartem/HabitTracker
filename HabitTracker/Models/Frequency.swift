@@ -57,16 +57,12 @@ extension Frequency {
             dateComponents.weekday = i.rawValue
             dateComponents.timeZone = calendar.timeZone
             let searchAfter = calendar.date(byAdding: .second, value: -1, to: start) ?? start
-            guard let first = calendar.nextDate(after: searchAfter, matching: dateComponents, matchingPolicy: .nextTimePreservingSmallerComponents) else {
-                continue
-            }
+            guard let first = calendar.nextDate(after: searchAfter, matching: dateComponents, matchingPolicy: .nextTimePreservingSmallerComponents) else { continue }
             var occurrence = first
             var count = 0
             while occurrence <= end && count < 10 {
                 result.append(occurrence)
-                guard let next = calendar.date(byAdding: .day, value: 7, to: occurrence) else {
-                    break
-                }
+                guard let next = calendar.date(byAdding: .day, value: 7, to: occurrence) else { break }
                 occurrence = next
                 count += 1
             }

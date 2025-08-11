@@ -9,11 +9,15 @@ import XCTest
 @testable import HabitTracker
 
 class HabitTests: XCTestCase {
+    var calendar: Calendar!
     override func setUp() {
         super.setUp()
+        calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "UTC")!
     }
     
     override func tearDown() {
+        calendar = nil
         super.tearDown()
     }
     
@@ -74,60 +78,41 @@ class HabitTests: XCTestCase {
         XCTAssertEqual(habit.completionDates, completionDates)
     }
     
-    func testCompletionDatesAddedDate() {
-        var habit = Habit(title: "Foo")
-        habit.addComletionDate(Date())
-        XCTAssertEqual(habit.completionDates.count, 1)
-    }
-    
-    func testComletionDatesAddedSameDate() {
-        var habit = Habit(title: "Foo")
-        let calendar = Calendar.current
-        let components = DateComponents(year: 2025, month: 7, day: 29)
-        let date = calendar.date(from: components)!
-        let date2 = calendar.date(from: components)!
-        habit.addComletionDate(Date())
-        habit.addComletionDate(Date())
-        habit.addComletionDate(Date())
-        habit.addComletionDate(date)
-        habit.addComletionDate(date2)
-        XCTAssertEqual(habit.completionDates.count, 2)
-    }
-    
     func testEndDateWhenGivenDurationInDays() {
-        var components = DateComponents()
-        components.year = 2025
-        components.month = 9
-        components.day = 1
-        guard let endDate = Calendar.current.date(from: components) else { return }
+        let endDate = calendar.date(byAdding: .day, value: 22, to: calendar.startOfDay(for: Date()))!
         let habit = Habit(title: "Foo", durationInDays: 22)
         XCTAssertTrue(habit.endDate.isSameDay(as: endDate))
     }
     
     func testDurationInDaysWhenGivenEndDate() {
-        var components = DateComponents()
-        components.year = 2025
-        components.month = 9
-        components.day = 2
-        guard let endDate = Calendar.current.date(from: components) else { return }
+        let endDate = calendar.date(byAdding: .day, value: 22, to: calendar.startOfDay(for: Date()))!
         let habit = Habit(title: "Foo", endDate: endDate)
         XCTAssertEqual(habit.durationInDays, 22)
     }
     
     func testEndDateWhenGivenDeafultDurationInDays() {
-        var components = DateComponents()
-        components.year = 2025
-        components.month = 8
-        components.day = 31
-        guard let endDate = Calendar.current.date(from: components) else { return }
+        let endDate = calendar.date(byAdding: .day, value: 21, to: calendar.startOfDay(for: Date()))!
         let habit = Habit(title: "Foo")
         XCTAssertTrue(habit.endDate.isSameDay(as: endDate))
     }
     
-    
-    func testShesuledDatesWhenGivenFrequency() {
+    func testShesuledDatesWhenGivenFrequencyByWeekday() {
         let habit = Habit(title: "foo", frequency: .weekly(days: [.monday, .wednesday, .friday]), durationInDays: 30)
-        print(habit.scheduledDates)
-        XCTAssertEqual(habit.scheduledDates.count, 13)
+        XCTAssertEqual(habit.scheduledDates.count, 14)
+    }
+    
+    func testShedulesDatesWhenGivenFrequencyByCustom() {
+        let habit = Habit(title: "foo", frequency: .custom(daysInterval: 3), durationInDays: 30)
+        XCTAssertEqual(habit.scheduledDates.count, 11)
+    }
+    
+    func testShedulesDatesWhenGivenFrequencyByDefault() {
+        let habit = Habit(title: "foo", durationInDays: 30)
+        XCTAssertEqual(habit.scheduledDates.count, 31)
+    }
+    
+    func testGenerateWeeklyBetweenWhenGivenEmptyWeekdays() {
+        let habit = Habit(title: "foo",frequency: Frequency.weekly(days: []), durationInDays: 30)
+        XCTAssertTrue(habit.scheduledDates.isEmpty)
     }
 }

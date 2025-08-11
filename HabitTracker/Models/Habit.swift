@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Habit {
+struct Habit: Equatable {
     var title: String
     var description: String?
     var startDate: Date
     var endDate: Date
     var frequency: Frequency
     private(set) var scheduledDates: [Date] = []
-    private(set) var completionDates: [Date]
+    var completionDates: [Date]
     var colorHex: String
     var durationInDays: Int
     
@@ -53,17 +53,6 @@ struct Habit {
             start: self.startDate,
             end: self.endDate
         )
-    }
-    
-    mutating func addComletionDate(_ date: Date) {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(identifier: "UTC")!
-        
-        let normalizedDate = calendar.startOfDay(for: date)
-        if !completionDates.contains(where: {$0.isSameDay(as: normalizedDate)}) &&
-            completionDates.count < durationInDays {
-            completionDates.append(normalizedDate)
-        }
     }
 }
 
