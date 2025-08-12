@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HabitManager {
+final class HabitManager {
     
     private var calendar = Calendar.current
     

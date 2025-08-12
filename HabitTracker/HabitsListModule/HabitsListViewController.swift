@@ -13,14 +13,40 @@ protocol HabitsListViewProtocol: AnyObject {
 
 class HabitsListViewController: UIViewController {
     
+    var habitsListTableView: UITableView!
     var presenter: HabitsLIstPresenterProtocol!
+    
     private let configurator: HabitsListConfiguratorProtocol = HabitsListConfigurator()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(viewController: self)
-        view.backgroundColor = .red
+        setupNavigationController()
+        setupTableView()
     }
+    
+    private func setupNavigationController() {
+        navigationItem.title = "Habits"
+    }
+    
+    private func setupTableView() {
+        habitsListTableView = UITableView()
+        habitsListTableView.delegate = self
+        habitsListTableView.dataSource = self
+    }
+    
+}
+
+extension HabitsListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        UITableViewCell()
+    }
+    
+    
 }
 
 
